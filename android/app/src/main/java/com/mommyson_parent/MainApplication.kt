@@ -10,16 +10,21 @@ import com.facebook.react.defaults.DefaultNewArchitectureEntryPoint.load
 import com.facebook.react.defaults.DefaultReactHost.getDefaultReactHost
 import com.facebook.react.defaults.DefaultReactNativeHost
 import com.facebook.soloader.SoLoader
+import com.oblador.vectoricons.VectorIconsPackage
 
 class MainApplication : Application(), ReactApplication {
 
   override val reactNativeHost: ReactNativeHost =
       object : DefaultReactNativeHost(this) {
-        override fun getPackages(): List<ReactPackage> =
-            PackageList(this).packages.apply {
-              // Packages that cannot be autolinked yet can be added manually here, for example:
-              // add(MyReactNativePackage())
-            }
+        override fun getPackages(): List<ReactPackage> {
+            // 자동 링크된 패키지 목록을 가져옵니다.
+            val packages = PackageList(this).packages.toMutableList()
+            // 수동으로 추가된 패키지를 제거합니다.
+            packages.removeAll { it is VectorIconsPackage }
+            // 필요한 경우 수동으로 추가할 패키지를 여기에 추가합니다.
+            // packages.add(MyReactNativePackage())
+            return packages
+        }
 
         override fun getJSMainModuleName(): String = "index"
 
