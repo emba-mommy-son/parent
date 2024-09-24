@@ -4,7 +4,7 @@ import HomeScreen from './home/HomeScreen';
 import LocationScreen from './location/LocationScreen';
 import AnalysysScreen from './analysys/AnalysysScreen';
 import SettingScreen from './setting/SettingScreen';
-import TabBar from '../components/common/Tabbar';
+import TabBar from '../components/common/BottomTab/Tabbar';
 
 const Tab = createBottomTabNavigator();
 

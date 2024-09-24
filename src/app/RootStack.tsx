@@ -4,9 +4,9 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import LoginScreen from './auth/LoginScreen';
 import SignupScreen from './auth/SignupScreen';
 import RootTab from './RootTab';
-import { RootStackParamList } from '@/types/navigation';
 import RegisterQRcodeScreen from './registerChild/RegisterQRcodeScreen';
 import RegisterInfoScreen from './registerChild/RegisterInfoScreen';
+import { RootStackParamList } from '../types/navigation';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
