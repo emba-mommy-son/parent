@@ -2,10 +2,7 @@
   "extends": "@react-native/typescript-config/tsconfig.json",
   "compilerOptions": {
     "strict": true,
-    "module": "esnext",
-    "paths": {
-      "@/*": ["./src/*"]
-    }
+    "module": "esnext"
   },
   "include": ["src/**/*.ts", "src/**/*.tsx", "src/types/**/*.d.ts", "nativewind-env.d.ts"],
   "exclude": ["node_modules", "dist"]
