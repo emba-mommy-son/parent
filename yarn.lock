@@ -1585,6 +1585,13 @@
   resolved "https://registry.npmjs.org/@pkgjs/parseargs/-/parseargs-0.11.0.tgz"
   integrity sha512-+1VkjdD0QBLPodGrJUeqarH8VAIvQODIbwh9XpP5Syisf7YoQgsJKPNFoqqLQlu+VQ/tVSshMR6loPMn8U+dPg==
 
+"@react-native-async-storage/async-storage@^1.13.4":
+  version "1.24.0"
+  resolved "https://registry.npmjs.org/@react-native-async-storage/async-storage/-/async-storage-1.24.0.tgz"
+  integrity sha512-W4/vbwUOYOjco0x3toB8QCr7EjIP6nE9G7o8PMguvvjYT5Awg09lyV4enACRx4s++PPulBiBSjL0KTFx2u0Z/g==
+  dependencies:
+    merge-options "^3.0.4"
+
 "@react-native-async-storage/async-storage@2.0.0":
   version "2.0.0"
   resolved "https://registry.npmjs.org/@react-native-async-storage/async-storage/-/async-storage-2.0.0.tgz"
@@ -3188,6 +3195,11 @@ clone@^1.0.2:
   version "1.0.4"
   resolved "https://registry.npmjs.org/clone/-/clone-1.0.4.tgz"
   integrity sha512-JQHZ2QMW6l3aH/j6xCqQThY/9OH4D/9ls34cgkUBiEeocRTU04tHfKPBsUK1PqZCUQM7GiA0IIXJSuXHI64Kbg==
+
+clsx@^2.1.1:
+  version "2.1.1"
+  resolved "https://registry.npmjs.org/clsx/-/clsx-2.1.1.tgz"
+  integrity sha512-eYm0QWBtUrBWZWG0d386OGAw16Z995PiOVo2B7bjWSbHedGl5e0ZWaq65kOGgUSNesEIDkB9ISbTg/JK9dhCZA==
 
 co@^4.6.0:
   version "4.6.0"
@@ -6637,7 +6649,7 @@ prompts@^2.0.1, prompts@^2.4.2:
     kleur "^3.0.3"
     sisteransi "^1.0.5"
 
-prop-types@^15.7.2, prop-types@^15.8.1:
+prop-types@^15.5.10, prop-types@^15.6.2, prop-types@^15.7.2, prop-types@^15.8.1:
   version "15.8.1"
   resolved "https://registry.npmjs.org/prop-types/-/prop-types-15.8.1.tgz"
   integrity sha512-oj87CgZICdulUohogVAR7AjlC0327U4el4L6eAvOqCeudMDVU0NThNaV+b9Df4dXgSP1gXMTnPdhfe/2qDH5cg==
@@ -6743,6 +6755,13 @@ react-is@^18.3.1:
   resolved "https://registry.npmjs.org/react-is/-/react-is-18.3.1.tgz"
   integrity sha512-/LLMVyas0ljjAtoYiPqYiL8VWXzUUdThrmU5+n20DZv+a+ClRoevUzw5JxU+Ieh5/c87ytoTBV9G1FiKfNJdmg==
 
+react-native-camera@^4.2.1, react-native-camera@>=1.0.2:
+  version "4.2.1"
+  resolved "https://registry.npmjs.org/react-native-camera/-/react-native-camera-4.2.1.tgz"
+  integrity sha512-+Vkql24PFYQfsPRznJCvPwJQfyzCnjlcww/iZ4Ej80bgivKjL9eU0IMQIXp4yi6XCrKi4voWXxIDPMupQZKeIQ==
+  dependencies:
+    prop-types "^15.6.2"
+
 react-native-gesture-handler@^2.19.0, "react-native-gesture-handler@>= 1.0.0":
   version "2.19.0"
   resolved "https://registry.npmjs.org/react-native-gesture-handler/-/react-native-gesture-handler-2.19.0.tgz"
@@ -6752,6 +6771,25 @@ react-native-gesture-handler@^2.19.0, "react-native-gesture-handler@>= 1.0.0":
     hoist-non-react-statics "^3.3.0"
     invariant "^2.2.4"
     prop-types "^15.7.2"
+
+react-native-permissions@^2.0.2:
+  version "2.2.2"
+  resolved "https://registry.npmjs.org/react-native-permissions/-/react-native-permissions-2.2.2.tgz"
+  integrity sha512-ihf4shQDSX5Oo9ChQXb9kr13mmyyNem5MaEvOpr3dCjhBOBWyEMztXm9/uPK1Qg5PsNpaYLa1KpcPZDCw87LXg==
+
+react-native-permissions@^4.1.5:
+  version "4.1.5"
+  resolved "https://registry.npmjs.org/react-native-permissions/-/react-native-permissions-4.1.5.tgz"
+  integrity sha512-r6VMRacASmtRHS+GZ+5HQCp9p9kiE+UU9magHOZCXZLTJitdTuVHWZRrb4v4oqZGU+zAp3mZhTQftuMMv+WLUg==
+
+react-native-qrcode-scanner@^1.5.5:
+  version "1.5.5"
+  resolved "https://registry.npmjs.org/react-native-qrcode-scanner/-/react-native-qrcode-scanner-1.5.5.tgz"
+  integrity sha512-il79uStkFqUvofqXJQfOL30qgQyU17MUKxj7IGHv6oT2OxIY/vutTwuPPDbsivtv0yTMHP4dGx/79oys4eAuNw==
+  dependencies:
+    "@react-native-async-storage/async-storage" "^1.13.4"
+    prop-types "^15.5.10"
+    react-native-permissions "^2.0.2"
 
 react-native-reanimated@^3.15.3, "react-native-reanimated@>= 1.0.0":
   version "3.15.3"
@@ -6791,7 +6829,7 @@ react-native-vector-icons@^10.2.0:
     prop-types "^15.7.2"
     yargs "^16.1.1"
 
-react-native@*, "react-native@^0.0.0-0 || >=0.65 <1.0", react-native@0.75.3:
+react-native@*, "react-native@^0.0.0-0 || >=0.60 <1.0", "react-native@^0.0.0-0 || >=0.65 <1.0", react-native@>=0.60.0, react-native@>=0.70.0, react-native@0.75.3:
   version "0.75.3"
   resolved "https://registry.npmjs.org/react-native/-/react-native-0.75.3.tgz"
   integrity sha512-+Ne6u5H+tPo36sme19SCd1u2UID2uo0J/XzAJarxmrDj4Nsdi44eyUDKtQHmhgxjRGsuVJqAYrMK0abLSq8AHw==
@@ -6863,7 +6901,7 @@ react-test-renderer@18.3.1:
     react-shallow-renderer "^16.15.0"
     scheduler "^0.23.2"
 
-react@*, "react@^16.0.0 || ^17.0.0 || ^18.0.0", "react@^16.3.0 || ^17.0.1 || ^18.0.0", "react@^16.8.0 || ^17.0.0 || ^18.0.0", react@^18.2.0, react@^18.3.1, react@>=16.8, react@>=17.0.0, react@>=18.0.0, react@18.3.1:
+react@*, "react@^16.0.0 || ^17.0.0 || ^18.0.0", "react@^16.3.0 || ^17.0.1 || ^18.0.0", "react@^16.8.0 || ^17.0.0 || ^18.0.0", react@^18.2.0, react@^18.3.1, react@>=16.8, react@>=16.8.6, react@>=17.0.0, react@>=18.0.0, react@>=18.1.0, react@18.3.1:
   version "18.3.1"
   resolved "https://registry.npmjs.org/react/-/react-18.3.1.tgz"
   integrity sha512-wS+hAgJShR0KhEvPJArfuPVN1+Hz1t0Y6n5jLrGQbkb4urgPE/0Rve+1kMB1v/oWgHgm4WIcV+i7F2pTVj+2iQ==
