@@ -1,6 +1,8 @@
 import { View, Text, Button, TouchableOpacity } from 'react-native';
 import React from 'react';
-import { RootStackParamList } from '@/types/navigation';
+// import { RootStackParamList } from '@/types/navigation';
+import { RootStackParamList } from '../../types/navigation'; // 경로 수정
+
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
 type LoginScreenProp = NativeStackNavigationProp<RootStackParamList>;
