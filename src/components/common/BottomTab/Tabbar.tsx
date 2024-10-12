@@ -1,18 +1,18 @@
-import { useState } from 'react';
-import Colors from '../../../constants/Colors';
 import { View, Text, Pressable } from 'react-native';
 import HomeIcon from 'react-native-vector-icons/FontAwesome';
 import LocationIcon from 'react-native-vector-icons/FontAwesome6';
 import AnalysysIcon from 'react-native-vector-icons/FontAwesome6';
 import SettingIcon from 'react-native-vector-icons/Ionicons';
 import TabChildButton from './TabChildButton';
-import { useChildModalStore } from '../../../zustand/useChildModalStore';
+import { useChildModalStore } from '@/zustand/useChildModalStore';
 import ChildrenModalEvalArea from './ChildrenModalEvalArea';
 import ChildrenModalBackground from './ChildrenModalBackground';
-import sampleImg from '../../../assets/images/sample_img.png';
+import sampleImg from '@/assets/images/sample_img2.png';
 
 const TabBar = ({ state, descriptors, navigation }: { state: any; descriptors: any; navigation: any }) => {
   const { isModalVisible, toggleModal } = useChildModalStore();
+
+  const iconFlex = 'items-center justify-end gap-0.5';
 
   return (
     <>
@@ -60,8 +60,8 @@ const TabBar = ({ state, descriptors, navigation }: { state: any; descriptors: a
             switch (routeName) {
               case 'Home':
                 return (
-                  <View className="items-center justify-end gap-1">
-                    <HomeIcon name="home" size={29} color={isFocused ? Colors.BLACK : Colors.GRAY[2]} />
+                  <View className={iconFlex}>
+                    <HomeIcon name="home" size={26} color={isFocused ? '#000000' : '#ADB5BD'} />
                     <Text className={`text-xs font-bold ${isFocused ? 'text-my_black' : 'text-my_gray_2'}`}>
                       {options.title}
                     </Text>
@@ -69,8 +69,8 @@ const TabBar = ({ state, descriptors, navigation }: { state: any; descriptors: a
                 );
               case 'Location':
                 return (
-                  <View className="items-center justify-end gap-1.5 mr-10">
-                    <LocationIcon name="location-dot" size={26} color={isFocused ? Colors.BLACK : Colors.GRAY[2]} />
+                  <View className={`${iconFlex} mr-10`}>
+                    <LocationIcon name="location-dot" size={22} color={isFocused ? '#000000' : '#ADB5BD'} />
                     <Text className={`text-xs font-bold ${isFocused ? 'text-my_black' : 'text-my_gray_2'}`}>
                       {options.title}
                     </Text>
@@ -78,12 +78,8 @@ const TabBar = ({ state, descriptors, navigation }: { state: any; descriptors: a
                 );
               case 'Analysys':
                 return (
-                  <View className="items-center justify-end gap-1.5 ml-10">
-                    <AnalysysIcon
-                      name="magnifying-glass-chart"
-                      size={26}
-                      color={isFocused ? Colors.BLACK : Colors.GRAY[2]}
-                    />
+                  <View className={`${iconFlex} ml-10`}>
+                    <AnalysysIcon name="magnifying-glass-chart" size={21} color={isFocused ? '#000000' : '#ADB5BD'} />
                     <Text className={`text-xs font-bold ${isFocused ? 'text-my_black' : 'text-my_gray_2'}`}>
                       {options.title}
                     </Text>
@@ -91,8 +87,8 @@ const TabBar = ({ state, descriptors, navigation }: { state: any; descriptors: a
                 );
               case 'Setting':
                 return (
-                  <View className="items-center justify-end gap-1.5">
-                    <SettingIcon name="settings-sharp" size={30} color={isFocused ? Colors.BLACK : Colors.GRAY[2]} />
+                  <View className={iconFlex}>
+                    <SettingIcon name="settings-sharp" size={23} color={isFocused ? '#000000' : '#ADB5BD'} />
                     <Text className={`text-xs font-bold ${isFocused ? 'text-my_black' : 'text-my_gray_2'}`}>
                       {options.title}
                     </Text>
@@ -108,7 +104,7 @@ const TabBar = ({ state, descriptors, navigation }: { state: any; descriptors: a
               key={route.key}
               onPress={onPress}
               onLongPress={onLongPress}
-              className="flex-1 items-center justify-center">
+              className="flex-1 items-center justify-center pb-3">
               {getIcon(route.name)}
             </Pressable>
           );
