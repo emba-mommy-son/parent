@@ -44,7 +44,7 @@ const Input = (props: InputContainerProps) => {
 
   return (
     <View className="relative">
-      {/* 인풋 */}
+      {/* input */}
       <TextInput
         {...props}
         onFocus={handleFocus}
@@ -52,6 +52,7 @@ const Input = (props: InputContainerProps) => {
         className={inputClasses}
         underlineColorAndroid="transparent"
       />
+      {/* input 삭제 버튼 */}
       {props.enableDeleteButton && !!props.value?.length && <DeleteButton onPress={() => props.handleDeleteText()} />}
     </View>
   );
