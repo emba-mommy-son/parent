@@ -12,12 +12,11 @@ import { TouchableOpacity } from 'react-native';
 import ArrowLeftIcon from 'react-native-vector-icons/AntDesign';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
-type LoginScreenProp = NativeStackNavigationProp<RootStackParamList>;
 
 const RootStack = () => {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="RootTab" screenOptions={{ headerShown: true }}>
+      <Stack.Navigator initialRouteName="RegisterQRcode" screenOptions={{ headerShown: true }}>
         <Stack.Screen name="RootTab" component={RootTab} options={{ headerShown: false }} />
         <Stack.Screen
           name="Login"
@@ -69,7 +68,19 @@ const RootStack = () => {
             ),
           })}
         />
-        <Stack.Screen name="RegisterQRcode" component={RegisterQRcodeScreen} options={{ headerShown: true }} />
+        <Stack.Screen
+          name="RegisterQRcode"
+          component={RegisterQRcodeScreen}
+          options={({ navigation }) => ({
+            headerShown: true,
+            title: '자녀 등록 (2/2)',
+            headerLeft: () => (
+              <TouchableOpacity className="mr-4" onPress={() => navigation.goBack()}>
+                <ArrowLeftIcon name="arrowleft" size={24} color="black" />
+              </TouchableOpacity>
+            ),
+          })}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );
