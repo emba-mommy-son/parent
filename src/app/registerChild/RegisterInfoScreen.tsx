@@ -4,10 +4,15 @@ import ScreenContainer from '@/components/common/ScreenContainer';
 import Button from '@/components/common/buttons/Button';
 import LabeledInput from '@/components/common/Inputs/LabeledInput';
 import PlusIcon from 'react-native-vector-icons/Entypo';
+import { NavigationProp } from '@react-navigation/native';
+import { RootStackParamList } from '@/types/navigation';
 
 const GAP: string = 'mb-12';
-const RegisterInfoScreen = () => {
+const RegisterInfoScreen = ({ navigation }: { navigation: NavigationProp<RootStackParamList> }) => {
   const [profileImage, setProfileImage] = useState<string | null>(null);
+  const handleNext = () => {
+    navigation.navigate('RegisterQRcode');
+  };
 
   return (
     <ScreenContainer type="view" myScreenStyle="bg-white" barStyle="dark-content">
@@ -37,7 +42,7 @@ const RegisterInfoScreen = () => {
           className={`w-full mb-4 ${GAP}`}
         />
       </View>
-      <Button type="secondary" myTextStyle="text-white">
+      <Button onPress={handleNext} type="secondary" myTextStyle="text-white">
         다음
       </Button>
     </ScreenContainer>

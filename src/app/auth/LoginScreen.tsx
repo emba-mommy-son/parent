@@ -15,6 +15,9 @@ const LoginScreen = ({ navigation }: { navigation: LoginScreenProp }) => {
   const handleSignup = () => {
     navigation.navigate('Signup');
   };
+  const handleRegister = () => {
+    navigation.navigate('RegisterInfo');
+  };
   return (
     <ScreenContainer myScreenStyle="bg-white" barStyle="dark-content">
       <View className="flex-1 justify-center items-center">
@@ -27,6 +30,9 @@ const LoginScreen = ({ navigation }: { navigation: LoginScreenProp }) => {
       </Button>
       <Button onPress={handleSignup} myButtonStyle="bg-white" myTextStyle="text-my_gray_900">
         회원가입
+      </Button>
+      <Button onPress={handleRegister} myButtonStyle="bg-white" myTextStyle="text-my_gray_900">
+        자녀등록(임시)
       </Button>
     </ScreenContainer>
   );
