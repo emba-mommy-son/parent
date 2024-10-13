@@ -17,7 +17,7 @@ type LoginScreenProp = NativeStackNavigationProp<RootStackParamList>;
 const RootStack = () => {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="RegisterInfo" screenOptions={{ headerShown: true }}>
+      <Stack.Navigator initialRouteName="RootTab" screenOptions={{ headerShown: true }}>
         <Stack.Screen name="RootTab" component={RootTab} options={{ headerShown: false }} />
         <Stack.Screen
           name="Login"
