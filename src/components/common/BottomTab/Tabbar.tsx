@@ -104,7 +104,7 @@ const TabBar = ({ state, descriptors, navigation }: { state: any; descriptors: a
               key={route.key}
               onPress={onPress}
               onLongPress={onLongPress}
-              className="flex-1 items-center justify-center pb-3">
+              className="flex-1 items-center justify-center pb-2.5">
               {getIcon(route.name)}
             </Pressable>
           );
