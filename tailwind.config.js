@@ -1,5 +1,4 @@
 /** @type {import('tailwindcss').Config} */
-// 여기 수정하면 constants/Colors.ts도 바꿔줘야 함!
 
 module.exports = {
   content: ['./src/**/*.{js,jsx,ts,tsx}'],
