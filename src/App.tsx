@@ -1,6 +1,6 @@
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
-import RootStack from './app/RootStack';
+import RootStack from './navigation/RootStack';
 
 const App = () => {
   const queryClient = new QueryClient();
