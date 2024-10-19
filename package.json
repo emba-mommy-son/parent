@@ -11,6 +11,7 @@
     "test": "jest"
   },
   "dependencies": {
+    "@react-native-community/eslint-config": "^3.2.0",
     "@react-navigation/bottom-tabs": "^6.6.1",
     "@react-navigation/devtools": "^6.0.27",
     "@react-navigation/drawer": "^6.7.2",
@@ -58,7 +59,7 @@
     "babel-loader": "8.4.1",
     "babel-plugin-module-resolver": "^5.0.2",
     "eslint": "^8.19.0",
-    "eslint-plugin-import": "^2.30.0",
+    "eslint-plugin-import": "^2.31.0",
     "eslint-plugin-prettier": "^5.2.1",
     "eslint-plugin-simple-import-sort": "^12.1.1",
     "jest": "^29.6.3",
