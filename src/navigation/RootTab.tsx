@@ -1,7 +1,7 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import React from 'react';
 
-import TabBar from '@/components/BottomTab/Tabbar';
+import TabBar from '@/components/bottomTab/Tabbar';
 
 import AnalysysScreen from '../pages/analysys/page/AnalysysScreen';
 import HomeScreen from '../pages/home/pages/HomeScreen';
