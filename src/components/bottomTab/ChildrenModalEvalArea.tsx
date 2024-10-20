@@ -11,9 +11,17 @@ import { RootStackParamList } from '@/types/navigation';
 type ChildModalEvalAreaProp = NativeStackScreenProps<RootStackParamList, 'ChildrenModalEvalArea'>['navigation'];
 
 const ChildrenModalEvalArea = ({ navigation }: { navigation: ChildModalEvalAreaProp }) => {
+  const childNum = 2;
+
   return (
     <View className="flex justify-center items-center bottom-10 flex-row z-20">
-      <View className="justify-between relative items-center flex flex-row z-20  bg-white py-2 pr-2  rounded-full shadow-xl shadow-black pl-4">
+      <View className="justify-between relative items-center flex flex-row z-20 bg-white py-2 pr-2 rounded-full shadow-xl shadow-black pl-4">
+        {!childNum && (
+          <View>
+            <Text className="mr-4">자녀를</Text>
+            <Text className="mr-4">등록해주세요</Text>
+          </View>
+        )}
         <ModalChildButton
           img={sampleImg3}
           name="김이름"
