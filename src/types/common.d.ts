@@ -21,3 +21,5 @@ type Password = string;
  * 권한(임시)
  */
 type Role = 'PARENT' | 'CHILD'; // 부모, 자녀
+
+type DateString = string;
