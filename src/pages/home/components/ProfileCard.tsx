@@ -8,7 +8,7 @@ const ProfileCard = () => {
   return (
     <View className="w-full h-[176px] bg-my_secondary pt-10 rounded-b-3xl z-0" style={[styles.shadow]}>
       <View className="flex flex-row items-center justify-between pl-5 pr-6">
-        <Text className="text-white font-semibold text-xl py-1">김도영</Text>
+        <Text className="text-white font-semibold text-xl">김도영</Text>
         <View className="flex flex-row">
           {alert && (
             <Text className="text-my_primary bg-white rounded-lg rounded-br-none px-3 pb-1 mr-1.5">
