@@ -7,8 +7,10 @@ interface CardProps {
 
 const Card = ({ children }: CardProps) => {
   return (
-    <View className="w-full bg-white rounded-lg p-4 mb-4" style={[styles.shadow]}>
-      {children}
+    <View className="mx-6">
+      <View className="w-full bg-white rounded-lg p-4 mb-4" style={[styles.shadow]}>
+        {children}
+      </View>
     </View>
   );
 };
