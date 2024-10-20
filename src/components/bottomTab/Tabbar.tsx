@@ -1,3 +1,4 @@
+import React from 'react';
 import { Pressable, Text, View } from 'react-native';
 import HomeIcon from 'react-native-vector-icons/FontAwesome';
 import LocationIcon from 'react-native-vector-icons/FontAwesome6';

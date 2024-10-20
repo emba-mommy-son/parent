@@ -1,3 +1,4 @@
+import React from 'react';
 import clsx from 'clsx';
 import { useState } from 'react';
 import type { TextInputProps } from 'react-native';
