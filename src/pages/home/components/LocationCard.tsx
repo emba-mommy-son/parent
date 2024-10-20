@@ -24,7 +24,7 @@ const LocationCard = () => {
       </View>
       <View className="relative flex flex-row items-center p-1 mt-3">
         <Image source={sampleMap} className="w-20 h-20 rounded-2xl mr-5" />
-        <Entypo name="location-pin" size={42} style={{ color: '#FF5185', position: 'absolute', top: 20, left: 24 }} />
+        <Entypo name="location-pin" size={36} style={{ color: '#FF5185', position: 'absolute', top: 26, left: 26 }} />
         <View>
           <Text className="text-black text-lg">광주광역시</Text>
           <Text className="text-black text-lg">광산구 임방울대로 32</Text>

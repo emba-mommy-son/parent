@@ -31,7 +31,7 @@ const EmotionStatsCard = () => {
             standalone={false}
             width={200}
             height={160}
-            innerRadius={60}
+            innerRadius={56}
             data={data}
             colorScale={colorScale}
             labels={() => null}
