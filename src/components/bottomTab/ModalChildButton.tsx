@@ -11,7 +11,7 @@ const ModalChildButton = ({ img, name, onPressHandler }: ModalChildButtonProps) 
   return (
     <Pressable className="rounded-full overflow-hidden w-[52px] h-[52px] ml-[-8px]" onPress={onPressHandler}>
       {img === 'none' ? (
-        <View className="w-full h-full flex items-center justify-center bg-my_gray_0 text-sm">
+        <View className="w-full h-full flex items-center justify-center bg-[#e5e5e5ff] text-sm">
           <Text className="text-center mt-[-2px]">{name}</Text>
         </View>
       ) : (
