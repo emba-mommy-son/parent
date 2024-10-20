@@ -9,7 +9,7 @@ const ChildrenModalBackground = () => {
     <>
       <TouchableOpacity
         onPress={toggleModal}
-        className={`relative w-full h-full pb-10 bg-my_black opacity-40 z-0 ${
+        className={`relative w-full h-full pb-10 bg-black opacity-40 z-0 ${
           isModalVisible ? 'flex' : 'none'
         }`}></TouchableOpacity>
     </>

@@ -9,11 +9,11 @@ type TabChildButtonProps = {
 const TabChildButton = ({ img, onPressHandler }: TabChildButtonProps) => {
   return (
     <View
-      className="z-20 w-16 h-16 absolute bottom-[30px] left-[50%] transform -translate-x-[30px] rounded-full border-4 border-my_white overflow-hidden"
+      className="z-20 w-16 h-16 absolute bottom-[30px] left-[50%] transform -translate-x-[30px] rounded-full border-4 border-white overflow-hidden"
       style={[styles.shadow]}>
       <Pressable onPress={onPressHandler}>
         {img === 'none' ? (
-          <View className="h-full flex items-center justify-center bg-my_white">
+          <View className="h-full flex items-center justify-center bg-white">
             <Text className="text-center">김이름</Text>
           </View>
         ) : (

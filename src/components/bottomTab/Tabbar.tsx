@@ -64,7 +64,7 @@ const TabBar = ({ state, descriptors, navigation }: { state: any; descriptors: a
                 return (
                   <View className={iconFlex}>
                     <HomeIcon name="home" size={26} color={isFocused ? '#000000' : '#ADB5BD'} />
-                    <Text className={`text-xs font-bold ${isFocused ? 'text-my_black' : 'text-my_gray_2'}`}>
+                    <Text className={`text-xs font-bold ${isFocused ? 'text-black' : 'text-[#ADB5BD]'}`}>
                       {options.title}
                     </Text>
                   </View>
@@ -73,7 +73,7 @@ const TabBar = ({ state, descriptors, navigation }: { state: any; descriptors: a
                 return (
                   <View className={`${iconFlex} mr-10`}>
                     <LocationIcon name="location-dot" size={22} color={isFocused ? '#000000' : '#ADB5BD'} />
-                    <Text className={`text-xs font-bold ${isFocused ? 'text-my_black' : 'text-my_gray_2'}`}>
+                    <Text className={`text-xs font-bold ${isFocused ? 'text-black' : 'text-[#ADB5BD]'}`}>
                       {options.title}
                     </Text>
                   </View>
@@ -82,7 +82,7 @@ const TabBar = ({ state, descriptors, navigation }: { state: any; descriptors: a
                 return (
                   <View className={`${iconFlex} ml-10`}>
                     <AnalysysIcon name="magnifying-glass-chart" size={21} color={isFocused ? '#000000' : '#ADB5BD'} />
-                    <Text className={`text-xs font-bold ${isFocused ? 'text-my_black' : 'text-my_gray_2'}`}>
+                    <Text className={`text-xs font-bold ${isFocused ? 'text-black' : 'text-[#ADB5BD]'}`}>
                       {options.title}
                     </Text>
                   </View>
@@ -91,7 +91,7 @@ const TabBar = ({ state, descriptors, navigation }: { state: any; descriptors: a
                 return (
                   <View className={iconFlex}>
                     <SettingIcon name="settings-sharp" size={23} color={isFocused ? '#000000' : '#ADB5BD'} />
-                    <Text className={`text-xs font-bold ${isFocused ? 'text-my_black' : 'text-my_gray_2'}`}>
+                    <Text className={`text-xs font-bold ${isFocused ? 'text-black' : 'text-[#ADB5BD]'}`}>
                       {options.title}
                     </Text>
                   </View>

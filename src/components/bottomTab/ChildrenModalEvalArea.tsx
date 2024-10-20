@@ -9,7 +9,7 @@ import ModalChildButton from './ModalChildButton';
 const ChildrenModalEvalArea = () => {
   return (
     <View className="flex justify-center items-center bottom-10 flex-row z-20">
-      <View className="justify-between relative items-center flex flex-row z-20  bg-my_white py-2 pr-2  rounded-full shadow-xl shadow-black pl-4">
+      <View className="justify-between relative items-center flex flex-row z-20  bg-white py-2 pr-2  rounded-full shadow-xl shadow-black pl-4">
         <ModalChildButton
           img={sampleImg3}
           name="김이름"
@@ -26,7 +26,7 @@ const ChildrenModalEvalArea = () => {
         />
         {/* <ModalChildButton
           img={'none'}
-          name='홍길동'
+          name="홍길동"
           onPressHandler={() => {
             console.log('first');
           }}
