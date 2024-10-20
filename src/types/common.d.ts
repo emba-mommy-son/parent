@@ -7,10 +7,11 @@ type RefreshToken = Token;
 type NewAccessToken = Token;
 type NewRefreshToken = Token;
 
-/**
- * 유저
- */
+//유저
 type UserId = string;
+/**
+ * 유저 아이디(이메일)
+ */
 type UserName = string;
 type Name = string;
 type PhoneNumber = string;
