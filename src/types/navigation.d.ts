@@ -5,6 +5,7 @@ export type RootStackParamList = {
   RegisterInfo: undefined;
   RegisterQRcode: undefined;
   Chat: undefined;
+  ChildrenModalEvalArea: undefined;
 };
 
 export type RootTabParamList = {

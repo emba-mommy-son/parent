@@ -1,6 +1,8 @@
 {
   "extends": "@react-native/typescript-config/tsconfig.json",
   "compilerOptions": {
+    "jsx": "react",
+    "allowSyntheticDefaultImports": true,
     "strict": true,
     "module": "esnext",
     "baseUrl": "./", // 프로젝트 루트 디렉토리를 기준으로 설정
