@@ -10,6 +10,7 @@ type ScreenContainerProps = {
   barBgColor?: string;
   myScreenStyle?: string;
   ContainerStyle?: ViewStyle;
+  isPadding?: boolean;
 };
 
 const ScreenContainer = ({
@@ -17,13 +18,12 @@ const ScreenContainer = ({
   type = 'view',
   bgColor = 'white',
   barStyle = 'light-content',
-  barBgColor = 'black',
+  barBgColor = '#211c2c',
+  isPadding = true,
   myScreenStyle,
   ContainerStyle,
   ...props
 }: ScreenContainerProps) => {
-  const ScreenComponent = type === 'view' ? View : ScrollView;
-
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: bgColor }}>
       <StatusBar barStyle={barStyle} animated={true} backgroundColor={barBgColor} />
@@ -33,10 +33,12 @@ const ScreenContainer = ({
       )} */}
 
       <KeyboardAvoidingView
-        style={{ flex: 1, paddingHorizontal: 4, paddingVertical: 8 }}
+        style={{ flex: 1 }}
         behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
         keyboardVerticalOffset={Platform.OS === 'ios' ? 44 : StatusBar.currentHeight || 44}>
-        <ScrollView className={clsx('flex-1', 'px-4 py-8')} contentContainerStyle={{ flexGrow: 1, ...ContainerStyle }}>
+        <ScrollView
+          className={clsx('flex-1', isPadding ? 'px-4 py-8' : 'px-0 py-0')}
+          contentContainerStyle={{ flexGrow: 1, ...ContainerStyle }}>
           {children}
         </ScrollView>
       </KeyboardAvoidingView>
