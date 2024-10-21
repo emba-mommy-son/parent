@@ -27,6 +27,7 @@
     "react-native-camera": "^4.2.1",
     "react-native-collapsible": "^1.6.2",
     "react-native-gesture-handler": "^2.19.0",
+    "react-native-gifted-charts": "^1.4.45",
     "react-native-keyboard-aware-scroll-view": "^0.9.5",
     "react-native-permissions": "^4.1.5",
     "react-native-qrcode-scanner": "^1.5.5",
