@@ -16,10 +16,10 @@ const AnalysysScreen = () => {
       type="view"
       ContainerStyle={{ paddingVertical: 1 }}
       isPadding={false}>
-      <View className="h-[70%] w-full">
+      <View className="flex-1 w-full">
         <CalendarContainer />
       </View>
-      <View className="h-[30%] w-full">
+      <View className="flex-1 w-full justify-center items-center">
         <WeekChartContainer />
       </View>
     </ScreenContainer>

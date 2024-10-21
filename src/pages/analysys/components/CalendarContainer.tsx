@@ -60,7 +60,7 @@ const CalendarContainer = () => {
         dayComponent={({ date, state, marking }: { date: CalendarDateProps; state: string; marking: any }) => {
           return (
             <View
-              className="flex-1 items-center justify-center p-1"
+              className="flex-1 items-center justify-center p-0.5"
               style={
                 state === 'disabled'
                   ? { opacity: 0.2 }
@@ -74,7 +74,7 @@ const CalendarContainer = () => {
                   setSelectedDate(date.dateString);
                   console.log(date, state, marking);
                 }}
-                className="flex-1 items-center justify-center flex gap-2">
+                className="flex-1 items-center justify-center flex gap-1">
                 <Text className="text-sm text-my_black font-base">{date.day}</Text>
                 <View>
                   {tempDateList.find(tempDate => tempDate.dateString === date.dateString)?.feel ? (
