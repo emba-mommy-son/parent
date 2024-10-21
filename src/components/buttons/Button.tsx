@@ -25,7 +25,6 @@ const Button = ({
   ...props
 }: ButtonProps) => {
   const BtnContainerBaseStyle = 'flex justify-center items-center text-lg rounded-lg h-12';
-  const BtnContainerSizeStyle = size === 'fill' ? 'w-full' : 'w-auto px-4';
   const BtnContainerTypeStyle = {
     primary: disabled ? 'bg-my_gray_3' : 'bg-my_primary',
     outlined: disabled ? 'border border-my_gray_3' : 'border border-my_primary',

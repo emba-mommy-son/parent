@@ -2,10 +2,13 @@ import React from 'react';
 import { View, Text } from 'react-native';
 import { VictoryPie } from 'victory-native';
 import Card from '@/components/Card';
+import CardCover from '@/components/CardCover';
 import Svg from 'react-native-svg';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 
 const EmotionStatsCard = () => {
+  const isLogin = true;
+
   const data = [
     { x: '호기심/의문', y: 30 },
     { x: '즐거움', y: 25 },
@@ -47,6 +50,8 @@ const EmotionStatsCard = () => {
           </View>
         ))}
       </View>
+
+      {!isLogin && <CardCover height={236} text="자녀의 감정 통계를 확인할 수 있습니다" />}
     </Card>
   );
 };

@@ -1,32 +1,57 @@
 import React from 'react';
-import { View, Text, Image } from 'react-native';
+import { View, Text, Image, TouchableOpacity } from 'react-native';
 import Card from '@/components/Card';
 import sampleImg2 from '@/assets/images/sample_img2.png';
+import { useNavigation, NavigationProp } from '@react-navigation/native';
+import { RootStackParamList } from '@/types/navigation';
 
 const ChildStatusCard = () => {
-  const score = 71;
+  const isLogin = true;
+  const navigation = useNavigation<NavigationProp<RootStackParamList>>();
+
+  const data = {
+    status: '건강한 상태',
+    text: '지난 밤 수면의 질이 좋습니다',
+    score: 71,
+  };
 
   return (
     <Card>
-      <View className="flex flex-row items-start justify-between">
-        <View>
-          <Text className="text-base text-black mb-0.5">건강한 상태</Text>
-          <Text>지난 밤 수면의 질이 좋습니다</Text>
-        </View>
-        <Image source={sampleImg2} className="rounded-full w-12 h-12" />
-      </View>
-      <View className="flex flex-row justify-between items-end mt-6 mb-2">
-        <Text>score</Text>
-        <View className="flex flex-row items-end">
-          <Text className="text-black text-base mb-[-2px]">{score}</Text>
-          <Text className="text-xs">/100</Text>
-        </View>
-      </View>
-      <View className="w-full bg-black rounded-full h-2">
-        <View
-          className={`bg-my_primary h-2 ${Number(score) === 100 ? 'rounded-full' : 'rounded-l-full'}`}
-          style={{ width: `${score}%` }}></View>
-      </View>
+      {isLogin ? (
+        <>
+          <View className="flex flex-row items-start justify-between">
+            <View className="max-w-[80%]">
+              <Text className="text-base text-black mb-0.5">{data.status}</Text>
+              <Text>{data.text}</Text>
+            </View>
+            <Image source={sampleImg2} className="rounded-full w-12 h-12" />
+          </View>
+          <View className="flex flex-row justify-between items-end mt-6 mb-2">
+            <Text>score</Text>
+            <View className="flex flex-row items-end">
+              <Text className="text-black text-base mb-[-2px]">{data.score}</Text>
+              <Text className="text-xs">/100</Text>
+            </View>
+          </View>
+          <View className="w-full bg-black rounded-full h-2">
+            <View
+              className={`bg-my_primary h-2 ${Number(data.score) === 100 ? 'rounded-full' : 'rounded-l-full'}`}
+              style={{ width: `${data.score}%` }}></View>
+          </View>
+        </>
+      ) : (
+        <>
+          <View>
+            <Text className="text-base text-black mb-2">자녀 등록하러 가기</Text>
+            <Text className="text-xs text-[#aaaaaa]">자녀의 기기에 마미손(자녀용)이 설치되어 있어야 합니다</Text>
+          </View>
+          <View className="flex justify-center items-center mt-6 mb-2.5">
+            <TouchableOpacity onPress={() => navigation.navigate('RegisterInfo')}>
+              <Text className="text-xs text-center text-white bg-my_secondary px-5 py-1.5 rounded-[5px]">등록하기</Text>
+            </TouchableOpacity>
+          </View>
+        </>
+      )}
     </Card>
   );
 };
