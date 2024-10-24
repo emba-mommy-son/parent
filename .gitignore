@@ -93,3 +93,6 @@ pnpm-error.*
 bun-debug.*
 bun-error.*
 
+secret/
+src/secret/
+mapKey.ts
