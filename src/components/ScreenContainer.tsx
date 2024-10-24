@@ -25,7 +25,7 @@ const ScreenContainer = ({
   ...props
 }: ScreenContainerProps) => {
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: bgColor }}>
+    <View style={{ flex: 1, backgroundColor: bgColor }}>
       <StatusBar barStyle={barStyle} animated={true} backgroundColor={barBgColor} />
       {/* {Platform.OS === 'ios' && (
         // iOS에서 StatusBar 배경
@@ -42,7 +42,7 @@ const ScreenContainer = ({
           {children}
         </ScrollView>
       </KeyboardAvoidingView>
-    </SafeAreaView>
+    </View>
   );
 };
 

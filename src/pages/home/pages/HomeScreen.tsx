@@ -10,7 +10,7 @@ import ProfileCard from '../components/ProfileCard';
 
 const HomeScreen = () => {
   return (
-    <ScreenContainer bgColor="white" barStyle="dark-content" barBgColor="black" isPadding={false}>
+    <ScreenContainer bgColor="white" barBgColor="black" isPadding={false}>
       <View className="relative">
         <ProfileCard />
         <View className="absolute z-10 top-[90px]">
