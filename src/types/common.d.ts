@@ -17,9 +17,11 @@ type Name = string;
 type PhoneNumber = string;
 type Password = string;
 
-/**
- * 권한(임시)
- */
-type Role = 'PARENT' | 'CHILD'; // 부모, 자녀
-
 type DateString = string;
+
+/**
+ * 자녀 위치 위경도 타입
+ */
+
+type Lat = number;
+type Lng = number;

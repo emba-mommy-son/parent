@@ -23,4 +23,9 @@ export const keys = {
    * notification 쿼리 키 그룹
    */
   notification: () => [...keys.all, 'notification'] as const,
+
+  /**
+   * location 쿼리 키 그룹
+   */
+  location: () => [...keys.all, 'loacation'] as const,
 };
