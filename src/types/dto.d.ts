@@ -1,7 +1,7 @@
 /**
  * 로그인 응답 DTO
  */
-interface SignInResponseDto {
+interface GetSignInResponseDto {
   accessToken: AccessToken;
   refreshToken: RefreshToken;
 }
@@ -9,6 +9,14 @@ interface SignInResponseDto {
 /**
  * 토큰 재발급 응답 DTO
  */
-interface RefreshTokenResponseDto {
+interface GetRefreshTokenResponseDto {
   refreshToken: RefreshToken;
+}
+
+/**
+ * 자녀 위치 조회 응답 DTO (임시)
+ */
+interface GetChildLocationResponseDto {
+  lat: Lat;
+  lng: Lng;
 }
