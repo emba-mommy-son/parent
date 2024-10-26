@@ -3,6 +3,7 @@ module.exports = function (api) {
   return {
     presets: ['module:metro-react-native-babel-preset', '@babel/preset-typescript'],
     plugins: [
+      'react-native-reanimated/plugin',
       'nativewind/babel',
       ['@babel/plugin-transform-class-properties', { loose: true }],
       ['@babel/plugin-transform-private-methods', { loose: true }],
