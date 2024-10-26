@@ -8,7 +8,7 @@ const LocationScreen = () => {
   const [location, setLocation] = useState({ lat: 37.58008433707483, lng: 126.96762175737622 });
 
   return (
-    <ScreenContainer type="view" bgColor="white" isPadding={false}>
+    <ScreenContainer bgColor="white" isPadding={false}>
       <GoogleMapView lat={location.lat} lng={location.lat} />
     </ScreenContainer>
   );
