@@ -2,7 +2,7 @@ import React from 'react';
 import { Pressable, Text, View } from 'react-native';
 import HomeIcon from 'react-native-vector-icons/FontAwesome';
 import LocationIcon from 'react-native-vector-icons/FontAwesome6';
-import AnalysysIcon from 'react-native-vector-icons/FontAwesome6';
+import AnalysisIcon from 'react-native-vector-icons/FontAwesome6';
 import SettingIcon from 'react-native-vector-icons/Ionicons';
 
 import sampleImg from '@/assets/images/sample_img2.png';
@@ -79,10 +79,10 @@ const TabBar = ({ state, descriptors, navigation }: { state: any; descriptors: a
                     </Text>
                   </View>
                 );
-              case 'Analysys':
+              case 'Analysis':
                 return (
                   <View className={`${iconFlex} ml-10`}>
-                    <AnalysysIcon name="magnifying-glass-chart" size={21} color={isFocused ? '#000000' : '#ADB5BD'} />
+                    <AnalysisIcon name="magnifying-glass-chart" size={21} color={isFocused ? '#000000' : '#ADB5BD'} />
                     <Text className={`text-xs font-bold ${isFocused ? 'text-black' : 'text-[#ADB5BD]'}`}>
                       {options.title}
                     </Text>

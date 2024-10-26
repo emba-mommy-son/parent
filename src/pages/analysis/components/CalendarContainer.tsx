@@ -22,7 +22,11 @@ interface TempDateProps {
   feel: 'smile' | 'mad' | 'sad';
 }
 
-const CalendarContainer = () => {
+interface CalendarContainerProps {
+  onDayPress: () => void;
+}
+
+const CalendarContainer = ({ onDayPress }: CalendarContainerProps) => {
   const today = new Date();
   const [selectedDate, setSelectedDate] = useState<DateString>(dateToString(today));
 
@@ -73,6 +77,7 @@ const CalendarContainer = () => {
                 onPress={() => {
                   setSelectedDate(date.dateString);
                   console.log(date, state, marking);
+                  onDayPress();
                 }}
                 className="flex-1 items-center justify-center flex gap-1">
                 <Text className="text-sm text-my_black font-base">{date.day}</Text>
