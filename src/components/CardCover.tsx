@@ -9,7 +9,7 @@ interface CardCoverProps {
 
 const CardCover = ({ height, text }: CardCoverProps) => {
   return (
-    <View className={`absolute w-full h-[${height}px] m-4 flex justify-center items-center`} style={[styles.bgc]}>
+    <View className={`absolute w-full m-4 flex justify-center items-center`} style={[styles.bgc, { height }]}>
       <View className="flex items-center py-4 px-2" style={[styles.bgc]}>
         <Feather name="info" size={18} />
         <Text className="text-black pt-3">{text}</Text>
