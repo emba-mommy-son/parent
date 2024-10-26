@@ -18,7 +18,7 @@ const RegisterInfoScreen = ({ navigation }: { navigation: RegisterInfoScreenNavi
   };
 
   return (
-    <ScreenContainer type="view" myScreenStyle="bg-white" barStyle="dark-content">
+    <ScreenContainer barStyle="dark-content">
       <View className="flex-1 justify-start items-center">
         <LabeledInput size="fill" label="자녀 성명" placeholder="" className={`w-full mb-8 ${GAP}`} />
         <View className={`flex items-start w-full mb-8 ${GAP}`}>

@@ -4,23 +4,19 @@ import { KeyboardAvoidingView, Platform, SafeAreaView, ScrollView, StatusBar, Vi
 
 type ScreenContainerProps = {
   children: React.ReactNode;
-  type?: 'view' | 'scroll';
   bgColor?: string;
   barStyle?: 'light-content' | 'dark-content';
   barBgColor?: string;
-  myScreenStyle?: string;
   ContainerStyle?: ViewStyle;
   isPadding?: boolean;
 };
 
 const ScreenContainer = ({
   children,
-  type = 'view',
   bgColor = 'white',
   barStyle = 'light-content',
   barBgColor = '#211c2c',
   isPadding = true,
-  myScreenStyle,
   ContainerStyle,
   ...props
 }: ScreenContainerProps) => {

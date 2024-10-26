@@ -1,5 +1,5 @@
-import React from 'react';
 import clsx from 'clsx'; // 조건부 클래스 적용을 위해 사용
+import React from 'react';
 import { Pressable, PressableProps, Text, View } from 'react-native';
 
 type ButtonSize = 'fill' | 'hug' | number;
