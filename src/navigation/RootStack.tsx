@@ -6,11 +6,13 @@ import ArrowLeftIcon from 'react-native-vector-icons/AntDesign';
 
 import Colors from '@/constants/Colors';
 
-import LoginScreen from '../pages/auth/pages/LoginScreen';
-import SignupScreen from '../pages/auth/pages/SignupScreen';
-import RegisterInfoScreen from '../pages/registerChild/pages/RegisterInfoScreen';
-import RegisterQRcodeScreen from '../pages/registerChild/pages/RegisterQRcodeScreen';
-import { RootStackParamList } from '../types/navigation';
+import LoginScreen from '@/pages/auth/pages/LoginScreen';
+import SignupScreen from '@/pages/auth/pages/SignupScreen';
+import RegisterInfoScreen from '@/pages/registerChild/pages/RegisterInfoScreen';
+import RegisterQRcodeScreen from '@/pages/registerChild/pages/RegisterQRcodeScreen';
+import AlertScreen from '@/pages/alert/pages/AlertScreen';
+import ChartScreen from '@/pages/analysis/pages/ChartScreen';
+import { RootStackParamList } from '@/types/navigation';
 import RootTab from './RootTab';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -76,6 +78,32 @@ const RootStack = () => {
           options={({ navigation }) => ({
             headerShown: true,
             title: '자녀 등록 (2/2)',
+            headerLeft: () => (
+              <TouchableOpacity className="mr-4" onPress={() => navigation.goBack()}>
+                <ArrowLeftIcon name="arrowleft" size={24} color="black" />
+              </TouchableOpacity>
+            ),
+          })}
+        />
+        <Stack.Screen
+          name="Alert"
+          component={AlertScreen}
+          options={({ navigation }) => ({
+            headerShown: true,
+            title: '알림',
+            headerLeft: () => (
+              <TouchableOpacity className="mr-4" onPress={() => navigation.goBack()}>
+                <ArrowLeftIcon name="arrowleft" size={24} color="black" />
+              </TouchableOpacity>
+            ),
+          })}
+        />
+        <Stack.Screen
+          name="Chart"
+          component={ChartScreen}
+          options={({ navigation }) => ({
+            headerShown: true,
+            title: '2024.10.27 레포트',
             headerLeft: () => (
               <TouchableOpacity className="mr-4" onPress={() => navigation.goBack()}>
                 <ArrowLeftIcon name="arrowleft" size={24} color="black" />

@@ -4,6 +4,8 @@ export type RootStackParamList = {
   Signup: undefined;
   RegisterInfo: undefined;
   RegisterQRcode: undefined;
+  Alert: undefined;
+  Chart: undefinded;
   Chat: undefined;
   ChildrenModalEvalArea: undefined;
 };
