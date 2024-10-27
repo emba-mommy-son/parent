@@ -4,9 +4,9 @@ import React from 'react';
 import TabBar from '@/components/bottomTab/Tabbar';
 import LocationScreen from '@/pages/home/location/pages/LocationScreen';
 
-import AnalysisScreen from '../pages/analysis/page/AnalysisScreen';
-import HomeScreen from '../pages/home/pages/HomeScreen';
-import SettingScreen from '../pages/setting/pages/SettingScreen';
+import AnalysisScreen from '@/pages/analysis/pages/AnalysisScreen';
+import HomeScreen from '@/pages/home/pages/HomeScreen';
+import SettingScreen from '@/pages/setting/pages/SettingScreen';
 
 const Tab = createBottomTabNavigator();
 

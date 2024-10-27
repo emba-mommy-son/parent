@@ -1,10 +1,12 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { useNavigation, NavigationProp } from '@react-navigation/native';
+import { RootStackParamList } from '@/types/navigation';
 import BellIcon from 'react-native-vector-icons/Octicons';
 
 const ProfileCard = () => {
   const isLogin = true;
-  const alert = true;
+  const navigation = useNavigation<NavigationProp<RootStackParamList>>();
 
   const noData = {
     name: '등록된 자녀가 없습니다',
@@ -30,14 +32,14 @@ const ProfileCard = () => {
               새로운 정보가 있습니다
             </Text>
           )}
-          <View className="relative">
+          <TouchableOpacity className="relative" onPress={() => navigation.navigate('Alert')}>
             <BellIcon name="bell" size={22} color="#ffffff" />
             {displayData.alert && (
               <View className="absolute top-[-8px] right-[-10px] bg-my_primary flex items-center justify-center rounded-full w-5 h-5">
                 <Text className="text-white mt-[-0.5px]">4</Text>
               </View>
             )}
-          </View>
+          </TouchableOpacity>
         </View>
       </View>
     </View>
