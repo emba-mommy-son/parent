@@ -1,12 +1,12 @@
 import React from 'react';
-import { View, Text, Image } from 'react-native';
-import Card from '@/components/Card';
-import CardCover from '@/components/CardCover';
-import { TimeFormat } from '@/utils/formatter/TimeFormat';
+import { Image, Text, View } from 'react-native';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import Entypo from 'react-native-vector-icons/Entypo';
 
 import sampleMap from '@/assets/images/sample_map.png';
+import Card from '@/components/Card';
+import CardCover from '@/components/CardCover';
+import { TimeFormat } from '@/utils/formatter/TimeFormat';
 
 const LocationCard = () => {
   const isLogin = true;

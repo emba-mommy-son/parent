@@ -1,12 +1,14 @@
+import { useNavigation } from '@react-navigation/native';
+import { type NativeStackNavigationProp } from '@react-navigation/native-stack';
 import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
-import { useNavigation, NavigationProp } from '@react-navigation/native';
-import { RootStackParamList } from '@/types/navigation';
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import BellIcon from 'react-native-vector-icons/Octicons';
+
+import { RootStackParamList } from '@/types/navigation';
 
 const ProfileCard = () => {
   const isLogin = true;
-  const navigation = useNavigation<NavigationProp<RootStackParamList>>();
+  const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
 
   const noData = {
     name: '등록된 자녀가 없습니다',

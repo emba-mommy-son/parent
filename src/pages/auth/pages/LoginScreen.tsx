@@ -50,7 +50,7 @@ const LoginScreen = ({ navigation }: { navigation: LoginScreenProp }) => {
   }, [email, password]);
 
   return (
-    <ScreenContainer myScreenStyle="bg-white" barStyle="dark-content">
+    <ScreenContainer barStyle="dark-content">
       <View className="flex-1 justify-center items-center">
         <View className="w-40 h-40 bg-gray-200 mb-16 rounded-full" />
         <LabeledInput
