@@ -1,7 +1,8 @@
 import React from 'react';
-import { Text, View, StyleSheet, ScrollView } from 'react-native';
-import ScreenContainer from '@/components/ScreenContainer';
+import { ScrollView, StyleSheet, Text, View } from 'react-native';
 import Feather from 'react-native-vector-icons/Feather';
+
+import ScreenContainer from '@/components/ScreenContainer';
 
 // 현재 코드는 더미데이터 출력용임. 넘어오는 데이터 구조에 따라 로직을 변경할 필요가 있음.
 const AlertScreen = () => {

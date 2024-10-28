@@ -1,10 +1,12 @@
 import React from 'react';
-import { Text, View, ScrollView } from 'react-native';
-import ScreenContainer from '@/components/ScreenContainer';
+import { ScrollView, Text, View } from 'react-native';
+
 import Card from '@/components/Card';
 import EmotionChart from '@/components/chart/EmotionChart';
-import StressChart from '../components/StressChart';
+import ScreenContainer from '@/components/ScreenContainer';
+
 import LanguagePatternChart from '../components/LanguagePatternChart';
+import StressChart from '../components/StressChart';
 
 const ChartScreen = () => {
   return (

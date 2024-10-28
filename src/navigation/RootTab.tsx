@@ -2,9 +2,8 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import React from 'react';
 
 import TabBar from '@/components/bottomTab/Tabbar';
-import LocationScreen from '@/pages/home/location/pages/LocationScreen';
-
 import AnalysisScreen from '@/pages/analysis/pages/AnalysisScreen';
+import LocationScreen from '@/pages/home/location/pages/LocationScreen';
 import HomeScreen from '@/pages/home/pages/HomeScreen';
 import SettingScreen from '@/pages/setting/pages/SettingScreen';
 

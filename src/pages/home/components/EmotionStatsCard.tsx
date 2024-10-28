@@ -1,10 +1,11 @@
 import React from 'react';
-import { View, Text } from 'react-native';
-import { VictoryPie } from 'victory-native';
-import Card from '@/components/Card';
-import CardCover from '@/components/CardCover';
+import { Text, View } from 'react-native';
 import Svg from 'react-native-svg';
 import AntDesign from 'react-native-vector-icons/AntDesign';
+import { VictoryPie } from 'victory-native';
+
+import Card from '@/components/Card';
+import CardCover from '@/components/CardCover';
 
 const EmotionStatsCard = () => {
   const isLogin = true;

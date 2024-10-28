@@ -5,14 +5,14 @@ import { TouchableOpacity } from 'react-native';
 import ArrowLeftIcon from 'react-native-vector-icons/AntDesign';
 
 import Colors from '@/constants/Colors';
-
+import AlertScreen from '@/pages/alert/pages/AlertScreen';
+import ChartScreen from '@/pages/analysis/pages/ChartScreen';
 import LoginScreen from '@/pages/auth/pages/LoginScreen';
 import SignupScreen from '@/pages/auth/pages/SignupScreen';
 import RegisterInfoScreen from '@/pages/registerChild/pages/RegisterInfoScreen';
 import RegisterQRcodeScreen from '@/pages/registerChild/pages/RegisterQRcodeScreen';
-import AlertScreen from '@/pages/alert/pages/AlertScreen';
-import ChartScreen from '@/pages/analysis/pages/ChartScreen';
 import { RootStackParamList } from '@/types/navigation';
+
 import RootTab from './RootTab';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();

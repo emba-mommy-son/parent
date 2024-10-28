@@ -3,10 +3,10 @@ import { View } from 'react-native';
 
 import ScreenContainer from '@/components/ScreenContainer';
 
-import ProfileCard from '../components/ProfileCard';
 import ChildStatusCard from '../components/ChildStatusCard';
-import LocationCard from '../components/LocationCard';
 import EmotionSummary from '../components/EmotionSummary';
+import LocationCard from '../components/LocationCard';
+import ProfileCard from '../components/ProfileCard';
 
 const HomeScreen = () => {
   return (

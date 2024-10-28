@@ -127,7 +127,7 @@ const SignupScreen = ({ navigation }: SignupScreenProp) => {
   };
 
   return (
-    <ScreenContainer type="view" myScreenStyle="bg-white" barStyle="dark-content">
+    <ScreenContainer barStyle="dark-content">
       <View className="flex-1 justify-start items-center">
         <LabeledInput
           size="fill"

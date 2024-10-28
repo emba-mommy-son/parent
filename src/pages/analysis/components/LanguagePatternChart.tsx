@@ -1,7 +1,7 @@
 import React from 'react';
 import { Text, View } from 'react-native';
-import { VictoryPie } from 'victory-native';
 import Svg from 'react-native-svg';
+import { VictoryPie } from 'victory-native';
 
 const LanguagePatternChart = () => {
   const data = [

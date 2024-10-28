@@ -1,4 +1,5 @@
 import React from 'react';
+
 import Card from '@/components/Card';
 import CardCover from '@/components/CardCover';
 import EmotionChart from '@/components/chart/EmotionChart';
