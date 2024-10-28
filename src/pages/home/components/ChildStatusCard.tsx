@@ -3,11 +3,15 @@ import { type NativeStackNavigationProp } from '@react-navigation/native-stack';
 import React from 'react';
 import { Image, Text, TouchableOpacity, View } from 'react-native';
 
-import sampleImg2 from '@/assets/images/sample_img2.png';
+import unknown_person from '@/assets/images/unknown_person.jpg';
 import Card from '@/components/Card';
 import { RootStackParamList } from '@/types/navigation';
 
-const ChildStatusCard = () => {
+interface ChildStatusCardProps {
+  nowSelectedChild: ChildInfo;
+}
+
+const ChildStatusCard = ({ nowSelectedChild }: ChildStatusCardProps) => {
   const isLogin = true;
   const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
 
@@ -26,7 +30,12 @@ const ChildStatusCard = () => {
               <Text className="text-base text-black mb-0.5">{data.status}</Text>
               <Text>{data.text}</Text>
             </View>
-            <Image source={sampleImg2} className="rounded-full w-12 h-12" />
+            <Image
+              source={nowSelectedChild.profileImage ? { uri: nowSelectedChild.profileImage } : unknown_person}
+              width={30}
+              height={30}
+              className="rounded-full w-12 h-12"
+            />
           </View>
           <View className="flex flex-row justify-between items-end mt-6 mb-2">
             <Text>score</Text>
