@@ -1,20 +1,14 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Text, TouchableOpacity, View } from 'react-native';
-import { Calendar } from 'react-native-calendars';
+import { Calendar, DateData } from 'react-native-calendars';
 
 import MadIcon from '@/assets/svgs/mad.svg';
 import SadIcon from '@/assets/svgs/sad.svg';
 import SmileIcon from '@/assets/svgs/smile.svg';
 import Colors from '@/constants/Colors';
+import { useMonthEmotionReport } from '@/tanstackQuery/queries/analysis';
 import { dateToString } from '@/utils/formatter/DateFormat';
-
-interface CalendarDateProps {
-  dateString: string;
-  day: number;
-  month: number;
-  year: number;
-  timestamp: number;
-}
+import useRootStore from '@/zustand';
 
 interface TempDateProps {
   dateString: DateString;
@@ -28,12 +22,17 @@ interface CalendarContainerProps {
 
 const CalendarContainer = ({ onDayPress }: CalendarContainerProps) => {
   const today = new Date();
-  const [selectedDate, setSelectedDate] = useState<DateString>(dateToString(today));
+  const { selectedDate, setSelectedDate, nowSelectedChild } = useRootStore();
+  const MonthEmotionData = useMonthEmotionReport({
+    childId: nowSelectedChild.childId,
+    year: Number(selectedDate.split('-')[0]),
+    month: Number(selectedDate.split('-')[1]),
+  });
 
-  // 최근 100일 날짜 리스트(임시 목업)
+  // 최근 30일 날짜 리스트(임시 목업)
   const [tempDateList, setTempDateList] = useState<TempDateProps[]>(
-    Array(100)
-      .fill({ dateString: dateToString(today), marked: false, feel: 'smile' })
+    Array(30)
+      .fill({ dateString: dateToString(today), feel: 'smile' })
       .map((date, index) => ({
         ...date,
         dateString: dateToString(new Date(today.getTime() - index * 24 * 60 * 60 * 1000)),
@@ -55,13 +54,13 @@ const CalendarContainer = ({ onDayPress }: CalendarContainerProps) => {
   return (
     <View className="flex-1">
       <Calendar
-        theme={{ arrowColor: Colors.PRIMARY, alignHeaders: 'center' }}
+        theme={{ arrowColor: Colors.PRIMARY }}
         style={{ flex: 1 }}
         initialDate={dateToString(today)}
-        onDayPress={() => {}}
-        onMonthChange={() => {}}
+        // onDayPress={() => {}}
+        // onMonthChange={() => {}}
         markingType="dot"
-        dayComponent={({ date, state, marking }: { date: CalendarDateProps; state: string; marking: any }) => {
+        dayComponent={({ date, state }: { date: DateData; state: string }) => {
           return (
             <View
               className="flex-1 items-center justify-center p-0.5"
@@ -76,7 +75,7 @@ const CalendarContainer = ({ onDayPress }: CalendarContainerProps) => {
                 disabled={state === 'disabled' ? true : undefined}
                 onPress={() => {
                   setSelectedDate(date.dateString);
-                  console.log(date, state, marking);
+                  console.log(date, state);
                   onDayPress();
                 }}
                 className="flex-1 items-center justify-center flex gap-1">

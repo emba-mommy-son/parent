@@ -1,8 +1,3 @@
-interface ChildModalStore {
-  isModalVisible: boolean;
-  toggleModal: () => void;
-}
-
 interface AuthSlice {
   accessToken: string;
   refreshToken: string;
@@ -16,4 +11,14 @@ interface ChildModalSlice {
   toggleModal: () => void;
 }
 
-type RootState = ChildModalSlice & AuthSlice;
+interface ChildSlice {
+  nowSelectedChild: ChildInfo;
+  setNowSelectedChild: (child: ChildInfo) => void;
+}
+
+interface AnalysisSlice {
+  selectedDate: DateString;
+  setSelectedDate: (date: DateString) => void;
+}
+
+type RootState = ChildModalSlice & AuthSlice & ChildSlice & AnalysisSlice;

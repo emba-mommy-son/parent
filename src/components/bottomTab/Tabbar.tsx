@@ -13,14 +13,14 @@ import ChildrenModalEvalArea from './ChildrenModalEvalArea';
 import TabChildButton from './TabChildButton';
 
 const TabBar = ({ state, descriptors, navigation }: { state: any; descriptors: any; navigation: any }) => {
-  const { isModalVisible, toggleModal } = useRootStore();
+  const { isModalVisible, toggleModal, nowSelectedChild } = useRootStore();
 
   const iconFlex = 'items-center justify-end gap-0.5';
 
   return (
     <>
       {/* 프로필 버튼 */}
-      <TabChildButton img={sampleImg} onPressHandler={toggleModal} />
+      <TabChildButton img={nowSelectedChild.profileImage} onPressHandler={toggleModal} />
       {isModalVisible && <ChildrenModalEvalArea navigation={navigation} />}
 
       {/* 모달 */}

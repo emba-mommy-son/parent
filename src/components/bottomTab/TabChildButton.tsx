@@ -2,7 +2,7 @@ import React from 'react';
 import { Image, ImageProps, Pressable, StyleSheet, Text, View } from 'react-native';
 
 type TabChildButtonProps = {
-  img: ImageProps | 'none';
+  img: ProfileImage | 'none';
   onPressHandler: () => void;
 };
 
@@ -17,7 +17,7 @@ const TabChildButton = ({ img, onPressHandler }: TabChildButtonProps) => {
             <Text className="text-center">김이름</Text>
           </View>
         ) : (
-          <Image source={img} className="w-full h-full" />
+          <Image source={{ uri: img }} className="w-full h-full bg-white" />
         )}
       </Pressable>
     </View>

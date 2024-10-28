@@ -1,12 +1,12 @@
+import type { NativeStackScreenProps } from '@react-navigation/native-stack';
 import React from 'react';
-import { Text, View, TouchableOpacity } from 'react-native';
+import { Text, TouchableOpacity, View } from 'react-native';
 
 import sampleImg2 from '@/assets/images/sample_img2.png';
 import sampleImg3 from '@/assets/images/sample_img3.png';
+import { RootStackParamList } from '@/types/navigation';
 
 import ModalChildButton from './ModalChildButton';
-import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { RootStackParamList } from '@/types/navigation';
 
 type ChildModalEvalAreaProp = NativeStackScreenProps<RootStackParamList, 'ChildrenModalEvalArea'>['navigation'];
 
