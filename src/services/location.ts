@@ -2,6 +2,6 @@ import axios from 'axios';
 
 export default {
   getChildLoacation: async (childId: ChildId) => {
-    return axios.get<GetChildLocationResponse>(`/api/...?childId=${childId}`);
+    return axios.get<BaseResponse<GetChildLocationResponseDto>>(`/api/...?childId=${childId}`);
   },
 };

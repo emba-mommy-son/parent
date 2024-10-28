@@ -12,6 +12,11 @@ interface SignInForm {
   password: Password;
 }
 
+interface ReconnectForm {
+  fcmToken: Token;
+  childId: ChildId;
+}
+
 interface EachEmotionForm {
   childId: ChildId;
   dateTime: DateString;

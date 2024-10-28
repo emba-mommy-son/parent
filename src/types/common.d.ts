@@ -6,6 +6,9 @@ type month = number;
 type year = number;
 type DateString = string;
 
+/** 감정 */
+type Emotion = 'NEUTRAL' | 'NEGATIVE' | 'POSITIVE';
+
 /**
  * 토큰
  */
@@ -19,6 +22,18 @@ type NewRefreshToken = Token;
  * 자녀
  */
 type ChildId = number;
+
+/** 자녀 감정 타입 */
+type EmotionDto = {
+  date: DateString;
+  emotion: Emotion;
+};
+
+/** 자녀 스트레스 타입 */
+type DayStressDto = {
+  date: DateString;
+  intensity: number;
+};
 
 type UserId = string;
 /**
