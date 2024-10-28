@@ -1,8 +1,9 @@
+import { type NavigationProp, useNavigation } from '@react-navigation/native';
 import React from 'react';
 import { Text, TouchableOpacity, View } from 'react-native';
-import { useNavigation, NavigationProp } from '@react-navigation/native';
-import { RootStackParamList } from '@/types/navigation';
 import Close from 'react-native-vector-icons/AntDesign';
+
+import { RootStackParamList } from '@/types/navigation';
 
 interface AnalysisModalProps {
   onPress: () => void;

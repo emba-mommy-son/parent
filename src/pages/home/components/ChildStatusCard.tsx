@@ -1,13 +1,15 @@
+import { useNavigation } from '@react-navigation/native';
+import { type NativeStackNavigationProp } from '@react-navigation/native-stack';
 import React from 'react';
-import { View, Text, Image, TouchableOpacity } from 'react-native';
-import Card from '@/components/Card';
+import { Image, Text, TouchableOpacity, View } from 'react-native';
+
 import sampleImg2 from '@/assets/images/sample_img2.png';
-import { useNavigation, NavigationProp } from '@react-navigation/native';
+import Card from '@/components/Card';
 import { RootStackParamList } from '@/types/navigation';
 
 const ChildStatusCard = () => {
   const isLogin = true;
-  const navigation = useNavigation<NavigationProp<RootStackParamList>>();
+  const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
 
   const data = {
     status: '건강한 상태',
