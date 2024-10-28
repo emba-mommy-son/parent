@@ -22,6 +22,13 @@ type NewRefreshToken = Token;
  * 자녀
  */
 type ChildId = number;
+type ChildName = Name;
+type ProfileImage = string;
+type ChildInfo = {
+  childId: ChildId;
+  name: ChildName;
+  profileImage: ProfileImage;
+};
 
 /** 자녀 감정 타입 */
 type EmotionDto = {
