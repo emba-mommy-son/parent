@@ -11,3 +11,14 @@ interface SignInForm {
   username: UserName;
   password: Password;
 }
+
+interface EachEmotionForm {
+  childId: ChildId;
+  dateTime: DateString;
+}
+
+interface MonthEmotionForm {
+  childId: ChildId;
+  year: year;
+  month: month;
+}

@@ -1,6 +1,6 @@
 import BottomSheet, { BottomSheetView } from '@gorhom/bottom-sheet';
 import React, { useCallback, useMemo, useRef } from 'react';
-import { Text, View } from 'react-native';
+import { View } from 'react-native';
 
 import ScreenContainer from '@/components/ScreenContainer';
 
@@ -39,6 +39,7 @@ const AnalysisScreen = () => {
       <BottomSheet
         ref={bottomSheetRef}
         snapPoints={snapPoints}
+        initialSnapIndex={-1} // 시작 시 바텀시트가 닫힌 상태로 설정
         style={{ borderTopLeftRadius: 48, borderTopRightRadius: 48, elevation: 16 }}>
         <BottomSheetView className="absolute flex-1">
           <AnalysisModal onPress={handleClosePress} />
