@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 export default {
-  getChildLoacation: async () => {
-    return axios.get<GetChildLocationResponse>('/api/...');
+  getChildLoacation: async (childId: ChildId) => {
+    return axios.get<GetChildLocationResponse>(`/api/...?childId=${childId}`);
   },
 };
