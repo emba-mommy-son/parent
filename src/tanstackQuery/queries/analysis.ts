@@ -42,6 +42,8 @@ const useMonthEmotionReport = ({ childId, year, month }: MonthEmotionForm) => {
     queryFn: () => mommyson.getMonthEmotionReport({ childId, year, month }),
   });
 
-  const monthEmotionData = data?.data.data || {};
+  const monthEmotionData = data?.data.data || [];
   return monthEmotionData;
 };
+
+export { useChildEachEmotionReport, useChildStressReport, useMonthEmotionReport };
