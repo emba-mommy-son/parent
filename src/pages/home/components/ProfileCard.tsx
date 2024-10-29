@@ -1,6 +1,6 @@
 import { useNavigation } from '@react-navigation/native';
 import { type NativeStackNavigationProp } from '@react-navigation/native-stack';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import BellIcon from 'react-native-vector-icons/Octicons';
 
@@ -12,7 +12,7 @@ interface PrifileCardProps {
 
 const ProfileCard = ({ nowSelectedChild }: PrifileCardProps) => {
   const [isLogin, setIsLogin] = useState(true);
-  const [data] = useState(
+  const [data, setData] = useState(
     isLogin
       ? {
           name: nowSelectedChild.name,
@@ -22,10 +22,18 @@ const ProfileCard = ({ nowSelectedChild }: PrifileCardProps) => {
       : null,
   );
 
+  useEffect(() => {
+    setData({
+      name: nowSelectedChild.name,
+      alert: true,
+      alertCnt: 4,
+    });
+  }, [nowSelectedChild]);
+
   const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
 
   return (
-    <View className="w-full h-[176px] bg-my_secondary pt-10 rounded-b-3xl z-0" style={[styles.shadow]}>
+    <View className="w-full h-[176px] bg-my_secondary pt-10 rounded-b-3xl z-0">
       <View className="flex flex-row items-center justify-between pl-5 pr-6">
         <Text className="text-white font-semibold text-xl">{data?.name || '등록된 자녀가 없습니다.'}</Text>
         <View className="flex flex-row">
@@ -47,16 +55,5 @@ const ProfileCard = ({ nowSelectedChild }: PrifileCardProps) => {
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  shadow: {
-    shadowColor: '#000000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.84,
-    elevation: 10,
-    zIndex: 0,
-  },
-});
 
 export default ProfileCard;
