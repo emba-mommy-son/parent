@@ -18,7 +18,7 @@ const HomeScreen = () => {
     //임시
     setNowSelectedChild({
       childId: 1,
-      name: '김도영김도올드',
+      name: '김도영',
       profileImage:
         'https://i.namu.wiki/i/38Gd7TqELmVjZOxv_o9IlD9z5RVQ33-FSCzQS-AFY6COMYpxFcH_XjAALWm_Gswh9xwBUVENkwgwGwnj8a-cAg.webp',
     });
