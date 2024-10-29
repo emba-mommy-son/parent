@@ -7,8 +7,8 @@ type LocationAtMapProps = {
   lat: Lat;
 };
 
-const windowWidth = Dimensions.get('window').width;
-const windowHeight = Dimensions.get('window').height;
+// const windowWidth = Dimensions.get('window').width;
+// const windowHeight = Dimensions.get('window').height;
 
 const GoogleMapView = ({ lat, lng }: LocationAtMapProps) => {
   return (
@@ -17,10 +17,10 @@ const GoogleMapView = ({ lat, lng }: LocationAtMapProps) => {
         provider={PROVIDER_GOOGLE} // remove if not using Google Maps
         style={styles.map}
         region={{
-          latitude: lng,
-          longitude: lat,
-          latitudeDelta: 0.015,
-          longitudeDelta: 0.0121,
+          latitude: lat,
+          longitude: lng,
+          latitudeDelta: 0.0922,
+          longitudeDelta: 0.0421,
         }}></MapView>
     </View>
   );
