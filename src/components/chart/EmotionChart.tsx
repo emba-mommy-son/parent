@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import AntDesign from 'react-native-vector-icons/AntDesign';
+import Feather from 'react-native-vector-icons/Feather';
 
 interface EmotionChartProps {
   showReport?: boolean;
@@ -48,6 +49,12 @@ const EmotionChart: React.FC<EmotionChartProps> = ({ showReport = true }) => {
             <Text className="absolute bottom-0.5 right-1 text-[10px] text-[#cbcbcb] mt-1">{item.reliability}</Text>
           </View>
         ))}
+        {showReport && (
+          <View className="flex flex-row items-center justify-center gap-1 w-full pt-2 pb-1">
+            <Feather name="info" size={14} style={{ color: '#cacaca' }} />
+            <Text className="mb-1 mr-0.5 text-[#aaaaaa] text-xs">백분율은 정보 신뢰도를 의미합니다.</Text>
+          </View>
+        )}
       </View>
     </>
   );
