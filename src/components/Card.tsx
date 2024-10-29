@@ -3,12 +3,13 @@ import React, { ReactNode } from 'react';
 
 interface CardProps {
   children: ReactNode;
+  isMargin?: boolean;
 }
 
-const Card = ({ children }: CardProps) => {
+const Card = ({ children, isMargin = true }: CardProps) => {
   return (
-    <View className="mx-5 relative">
-      <View className="w-full bg-white rounded-lg p-4 mb-4" style={[styles.shadow]}>
+    <View style={isMargin ? styles.margin : {}}>
+      <View className="w-full bg-white rounded-lg p-4 mb-4" style={styles.shadow}>
         {children}
       </View>
     </View>
@@ -22,6 +23,9 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.25,
     shadowRadius: 3.84,
     elevation: 10,
+  },
+  margin: {
+    marginHorizontal: 20,
   },
 });
 
