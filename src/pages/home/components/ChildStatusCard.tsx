@@ -31,7 +31,7 @@ const ChildStatusCard = ({ nowSelectedChild }: ChildStatusCardProps) => {
               <Text>{data.text}</Text>
             </View>
             <Image
-              source={nowSelectedChild.profileImage ? { uri: nowSelectedChild.profileImage } : unknown_person}
+              source={nowSelectedChild?.profileImage ? { uri: nowSelectedChild.profileImage } : unknown_person}
               width={30}
               height={30}
               className="rounded-full w-12 h-12"
