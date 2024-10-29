@@ -9,6 +9,7 @@ import ScreenContainer from '@/components/ScreenContainer';
 import SmallSpinner from '@/components/spinner/SmallSpinner';
 import auth from '@/services/auth';
 import { RootStackParamList } from '@/types/navigation';
+import useRootStore from '@/zustand';
 
 type LoginScreenProp = NativeStackScreenProps<RootStackParamList, 'Login'>['navigation'];
 
@@ -16,13 +17,17 @@ const LoginScreen = ({ navigation }: { navigation: LoginScreenProp }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const { setAccessToken, setRefreshToken, accessToken, refreshToken } = useRootStore();
 
   const { mutate: signIn } = useMutation({
     mutationFn: auth.signIn,
     onMutate: () => {
       setIsLoading(true);
     },
-    onSuccess: () => {
+    onSuccess: data => {
+      const { accessToken, refreshToken } = data.data.data;
+      setAccessToken(accessToken);
+      setRefreshToken(refreshToken);
       navigation.navigate('RootTab');
     },
     onError: error => {
@@ -43,11 +48,6 @@ const LoginScreen = ({ navigation }: { navigation: LoginScreenProp }) => {
   const handleRegister = () => {
     navigation.navigate('RegisterInfo');
   };
-
-  useEffect(() => {
-    console.log('email', email);
-    console.log('password', password);
-  }, [email, password]);
 
   return (
     <ScreenContainer barStyle="dark-content">

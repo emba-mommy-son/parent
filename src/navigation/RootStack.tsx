@@ -9,6 +9,7 @@ import AlertScreen from '@/pages/alert/pages/AlertScreen';
 import ChartScreen from '@/pages/analysis/pages/ChartScreen';
 import LoginScreen from '@/pages/auth/pages/LoginScreen';
 import SignupScreen from '@/pages/auth/pages/SignupScreen';
+import InitialScreen from '@/pages/InitialScreen';
 import RegisterInfoScreen from '@/pages/registerChild/pages/RegisterInfoScreen';
 import RegisterQRcodeScreen from '@/pages/registerChild/pages/RegisterQRcodeScreen';
 import { RootStackParamList } from '@/types/navigation';
@@ -20,7 +21,8 @@ const Stack = createNativeStackNavigator<RootStackParamList>();
 const RootStack = () => {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="RootTab" screenOptions={{ headerShown: true }}>
+      <Stack.Navigator initialRouteName="Init" screenOptions={{ headerShown: true }}>
+        <Stack.Screen name="Init" component={InitialScreen} options={{ headerShown: false }} />
         <Stack.Screen name="RootTab" component={RootTab} options={{ headerShown: false }} />
         <Stack.Screen
           name="Login"

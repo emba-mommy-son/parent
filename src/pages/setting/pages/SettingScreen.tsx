@@ -3,8 +3,10 @@ import React from 'react';
 import { Alert, Text, TouchableOpacity, View } from 'react-native';
 
 import ScreenContainer from '@/components/ScreenContainer';
+import useRootStore from '@/zustand';
 
 const SettingScreen = ({ navigation }: { navigation: any }) => {
+  const { clearToken } = useRootStore();
   const settingList = [
     {
       id: 0,
@@ -27,6 +29,11 @@ const SettingScreen = ({ navigation }: { navigation: any }) => {
       link: '',
     },
   ];
+
+  const handleLogout = () => {
+    clearToken();
+    navigation.navigate('Login');
+  };
   const showConfirmAlert = () => {
     Alert.alert(
       '로그아웃 하시겠습니까?', // 제목
@@ -39,7 +46,7 @@ const SettingScreen = ({ navigation }: { navigation: any }) => {
         },
         {
           text: '확인',
-          onPress: () => navigation.navigate('Login'),
+          onPress: handleLogout,
         },
       ],
       { cancelable: false }, // 바깥 터치 시 닫히지 않게 설정
