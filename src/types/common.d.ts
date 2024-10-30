@@ -17,6 +17,7 @@ type AccessToken = Token;
 type RefreshToken = Token;
 type NewAccessToken = Token;
 type NewRefreshToken = Token;
+type FCMToken = Token;
 
 /**
  * 자녀
@@ -29,6 +30,8 @@ type ChildInfo = {
   name: ChildName;
   profileImage: ProfileImage;
 };
+type PhoneNumber = string;
+type RelationShip = 'MOM' | 'DAD' | 'ETC' | '';
 
 /** 자녀 감정 타입 */
 type EmotionDto = {

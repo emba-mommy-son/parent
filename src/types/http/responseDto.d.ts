@@ -1,7 +1,7 @@
 /**
  * 로그인 응답 DTO
  */
-interface GetSignInResponseDto {
+interface SignInResponseDto {
   accessToken: AccessToken;
   refreshToken: RefreshToken;
 }
@@ -9,7 +9,7 @@ interface GetSignInResponseDto {
 /**
  * 토큰 재발급 응답 DTO
  */
-interface GetRefreshTokenResponseDto {
+interface RefreshTokenResponseDto {
   refreshToken: NewRefreshToken;
   accessToken: NewAccessToken;
 }
@@ -48,7 +48,7 @@ interface GetStressWhileSevenDaysDto {
   stressLevels: DayStressDto[];
 }
 
-/** 자녀 한 달 간 감정 정보 응답 DTO */
+/** 자녀 한 달 간 감정 정보 응답 DTO -> api 호출 함수에서 바로 바인딩함 */
 // interface GetMonthEmotionReportDto {}
 
 /**
