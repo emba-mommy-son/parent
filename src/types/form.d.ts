@@ -12,6 +12,13 @@ interface SignInForm {
   password: Password;
 }
 
+interface SignUpChildForm {
+  name: Name;
+  phoneNumber: PhoneNumber;
+  relationShip: RelationShip;
+  fcmToken: FCMToken;
+}
+
 interface ReconnectForm {
   fcmToken: Token;
   childId: ChildId;

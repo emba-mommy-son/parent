@@ -1,5 +1,6 @@
 import { StateCreator } from 'zustand';
 
+import { AnalysisSlice } from '@/types/store';
 import { dateToString } from '@/utils/formatter/DateFormat';
 
 export const createAnalysisSlice: StateCreator<AnalysisSlice, [], []> = set => ({

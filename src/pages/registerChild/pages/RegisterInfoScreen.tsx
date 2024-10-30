@@ -1,33 +1,61 @@
 import type { NativeStackScreenProps } from '@react-navigation/native-stack';
-import React, { useState } from 'react';
-import { Image, Pressable, Text, View } from 'react-native';
-import PlusIcon from 'react-native-vector-icons/Entypo';
+import React from 'react';
+import { View } from 'react-native';
 
 import Button from '@/components/buttons/Button';
 import LabeledInput from '@/components/inputs/LabeledInput';
 import ScreenContainer from '@/components/ScreenContainer';
 import { RootStackParamList } from '@/types/navigation';
+import useRootStore from '@/zustand';
 
 type RegisterInfoScreenNavigationProp = NativeStackScreenProps<RootStackParamList, 'RegisterInfo'>['navigation'];
 
-const GAP: string = 'mb-12';
+const GAP = 'mb-12';
 const RegisterInfoScreen = ({ navigation }: { navigation: RegisterInfoScreenNavigationProp }) => {
-  const [profileImage, setProfileImage] = useState<string | null>(null);
+  const {
+    registChildName,
+    registChildPhoneNumber,
+    registChildRelation,
+    setRegistChildName,
+    setRegistChildPhoneNumber,
+    setRegistChildRelation,
+  } = useRootStore();
+
   const handleNext = () => {
     navigation.navigate('RegisterQRcode');
+  };
+
+  const handleRelationShip = (text: string) => {
+    let relation = '';
+    switch (text) {
+      case '부':
+        relation = 'DAD';
+        break;
+      case '모':
+        relation = 'MOM';
+        break;
+      default:
+        relation = 'ETC';
+        break;
+    }
+
+    setRegistChildRelation(relation as RelationShip);
   };
 
   return (
     <ScreenContainer barStyle="dark-content">
       <View className="flex-1 justify-start items-center">
-        <LabeledInput size="fill" label="자녀 성명" placeholder="" className={`w-full mb-8 ${GAP}`} />
-        <View className={`flex items-start w-full mb-8 ${GAP}`}>
+        <LabeledInput
+          value={registChildName}
+          onChangeText={(text: string) => setRegistChildName(text)}
+          size="fill"
+          label="자녀 성명"
+          placeholder=""
+          className={`w-full mb-8 ${GAP}`}
+        />
+        {/* <View className={`flex items-start w-full mb-8 ${GAP}`}>
           <Text className="mb-4">프로필 이미지</Text>
-          <Pressable
-            onPress={() => {
-              console.log('first');
-            }}
-            className="w-20 h-20">
+          <Pressable onPress={showPicker} className="w-32 h-32 m-auto mb-4">
             {profileImage ? (
               <Image source={{ uri: profileImage }} className="w-full h-full rounded-full" />
             ) : (
@@ -36,12 +64,21 @@ const RegisterInfoScreen = ({ navigation }: { navigation: RegisterInfoScreenNavi
               </View>
             )}
           </Pressable>
-        </View>
-        <LabeledInput size="fill" label="전화번호" placeholder="" className={`w-full mb-4 ${GAP}`} />
+        </View> */}
         <LabeledInput
+          value={registChildPhoneNumber}
+          onChangeText={(text: string) => setRegistChildPhoneNumber(text)}
+          size="fill"
+          label="자녀 전화번호"
+          placeholder=""
+          className={`w-full mb-4 ${GAP}`}
+        />
+        <LabeledInput
+          value={registChildRelation}
+          onChangeText={handleRelationShip}
           size="fill"
           label="관계(본인)"
-          placeholder="부 / 모 / 조부(모)"
+          placeholder="부 / 모 / 기타"
           className={`w-full mb-4 ${GAP}`}
         />
       </View>

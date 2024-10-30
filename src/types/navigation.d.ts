@@ -7,7 +7,6 @@ export type RootStackParamList = {
   RegisterQRcode: undefined;
   Alert: undefined;
   Chart: undefinded;
-  Chat: undefined;
   ChildrenModalEvalArea: undefined;
 };
 
