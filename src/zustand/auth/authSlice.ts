@@ -1,5 +1,7 @@
 import { StateCreator } from 'zustand';
 
+import { AuthSlice } from '@/types/store';
+
 export const createAuthSlice: StateCreator<AuthSlice, [], []> = set => ({
   accessToken: '',
   refreshToken: '',
