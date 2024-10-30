@@ -2,9 +2,12 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { create } from 'zustand';
 import { createJSONStorage, persist } from 'zustand/middleware';
 
+import { RootState } from '@/types/store';
+
 import { createAnalysisSlice } from './analysis/analysisSlice';
 import { createAuthSlice } from './auth/authSlice';
 import { createChildSlice } from './child/childSlice';
+import { createRegisterSlice } from './child/registerSlice';
 import { createChildModalSlice } from './modal/childModalSlice';
 
 const useRootStore = create<RootState>()(
@@ -14,6 +17,7 @@ const useRootStore = create<RootState>()(
       ...createChildModalSlice(...a),
       ...createChildSlice(...a),
       ...createAnalysisSlice(...a),
+      ...createRegisterSlice(...a),
     }),
     {
       name: 'z',

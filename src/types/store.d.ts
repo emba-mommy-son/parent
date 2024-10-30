@@ -21,4 +21,18 @@ interface AnalysisSlice {
   setSelectedDate: (date: DateString) => void;
 }
 
-type RootState = ChildModalSlice & AuthSlice & ChildSlice & AnalysisSlice;
+export type RegistChild = {
+  name: Name;
+  phoneNumber: PhoneNumber;
+  relationShip: RelationShip;
+};
+interface RegisterSlice {
+  registChildName: Name;
+  registChildPhoneNumber: PhoneNumber;
+  registChildRelation: RelationShip;
+  setRegistChildName: (name: Name) => void;
+  setRegistChildPhoneNumber: (phoneNumber: PhoneNumber) => void;
+  setRegistChildRelation: (relationShip: RelationShip) => void;
+}
+
+type RootState = ChildModalSlice & AuthSlice & ChildSlice & AnalysisSlice & RegisterSlice;
