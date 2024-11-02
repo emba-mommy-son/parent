@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { Dimensions, StyleSheet, Text, View } from 'react-native';
-import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
+import MapView, { Marker, PROVIDER_GOOGLE } from 'react-native-maps';
+
+import tempImg from '../../assets/images/sample_img.png';
 
 type LocationAtMapProps = {
   lng: Lng;
@@ -11,6 +13,15 @@ type LocationAtMapProps = {
 // const windowHeight = Dimensions.get('window').height;
 
 const GoogleMapView = ({ lat, lng }: LocationAtMapProps) => {
+  const customMarkers = [
+    {
+      id: 0,
+      title: 'fff',
+      description: 'ddd',
+      latlng: { latitude: 37.541, longitude: 126.986 },
+    },
+  ];
+
   return (
     <View style={styles.container}>
       <MapView
@@ -21,7 +32,11 @@ const GoogleMapView = ({ lat, lng }: LocationAtMapProps) => {
           longitude: lng,
           latitudeDelta: 0.0922,
           longitudeDelta: 0.0421,
-        }}></MapView>
+        }}>
+        {/* {customMarkers.map(marker => (
+          <Marker key={marker.id} coordinate={marker.latlng} title={marker.title} description={marker.description} />
+        ))} */}
+      </MapView>
     </View>
   );
 };
