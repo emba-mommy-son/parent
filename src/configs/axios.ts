@@ -11,7 +11,6 @@ const instance = axios.create({
   withCredentials: true,
   headers: {
     'Content-Type': 'application/json',
-    Accept: 'application/json',
   },
 });
 
@@ -20,7 +19,7 @@ instance.interceptors.request.use(
     // 요청 시점에 최신 상태 가져오기
     const { accessToken } = useRootStore.getState();
     if (accessToken) {
-      console.log('accessToken : ', accessToken);
+      console.log('인터셉터에서 accessToken : ', accessToken);
       config.headers['Authorization'] = `Bearer ${accessToken}`;
     }
     return config;
@@ -48,7 +47,7 @@ instance.interceptors.response.use(
       const refreshResponseData = await instance.post(`${BASE_URL}/api/auth/refresh`, { refreshToken });
 
       const { accessToken: newAccessToken, refreshToken: newRefreshToken } = refreshResponseData.data;
-
+      console.log('토큰 재발급');
       // 새로운 토큰 저장 및 재요청
       useRootStore.getState().setAccessToken(newAccessToken);
       useRootStore.getState().setRefreshToken(newRefreshToken);

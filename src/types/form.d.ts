@@ -15,7 +15,7 @@ interface SignInForm {
 interface SignUpChildForm {
   name: Name;
   phoneNumber: PhoneNumber;
-  relationShip: RelationShip;
+  relationShip: RelationShip | '';
   fcmToken: FCMToken;
 }
 

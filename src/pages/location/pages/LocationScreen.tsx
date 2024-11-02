@@ -1,11 +1,13 @@
+import type { NativeStackScreenProps } from '@react-navigation/native-stack';
 import React, { useState } from 'react';
 import { Pressable, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
 import Card from '@/components/Card';
 import GoogleMapView from '@/components/location/MapView';
 import ScreenContainer from '@/components/ScreenContainer';
+import { LocationScreenProps, LocationStackParamList } from '@/types/navigation';
 
-const LocationScreen = () => {
+const LocationScreen = ({ navigation }: { navigation: LocationScreenProps }) => {
   // const location = useChildLocation; 자녀 위치 받아오는 쿼리 훅
   const [location, setLocation] = useState({ lat: 37.541, lng: 126.986 });
 
@@ -25,12 +27,14 @@ const LocationScreen = () => {
       </View>
       <View className="absolute bottom-8 right-4 gap-4">
         <TouchableOpacity
+          onPress={() => navigation.navigate('이동 기록')}
           style={[styles.shadow]}
           className="bg-white w-12 h-12 rounded-[8px] justify-center items-center">
           <Text className="text-black font-base pb-0 m-0">이동</Text>
           <Text className="text-black font-base pb-0.5 m-0">기록</Text>
         </TouchableOpacity>
         <TouchableOpacity
+          onPress={() => navigation.navigate('보호구역 목록')}
           style={[styles.shadow]}
           className="bg-my_secondary w-12 h-12 rounded-[8px] justify-center items-center">
           <Text className="text-white font-base pb-0 m-0">보호</Text>

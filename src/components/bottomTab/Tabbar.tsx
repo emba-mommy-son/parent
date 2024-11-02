@@ -70,7 +70,7 @@ const TabBar = ({ state, descriptors, navigation }: { state: any; descriptors: a
                     </Text>
                   </View>
                 );
-              case 'Location':
+              case 'LocationStack':
                 return (
                   <View className={`${iconFlex} mr-10`}>
                     <LocationIcon name="location-dot" size={22} color={isFocused ? '#000000' : '#ADB5BD'} />

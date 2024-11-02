@@ -1,5 +1,5 @@
 import type { NativeStackScreenProps } from '@react-navigation/native-stack';
-import React from 'react';
+import React, { useState } from 'react';
 import { View } from 'react-native';
 
 import Button from '@/components/buttons/Button';
@@ -15,14 +15,16 @@ const RegisterInfoScreen = ({ navigation }: { navigation: RegisterInfoScreenNavi
   const {
     registChildName,
     registChildPhoneNumber,
-    registChildRelation,
     setRegistChildName,
     setRegistChildPhoneNumber,
     setRegistChildRelation,
   } = useRootStore();
+  const [tempRelation, setTempRelation] = useState('');
+  const [tempNum, setTempNum] = useState('');
 
-  const handleNext = () => {
-    navigation.navigate('RegisterQRcode');
+  const formatPhNum = (phoneNum: string) => {
+    const match = phoneNum.match(/^(\d{3})(\d{3,4})(\d{4})$/);
+    return match ? `${match[1]}-${match[2]}-${match[3]}` : phoneNum;
   };
 
   const handleRelationShip = (text: string) => {
@@ -39,7 +41,14 @@ const RegisterInfoScreen = ({ navigation }: { navigation: RegisterInfoScreenNavi
         break;
     }
 
-    setRegistChildRelation(relation as RelationShip);
+    return relation;
+    // setRegistChildRelation(relation as RelationShip);
+  };
+
+  const handleNext = () => {
+    setRegistChildRelation(handleRelationShip(tempRelation) as RelationShip);
+    setRegistChildPhoneNumber(formatPhNum(tempNum));
+    navigation.navigate('RegisterQRcode');
   };
 
   return (
@@ -53,6 +62,7 @@ const RegisterInfoScreen = ({ navigation }: { navigation: RegisterInfoScreenNavi
           placeholder=""
           className={`w-full mb-8 ${GAP}`}
         />
+        {/* 프로필 사진 안받음 */}
         {/* <View className={`flex items-start w-full mb-8 ${GAP}`}>
           <Text className="mb-4">프로필 이미지</Text>
           <Pressable onPress={showPicker} className="w-32 h-32 m-auto mb-4">
@@ -66,16 +76,16 @@ const RegisterInfoScreen = ({ navigation }: { navigation: RegisterInfoScreenNavi
           </Pressable>
         </View> */}
         <LabeledInput
-          value={registChildPhoneNumber}
-          onChangeText={(text: string) => setRegistChildPhoneNumber(text)}
+          value={tempNum}
+          onChangeText={(text: string) => setTempNum(text)}
           size="fill"
           label="자녀 전화번호"
           placeholder=""
           className={`w-full mb-4 ${GAP}`}
         />
         <LabeledInput
-          value={registChildRelation}
-          onChangeText={handleRelationShip}
+          onChangeText={text => setTempRelation(text)}
+          value={tempRelation}
           size="fill"
           label="관계(본인)"
           placeholder="부 / 모 / 기타"

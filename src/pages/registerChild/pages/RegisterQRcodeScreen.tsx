@@ -24,16 +24,18 @@ const RegisterQRcodeScreen = ({ navigation }: { navigation: RegisterQRcodeScreen
       setIsLoading(true);
     },
     onSuccess: data => {
-      if (data.data.message !== 'OK') {
-        // 응답으로 ok 메시지가 아니면 오류로 간주
-        throw new Error('QR인식 실패');
-      }
+      console.log('여기 : ', data);
+      // if (data.data.message !== 'OK') {
+      //   // 응답으로 ok 메시지가 아니면 오류로 간주
+      //   throw new Error('QR인식 실패');
+      // }
       Alert.alert('자녀가 등록되었습니다.');
       navigation.navigate('RootTab');
     },
     onError: error => {
       Alert.alert('자녀 등록 실패');
-      console.error(error);
+      console.error(error.message);
+      console.log('first');
     },
     onSettled: () => {
       setIsLoading(false);
@@ -55,7 +57,7 @@ const RegisterQRcodeScreen = ({ navigation }: { navigation: RegisterQRcodeScreen
 
     setScanResult(true);
     // 넘어오는 토큰 따라서 수정해야 함
-    console.log('data : ', e.data);
+    console.log('qr에서 넘어오는 데이터 : ', e.data);
     const fcmToken = e.data;
     signUpChild({
       name: registChildName,

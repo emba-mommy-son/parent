@@ -31,7 +31,7 @@ type ChildInfo = {
   profileImage: ProfileImage;
 };
 type PhoneNumber = string;
-type RelationShip = 'MOM' | 'DAD' | 'ETC' | '';
+type RelationShip = 'MOM' | 'DAD' | 'ETC';
 
 /** 자녀 감정 타입 */
 type EmotionDto = {
@@ -60,3 +60,11 @@ type Password = string;
 
 type Lat = number;
 type Lng = number;
+
+interface GeofenceData {
+  center: {
+    latitude: number;
+    longitude: number;
+  };
+  radius: number;
+}

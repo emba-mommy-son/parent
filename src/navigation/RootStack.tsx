@@ -10,6 +10,12 @@ import ChartScreen from '@/pages/analysis/pages/ChartScreen';
 import LoginScreen from '@/pages/auth/pages/LoginScreen';
 import SignupScreen from '@/pages/auth/pages/SignupScreen';
 import InitialScreen from '@/pages/InitialScreen';
+import EnrollSafeArea from '@/pages/location/pages/EnrollSafeArea';
+import MoveRecord from '@/pages/location/pages/MoveRecord';
+import NowLocation from '@/pages/location/pages/NowLocation';
+import SafeAreaList from '@/pages/location/pages/SafeAreaList';
+import SetAddress from '@/pages/location/pages/SetAddress';
+import SetArea from '@/pages/location/pages/SetArea';
 import RegisterInfoScreen from '@/pages/registerChild/pages/RegisterInfoScreen';
 import RegisterQRcodeScreen from '@/pages/registerChild/pages/RegisterQRcodeScreen';
 import { RootStackParamList } from '@/types/navigation';
@@ -113,6 +119,13 @@ const RootStack = () => {
             ),
           })}
         />
+
+        <Stack.Screen name="이동 기록" component={MoveRecord} options={{ headerShown: true }} />
+        <Stack.Screen name="보호 구역 등록 (1/3)" component={EnrollSafeArea} options={{ headerShown: true }} />
+        <Stack.Screen name="현재 위치" component={NowLocation} options={{ headerShown: true }} />
+        <Stack.Screen name="보호구역 목록" component={SafeAreaList} options={{ headerShown: true }} />
+        <Stack.Screen name="보호구역 등록(2/3) | 주소" component={SetAddress} options={{ headerShown: true }} />
+        <Stack.Screen name="보호구역 등록(3/3) | 반경" component={SetArea} options={{ headerShown: true }} />
       </Stack.Navigator>
     </NavigationContainer>
   );
