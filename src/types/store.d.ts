@@ -29,7 +29,7 @@ export type RegistChild = {
 interface RegisterSlice {
   registChildName: Name;
   registChildPhoneNumber: PhoneNumber;
-  registChildRelation: RelationShip;
+  registChildRelation: RelationShip | '';
   setRegistChildName: (name: Name) => void;
   setRegistChildPhoneNumber: (phoneNumber: PhoneNumber) => void;
   setRegistChildRelation: (relationShip: RelationShip) => void;

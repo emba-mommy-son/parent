@@ -7,6 +7,6 @@ export const createRegisterSlice: StateCreator<RegisterSlice, [], []> = set => (
   registChildPhoneNumber: '',
   registChildRelation: '',
   setRegistChildName: name => set(state => ({ registChildName: name })),
-  setRegistChildPhoneNumber: name => set(state => ({ registChildName: name })),
-  setRegistChildRelation: name => set(state => ({ registChildName: name })),
+  setRegistChildPhoneNumber: phoneNumber => set(state => ({ registChildPhoneNumber: phoneNumber })),
+  setRegistChildRelation: relationShip => set(state => ({ registChildRelation: relationShip })),
 });

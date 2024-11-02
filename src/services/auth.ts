@@ -1,36 +1,42 @@
-import axios from '@/configs/axios';
+import instance from '@/configs/axios';
 
 export default {
   /**
    * 회원 가입
    */
   signUp: async (signupForm: SignUpForm) => {
-    return axios.post<BaseResponse<void>>('/api/v1/auth/sign-up/parent', signupForm);
+    return instance.post<BaseResponse<void>>('/api/v1/auth/sign-up/parent', signupForm);
   },
 
   /**
    * 로그인
    */
   signIn: async (signInForm: SignInForm) => {
-    return axios.post<BaseResponse<SignInResponseDto>>('/api/v1/auth/sign-in', signInForm);
+    return instance.post<BaseResponse<SignInResponseDto>>('/api/v1/auth/sign-in', signInForm);
   },
 
   /** 자녀 회원가입 */
   signUpChild: async (signUpChildForm: SignUpChildForm) => {
-    return axios.post<BaseResponse<void>>('/api/v1/auth/sign-up/child', signUpChildForm);
+    console.log(signUpChildForm);
+    // 관계를 relationship -> 소문자로 보내기
+    const newObj = {
+      ...signUpChildForm,
+      relationship: signUpChildForm.relationShip,
+    };
+    return await instance.post<BaseResponse<any>>('/api/v1/auth/sign-up/child', newObj);
   },
 
   /**
    * 토큰 리프레시
    */
   refreshToken: async (refreshToken: RefreshToken) => {
-    return axios.post<BaseResponse<RefreshTokenResponseDto>>('/api/v1/auth/refresh', { refreshToken });
+    return instance.post<BaseResponse<RefreshTokenResponseDto>>('/api/v1/auth/refresh', { refreshToken });
   },
 
   /**
    * 부모-자녀 리커넥트
    */
   reconnect: async ({ fcmToken, childId }: ReconnectForm) => {
-    return axios.post<BaseResponse<void>>('/api/v1/auth/reconnect', { fcmToken, childId });
+    return instance.post<BaseResponse<void>>('/api/v1/auth/reconnect', { fcmToken, childId });
   },
 };
