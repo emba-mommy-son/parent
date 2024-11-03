@@ -3,7 +3,7 @@ import axios from 'axios';
 
 import useRootStore from '@/zustand';
 
-const BASE_URL = 'https://www.mommy-son.kro.kr';
+const BASE_URL = 'https://www.mommy-son.kro.kr/api/v1';
 
 const instance = axios.create({
   baseURL: BASE_URL,

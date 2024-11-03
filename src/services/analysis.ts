@@ -6,7 +6,7 @@ export default {
    */
   getEachEmotionReport: async ({ childId, dateTime }: EachEmotionForm) => {
     return axios.get<BaseResponse<GetEachEmotionReportDto>>(
-      `/api/v1/analysis/reports?childId=${childId}&dateTime=${dateTime}`,
+      `/analysis/reports?childId=${childId}&dateTime=${dateTime}`,
     );
   },
 
@@ -14,7 +14,7 @@ export default {
    * 자녀의 7일간 스트레스 강도 정보 조회
    */
   getStressWhileSevenDays: async (childId: ChildId) => {
-    return axios.get<BaseResponse<GetStressWhileSevenDaysDto>>(`/api/v1/analysis/stress/${childId}`);
+    return axios.get<BaseResponse<GetStressWhileSevenDaysDto>>(`/analysis/stress/${childId}`);
   },
 
   /**
@@ -22,7 +22,7 @@ export default {
    */
   getMonthEmotionReport: async ({ childId, year, month }: MonthEmotionForm) => {
     return axios.get<BaseResponse<EmotionDto[]>>(
-      `/api/vi/analysis/reports/month?childId=${childId}&year=${year}&month=${month}`,
+      `/analysis/reports/month?childId=${childId}&year=${year}&month=${month}`,
     );
   },
 
