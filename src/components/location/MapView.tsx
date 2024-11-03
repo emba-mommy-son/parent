@@ -5,8 +5,8 @@ import MapView, { Marker, PROVIDER_GOOGLE } from 'react-native-maps';
 import tempImg from '../../assets/images/sample_img.png';
 
 type LocationAtMapProps = {
-  lng: Lng;
-  lat: Lat;
+  lng: Longitude;
+  lat: Latitude;
 };
 
 // const windowWidth = Dimensions.get('window').width;
@@ -32,7 +32,13 @@ const GoogleMapView = ({ lat, lng }: LocationAtMapProps) => {
           longitude: lng,
           latitudeDelta: 0.0922,
           longitudeDelta: 0.0421,
-        }}>
+        }}
+        showsUserLocation={true}
+        showsMyLocationButton={true}
+        followsUserLocation={true}
+        zoomControlEnabled={true}
+        scrollDuringRotateOrZoomEnabled={false}>
+        {/* 마커 띄우는거 안됨 ㅠ */}
         {/* {customMarkers.map(marker => (
           <Marker key={marker.id} coordinate={marker.latlng} title={marker.title} description={marker.description} />
         ))} */}
