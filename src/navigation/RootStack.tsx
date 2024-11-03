@@ -20,7 +20,6 @@ import RegisterInfoScreen from '@/pages/registerChild/pages/RegisterInfoScreen';
 import RegisterQRcodeScreen from '@/pages/registerChild/pages/RegisterQRcodeScreen';
 import { RootStackParamList } from '@/types/navigation';
 import RootTab from './RootTab';
-import { YearFormat } from '@/utils/formatter/TimeFormat';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -30,6 +29,7 @@ const RootStack = () => {
       <Stack.Navigator initialRouteName="Init" screenOptions={{ headerShown: true }}>
         <Stack.Screen name="Init" component={InitialScreen} options={{ headerShown: false }} />
         <Stack.Screen name="RootTab" component={RootTab} options={{ headerShown: false }} />
+
         <Stack.Screen
           name="Login"
           component={LoginScreen}
@@ -62,6 +62,7 @@ const RootStack = () => {
             },
           })}
         />
+
         <Stack.Screen
           name="RegisterInfo"
           component={RegisterInfoScreen}
@@ -93,6 +94,7 @@ const RootStack = () => {
             ),
           })}
         />
+
         <Stack.Screen
           name="Alert"
           component={AlertScreen}
@@ -106,18 +108,22 @@ const RootStack = () => {
             ),
           })}
         />
+
         <Stack.Screen
           name="Chart"
           component={ChartScreen}
-          options={({ navigation }) => ({
-            headerShown: true,
-            title: `${YearFormat()} 레포트`,
-            headerLeft: () => (
-              <TouchableOpacity className="mr-4" onPress={() => navigation.goBack()}>
-                <ArrowLeftIcon name="arrowleft" size={24} color="black" />
-              </TouchableOpacity>
-            ),
-          })}
+          options={({ navigation, route }) => {
+            const { selectedDate } = route.params || {};
+            return {
+              headerShown: true,
+              title: `${selectedDate} 레포트`,
+              headerLeft: () => (
+                <TouchableOpacity className="mr-4" onPress={() => navigation.goBack()}>
+                  <ArrowLeftIcon name="arrowleft" size={24} color="black" />
+                </TouchableOpacity>
+              ),
+            };
+          }}
         />
 
         <Stack.Screen name="이동 기록" component={MoveRecord} options={{ headerShown: true }} />
