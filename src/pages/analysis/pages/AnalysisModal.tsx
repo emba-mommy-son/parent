@@ -29,7 +29,11 @@ const AnalysisModal = ({ onPress }: AnalysisModalProps) => {
       </View>
       <TouchableOpacity
         className="bg-my_secondary rounded flex justify-center items-center py-1.5 mt-4"
-        onPress={() => navigation.navigate('Chart')}>
+        onPress={() =>
+          navigation.navigate('Chart', {
+            selectedDate: `${selectedDate.split('-')[0]}년 ${selectedDate.split('-')[1]}월 ${selectedDate.split('-')[2]}일`,
+          })
+        }>
         <Text className="text-[#ffffff] text-lg">분석 결과</Text>
       </TouchableOpacity>
     </View>
