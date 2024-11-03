@@ -58,3 +58,16 @@ interface GetChildLocationResponseDto {
   lat: Lat;
   lng: Lng;
 }
+
+/*
+ * 자녀 목록 조회
+ */
+interface GetConnectedChildDto {
+  id: number;
+  username: string;
+  name: string;
+  fcmToken: string;
+  phoneNumber: string;
+  profileImage: string;
+  reward: number;
+}

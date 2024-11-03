@@ -12,8 +12,10 @@ interface ChildModalSlice {
 }
 
 interface ChildSlice {
-  nowSelectedChild: ChildInfo;
-  setNowSelectedChild: (child: ChildInfo) => void;
+  nowSelectedChild: GetConnectedChildDto | null;
+  setNowSelectedChild: (child: GetConnectedChildDto) => void;
+  children: GetConnectedChildDto[];
+  setChildren: (children: GetConnectedChildDto[]) => void;
 }
 
 interface AnalysisSlice {

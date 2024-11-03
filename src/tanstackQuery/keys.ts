@@ -18,6 +18,7 @@ export const keys = {
   getUsers: () => [...keys.userInfo(), 'getUsers'] as const,
   getUsersByPhoneNumber: (phoneNumber: PhoneNumber) =>
     [...keys.userInfo(), 'getUsersByPhoneNumber', phoneNumber] as const,
+  getConnectedChild: () => [...keys.all, 'getConnectedChild'] as const,
 
   /**
    * notification 쿼리 키 그룹

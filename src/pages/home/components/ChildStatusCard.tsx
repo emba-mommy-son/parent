@@ -2,17 +2,15 @@ import { useNavigation } from '@react-navigation/native';
 import { type NativeStackNavigationProp } from '@react-navigation/native-stack';
 import React from 'react';
 import { Image, Text, TouchableOpacity, View } from 'react-native';
+import useRootStore from '@/zustand';
 
 import unknown_person from '@/assets/images/unknown_person.png';
 import Card from '@/components/Card';
 import { RootStackParamList } from '@/types/navigation';
 
-interface ChildStatusCardProps {
-  nowSelectedChild: ChildInfo;
-}
+const ChildStatusCard = () => {
+  const { nowSelectedChild } = useRootStore();
 
-const ChildStatusCard = ({ nowSelectedChild }: ChildStatusCardProps) => {
-  const isLogin = true;
   const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
 
   const data = {
@@ -23,7 +21,7 @@ const ChildStatusCard = ({ nowSelectedChild }: ChildStatusCardProps) => {
 
   return (
     <Card>
-      {isLogin ? (
+      {nowSelectedChild ? (
         <>
           <View className="flex flex-row items-start justify-between">
             <View className="max-w-[80%]">
