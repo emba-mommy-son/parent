@@ -24,7 +24,7 @@ const CalendarContainer = ({ onDayPress }: CalendarContainerProps) => {
   const today = new Date();
   const { selectedDate, setSelectedDate, nowSelectedChild } = useRootStore();
   const MonthEmotionData = useMonthEmotionReport({
-    childId: nowSelectedChild.childId,
+    childId: nowSelectedChild?.id || 0,
     year: Number(selectedDate.split('-')[0]),
     month: Number(selectedDate.split('-')[1]),
   });

@@ -4,7 +4,7 @@ export default {
   /*
    * 등록된 자녀 확인
    */
-  checkConnetedChild: async () => {
-    return await instance.get('/parents');
+  getConnectedChild: async () => {
+    return await instance.get<BaseResponse<GetConnectedChildDto[]>>('/parents');
   },
 };

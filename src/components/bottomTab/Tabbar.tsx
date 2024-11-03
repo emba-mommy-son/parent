@@ -5,7 +5,6 @@ import LocationIcon from 'react-native-vector-icons/FontAwesome6';
 import AnalysisIcon from 'react-native-vector-icons/FontAwesome6';
 import SettingIcon from 'react-native-vector-icons/Ionicons';
 
-import sampleImg from '@/assets/images/sample_img2.png';
 import useRootStore from '@/zustand';
 
 import ChildrenModalBackground from './ChildrenModalBackground';
@@ -20,7 +19,7 @@ const TabBar = ({ state, descriptors, navigation }: { state: any; descriptors: a
   return (
     <>
       {/* 프로필 버튼 */}
-      <TabChildButton img={nowSelectedChild.profileImage} onPressHandler={toggleModal} />
+      <TabChildButton img={nowSelectedChild ? nowSelectedChild.profileImage : 'none'} onPressHandler={toggleModal} />
       {isModalVisible && <ChildrenModalEvalArea navigation={navigation} />}
 
       {/* 모달 */}

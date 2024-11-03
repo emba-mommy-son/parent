@@ -2,6 +2,7 @@ import React from 'react';
 import { Image, Text, View } from 'react-native';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import Entypo from 'react-native-vector-icons/Entypo';
+import useRootStore from '@/zustand';
 
 import sampleMap from '@/assets/images/sample_map.png';
 import Card from '@/components/Card';
@@ -9,7 +10,7 @@ import CardCover from '@/components/CardCover';
 import { TimeFormat } from '@/utils/formatter/TimeFormat';
 
 const LocationCard = () => {
-  const isLogin = true;
+  const { nowSelectedChild } = useRootStore();
   const currentTime = TimeFormat();
 
   const data = {
@@ -37,7 +38,7 @@ const LocationCard = () => {
           <Text className="text-black text-lg">{data.location2}</Text>
         </View>
       </View>
-      {!isLogin && <CardCover height={124} text="자녀의 실시간 위치를 확인할 수 있습니다" />}
+      {!nowSelectedChild && <CardCover height={124} text="자녀의 실시간 위치를 확인할 수 있습니다" />}
     </Card>
   );
 };
