@@ -1,6 +1,6 @@
+import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import React from 'react';
 import { TouchableOpacity } from 'react-native';
 import ArrowLeftIcon from 'react-native-vector-icons/AntDesign';
 
@@ -19,8 +19,8 @@ import SetArea from '@/pages/location/pages/SetArea';
 import RegisterInfoScreen from '@/pages/registerChild/pages/RegisterInfoScreen';
 import RegisterQRcodeScreen from '@/pages/registerChild/pages/RegisterQRcodeScreen';
 import { RootStackParamList } from '@/types/navigation';
-
 import RootTab from './RootTab';
+import { YearFormat } from '@/utils/formatter/TimeFormat';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -56,9 +56,9 @@ const RootStack = () => {
             ),
             headerStyle: {
               backgroundColor: 'white',
-              elevation: 0, // Android 그림자 제거
-              shadowOpacity: 0, // iOS 그림자 제거
-              borderBottomWidth: 0, // iOS 경계선 제거
+              elevation: 0,
+              shadowOpacity: 0,
+              borderBottomWidth: 0,
             },
           })}
         />
@@ -111,7 +111,7 @@ const RootStack = () => {
           component={ChartScreen}
           options={({ navigation }) => ({
             headerShown: true,
-            title: '2024.10.27 레포트',
+            title: `${YearFormat()} 레포트`,
             headerLeft: () => (
               <TouchableOpacity className="mr-4" onPress={() => navigation.goBack()}>
                 <ArrowLeftIcon name="arrowleft" size={24} color="black" />
