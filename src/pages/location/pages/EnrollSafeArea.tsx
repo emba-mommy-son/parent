@@ -14,12 +14,12 @@ const SelectButton = ({ label, isSelected, onPress }: { label: string; isSelecte
     onPress={onPress}
     className={`
         w-1/2 px-6 py-2 rounded-xl mr-2 border justify-center items-center
-        ${!isSelected ? 'bg-my_primary border-my_primary' : 'bg-white border-gray-200'}
+        ${isSelected ? 'bg-my_primary border-my_primary' : 'bg-white border-gray-200'}
       `}>
     <Text
       className={`
         text-base
-        ${!isSelected ? 'text-white' : 'text-gray-200'}
+        ${isSelected ? 'text-white' : 'text-gray-200'}
       `}>
       {label}
     </Text>
@@ -41,8 +41,8 @@ const EnrollSafeArea = ({ navigation }: { navigation: SafeAreaListProps }) => {
         <View className="mb-12">
           <Text className="text-lg mb-3 text-black">구역 유형</Text>
           <View className="flex-row justify-center w-full items-center">
-            <SelectButton label="안전" isSelected={danger} onPress={() => setDanger(true)} />
-            <SelectButton label="위험" isSelected={!danger} onPress={() => setDanger(false)} />
+            <SelectButton label="안전" isSelected={!danger} onPress={() => setDanger(false)} />
+            <SelectButton label="위험" isSelected={danger} onPress={() => setDanger(true)} />
           </View>
         </View>
         <View>
