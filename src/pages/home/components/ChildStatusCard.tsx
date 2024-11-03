@@ -3,7 +3,7 @@ import { type NativeStackNavigationProp } from '@react-navigation/native-stack';
 import React from 'react';
 import { Image, Text, TouchableOpacity, View } from 'react-native';
 
-import unknown_person from '@/assets/images/unknown_person.jpg';
+import unknown_person from '@/assets/images/unknown_person.png';
 import Card from '@/components/Card';
 import { RootStackParamList } from '@/types/navigation';
 

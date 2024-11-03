@@ -20,6 +20,7 @@ import RegisterInfoScreen from '@/pages/registerChild/pages/RegisterInfoScreen';
 import RegisterQRcodeScreen from '@/pages/registerChild/pages/RegisterQRcodeScreen';
 import { RootStackParamList } from '@/types/navigation';
 import RootTab from './RootTab';
+import { YearFormat } from '@/utils/formatter/TimeFormat';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -114,9 +115,10 @@ const RootStack = () => {
           component={ChartScreen}
           options={({ navigation, route }) => {
             const { selectedDate } = route.params || {};
+            const titleDate = selectedDate || YearFormat();
             return {
               headerShown: true,
-              title: `${selectedDate} 레포트`,
+              title: `${titleDate} 레포트`,
               headerLeft: () => (
                 <TouchableOpacity className="mr-4" onPress={() => navigation.goBack()}>
                   <ArrowLeftIcon name="arrowleft" size={24} color="black" />

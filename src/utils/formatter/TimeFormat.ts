@@ -22,5 +22,5 @@ export const YearFormat = (): string => {
   const month = String(koreaTime.getMonth() + 1).padStart(2, '0');
   const day = String(koreaTime.getDate()).padStart(2, '0');
 
-  return `${year}.${month}.${day}`;
+  return `${year}년 ${month}월 ${day}일`;
 };
