@@ -1,7 +1,8 @@
 import type { NativeStackScreenProps } from '@react-navigation/native-stack';
 import React, { useState } from 'react';
-import { Pressable, ScrollView, Text, TouchableOpacity, View } from 'react-native';
+import { Alert, Pressable, ScrollView, Text, TouchableOpacity, View } from 'react-native';
 import Right from 'react-native-vector-icons/Entypo';
+import TrashIcon from 'react-native-vector-icons/Feather';
 
 import { RootStackParamList } from '@/types/navigation';
 
@@ -9,17 +10,18 @@ type SafeAreaListProps = NativeStackScreenProps<RootStackParamList, '보호구�
 
 const SafeAreaList = ({ navigation }: { navigation: SafeAreaListProps }) => {
   const [tabState, setTabState] = useState<'SAFE' | 'DANGER'>('SAFE');
-  const safeAreas = [
+  const [isEditMode, setIsEditMode] = useState(false);
+  const [safeAreas, setSafeAreas] = useState([
     { id: 1, title: '학교' },
     { id: 2, title: '집' },
     { id: 3, title: '수학학원' },
     { id: 4, title: '영어학원' },
-  ];
-  const dangerAreas = [
+  ]);
+  const [dangerAreas, setDangerAreas] = useState([
     { id: 1, title: '게임방' },
     { id: 2, title: 'PC방' },
     { id: 3, title: '탕후루 가게' },
-  ];
+  ]);
 
   // 탭 스타일을 동적으로 생성하는 함수
   const getTabStyle = (tabType: 'SAFE' | 'DANGER') => {
@@ -28,6 +30,36 @@ const SafeAreaList = ({ navigation }: { navigation: SafeAreaListProps }) => {
       containerStyle: `flex-1 px-4 py-3 border-b-2 ${isSelected ? 'border-gray-900' : 'border-transparent'}`,
       textStyle: `text-center ${isSelected ? 'text-gray-900 font-medium' : 'text-gray-400'}`,
     };
+  };
+
+  // 항목 삭제 함수
+  const handleDelete = (id: number) => {
+    Alert.alert(
+      '삭제 확인',
+      '정말로 이 항목을 삭제하시겠습니까?',
+      [
+        {
+          text: '취소',
+          style: 'cancel',
+        },
+        {
+          text: '삭제',
+          onPress: () => {
+            if (tabState === 'SAFE') {
+              setSafeAreas(prev => prev.filter(item => item.id !== id));
+            } else {
+              setDangerAreas(prev => prev.filter(item => item.id !== id));
+            }
+          },
+          style: 'destructive',
+        },
+      ],
+      { cancelable: true },
+    );
+  };
+
+  const toggleEditMode = () => {
+    setIsEditMode(!isEditMode);
   };
 
   return (
@@ -41,17 +73,25 @@ const SafeAreaList = ({ navigation }: { navigation: SafeAreaListProps }) => {
         </TouchableOpacity>
       </View>
       <View className="w-full py-3 justify-center items-end px-4">
-        <TouchableOpacity className="bg-gray-500 w-10 h-8 rounded-lg justify-center items-center pb-1">
-          <Text className="font-medium text-white">편집</Text>
+        <TouchableOpacity
+          onPress={toggleEditMode}
+          className={`${isEditMode ? 'bg-red-500' : 'bg-gray-500'} w-16 h-8 rounded-lg justify-center items-center`}>
+          <Text className="font-medium text-white">{isEditMode ? '완료' : '편집'}</Text>
         </TouchableOpacity>
       </View>
       <ScrollView>
         {(tabState === 'SAFE' ? safeAreas : dangerAreas).map(item => (
           <TouchableOpacity
             key={item.id}
-            className="flex-row justify-between items-center px-6 py-4 border-b border-gray-200">
+            className="flex-row h-20 justify-between items-center px-6 py-4 border-b border-gray-200">
             <Text className="text-base">{item.title}</Text>
-            <Right name="chevron-thin-right" size={20} color="black" />
+            {isEditMode ? (
+              <TouchableOpacity onPress={() => handleDelete(item.id)} className="p-2">
+                <TrashIcon name="trash-2" size={20} color="red" />
+              </TouchableOpacity>
+            ) : (
+              <Right name="chevron-thin-right" size={20} color="black" />
+            )}
           </TouchableOpacity>
         ))}
       </ScrollView>

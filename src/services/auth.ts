@@ -17,8 +17,7 @@ export default {
 
   /** 자녀 회원가입 */
   signUpChild: async (signUpChildForm: SignUpChildForm) => {
-    console.log(signUpChildForm);
-    // 관계를 relationship -> 소문자로 보내기
+    // 관계를 relationship -> 소문자로 보내기 (나중에 수정할 것)
     const newObj = {
       ...signUpChildForm,
       relationship: signUpChildForm.relationShip,

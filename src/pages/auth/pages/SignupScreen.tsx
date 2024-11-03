@@ -34,7 +34,8 @@ const SignupScreen = ({ navigation }: SignupScreenProp) => {
       // Alert.alert('회원가입 성공', '로그인 페이지로 이동합니다.');
       navigation.navigate('Login');
     },
-    onError: () => {
+    onError: data => {
+      console.log(data.message);
       Alert.alert('회원가입 실패', '다시 시도해주세요.');
     },
     onSettled: () => {
@@ -108,11 +109,11 @@ const SignupScreen = ({ navigation }: SignupScreenProp) => {
       return;
     }
 
-    // 회원가입 진행
+    // 회원가입 진행 -> 이메일로 보내긴 하지만 validation 안하면 아이디도 됨
     console.log(signupName, signupEmail, signupPassword, signupPasswordConfirm, signupPhone);
     signup({
       name: signupName,
-      username: signupEmail,
+      username: signupEmail, // email or 아이디
       password: signupPassword,
       phoneNumber: signupPhone,
     });

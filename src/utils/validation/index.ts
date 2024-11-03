@@ -10,9 +10,10 @@ export const allValid = (name: string, email: string, password: string, password
     return false;
   }
 
-  if (!emailValid(email)) {
-    return false;
-  }
+  // 일단 이메일은 보류 ( 아이디로 )
+  // if (!emailValid(email)) {
+  //   return false;
+  // }
 
   if (!passwordValid(password)) {
     return false;
