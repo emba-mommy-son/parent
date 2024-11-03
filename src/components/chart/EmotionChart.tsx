@@ -1,13 +1,19 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+import { type NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import Feather from 'react-native-vector-icons/Feather';
+
+import { RootStackParamList } from '@/types/navigation';
 
 interface EmotionChartProps {
   showReport?: boolean;
 }
 
 const EmotionChart: React.FC<EmotionChartProps> = ({ showReport = true }) => {
+  const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
+
   const data = [
     { emotion: '즐거움', score: 48, reliability: 0.5 },
     { emotion: '놀라움', score: 36, reliability: 0.8 },
@@ -25,10 +31,10 @@ const EmotionChart: React.FC<EmotionChartProps> = ({ showReport = true }) => {
       <View className="flex flex-row justify-between items-center">
         <Text className="text-base text-black">감정 분포 요약</Text>
         {showReport && (
-          <View className="flex flex-row items-center">
+          <TouchableOpacity onPress={() => navigation.navigate('Chart')} className="flex flex-row items-center">
             <Text className="mb-1 mr-0.5 text-[#aaaaaa]">AI 분석 레포트</Text>
             <AntDesign name="right" size={14} style={{ color: '#cacaca' }} />
-          </View>
+          </TouchableOpacity>
         )}
       </View>
 
