@@ -35,4 +35,18 @@ interface RegisterSlice {
   setRegistChildRelation: (relationShip: RelationShip) => void;
 }
 
-type RootState = ChildModalSlice & AuthSlice & ChildSlice & AnalysisSlice & RegisterSlice;
+interface SetGeofenceSlice extends SetGeofenceType {
+  childId: ChildId;
+  latitudeDelta: number;
+  longitudeDelta: number;
+  setChlidId: (id: ChildId) => void;
+  setLatitude: (latitude: Latitude) => void;
+  setLongitude: (lngDelta: Longitude) => void;
+  setLatitudeDelta: (latDelta: Latitude) => void;
+  setLongitudeDelta: (longitude: Longitude) => void;
+  setDanger: (isDanger: boolean) => void;
+  setRadius: (radius: number) => void;
+  setBoundaryName: (name: string) => void;
+}
+
+type RootState = ChildModalSlice & AuthSlice & ChildSlice & AnalysisSlice & RegisterSlice & SetGeofenceSlice;

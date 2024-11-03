@@ -57,14 +57,22 @@ type Password = string;
 /**
  * 자녀 위치 위경도 타입
  */
+type Latitude = number;
+type Longitude = number;
 
-type Lat = number;
-type Lng = number;
-
-interface GeofenceData {
-  center: {
-    latitude: number;
-    longitude: number;
-  };
+interface GeofenceDto {
+  boundaryId: number;
+  latitude: Latitude;
+  longitude: Longitude;
+  danger: boolean;
   radius: number;
+  createdAt: string;
+}
+
+interface SetGeofenceType {
+  latitude: Latitude;
+  longitude: Longitude;
+  danger: boolean;
+  radius: number;
+  boundaryName: string;
 }

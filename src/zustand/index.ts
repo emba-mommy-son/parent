@@ -8,6 +8,7 @@ import { createAnalysisSlice } from './analysis/analysisSlice';
 import { createAuthSlice } from './auth/authSlice';
 import { createChildSlice } from './child/childSlice';
 import { createRegisterSlice } from './child/registerSlice';
+import { createSetGeofenceSlice } from './location/setGeofenceSlice';
 import { createChildModalSlice } from './modal/childModalSlice';
 
 const useRootStore = create<RootState>()(
@@ -18,6 +19,7 @@ const useRootStore = create<RootState>()(
       ...createChildSlice(...a),
       ...createAnalysisSlice(...a),
       ...createRegisterSlice(...a),
+      ...createSetGeofenceSlice(...a),
     }),
     {
       name: 'z',
