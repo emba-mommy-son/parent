@@ -1,10 +1,11 @@
+import type { NativeStackScreenProps } from '@react-navigation/native-stack';
+import React, { useState } from 'react';
+import { Text, TouchableOpacity, View } from 'react-native';
+
 import Button from '@/components/buttons/Button';
 import Input from '@/components/inputs/Input';
-import LabeledInput from '@/components/inputs/LabeledInput';
 import { RootStackParamList } from '@/types/navigation';
-import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import React, { useState } from 'react';
-import { Text, TextInput, TouchableOpacity, View } from 'react-native';
+import useRootStore from '@/zustand';
 
 type SafeAreaListProps = NativeStackScreenProps<RootStackParamList, '보호 구역 등록 (1/3)'>['navigation'];
 
@@ -13,12 +14,12 @@ const SelectButton = ({ label, isSelected, onPress }: { label: string; isSelecte
     onPress={onPress}
     className={`
         w-1/2 px-6 py-2 rounded-xl mr-2 border justify-center items-center
-        ${isSelected ? 'bg-gray-900 border-gray-900' : 'bg-white border-gray-300'}
+        ${!isSelected ? 'bg-my_primary border-my_primary' : 'bg-white border-gray-200'}
       `}>
     <Text
       className={`
         text-base
-        ${isSelected ? 'text-white' : 'text-gray-500'}
+        ${!isSelected ? 'text-white' : 'text-gray-200'}
       `}>
       {label}
     </Text>
@@ -26,8 +27,13 @@ const SelectButton = ({ label, isSelected, onPress }: { label: string; isSelecte
 );
 
 const EnrollSafeArea = ({ navigation }: { navigation: SafeAreaListProps }) => {
-  const [selectedType, setSelectedType] = useState<'SAFE' | 'DANGER'>('SAFE');
-  const [areaName, setAreaName] = useState('');
+  const { boundaryName, danger, setDanger, setBoundaryName } = useRootStore();
+
+  const handleNext = () => {
+    console.log('EnrollSafeArea에서 설정한 구역명 : ', boundaryName);
+    console.log('EnrollSafeArea에서 설정한 위험여부 : ', danger);
+    navigation.navigate('보호구역 등록(2/3) | 주소');
+  };
 
   return (
     <View className="flex-1 p-8 justify-between">
@@ -35,20 +41,16 @@ const EnrollSafeArea = ({ navigation }: { navigation: SafeAreaListProps }) => {
         <View className="mb-12">
           <Text className="text-lg mb-3 text-black">구역 유형</Text>
           <View className="flex-row justify-center w-full items-center">
-            <SelectButton label="안전" isSelected={selectedType === 'SAFE'} onPress={() => setSelectedType('SAFE')} />
-            <SelectButton
-              label="위험"
-              isSelected={selectedType === 'DANGER'}
-              onPress={() => setSelectedType('DANGER')}
-            />
+            <SelectButton label="안전" isSelected={danger} onPress={() => setDanger(true)} />
+            <SelectButton label="위험" isSelected={!danger} onPress={() => setDanger(false)} />
           </View>
         </View>
         <View>
           <Text className="text-lg mb-3 text-black">구역명</Text>
-          <Input value={areaName} onChangeText={(text: string) => setAreaName(text)}></Input>
+          <Input value={boundaryName} onChangeText={(text: string) => setBoundaryName(text)}></Input>
         </View>
       </View>
-      <Button onPress={() => navigation.navigate('보호구역 등록(2/3) | 주소')} myTextStyle="text-white">
+      <Button onPress={handleNext} myTextStyle="text-white">
         다음
       </Button>
     </View>
