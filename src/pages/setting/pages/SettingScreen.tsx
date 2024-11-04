@@ -9,13 +9,14 @@ import useRootStore from '@/zustand';
 import Card from '@/components/Card';
 
 const SettingScreen = ({ navigation }: { navigation: any }) => {
+  const { children } = useRootStore();
+  const { clearToken } = useRootStore();
+
   const data = [
     { name: '김도영', img: sampleImg2, score: 70 },
     { name: '이민수', img: sampleImg3, score: 56 },
     { name: '박지현', img: sampleImg2, score: 80 },
   ];
-
-  const { clearToken } = useRootStore();
 
   const settingList = [
     { id: 0, name: '서비스 이용 약관', link: '' },
