@@ -26,6 +26,7 @@
     "react-native": "0.75.3",
     "react-native-calendars": "^1.1307.0",
     "react-native-camera": "^4.2.1",
+    "react-native-circular-progress-indicator": "^4.4.2",
     "react-native-collapsible": "^1.6.2",
     "react-native-gesture-handler": "^2.20.2",
     "react-native-gifted-charts": "^1.4.45",
