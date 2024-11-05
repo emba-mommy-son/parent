@@ -34,3 +34,7 @@ interface MonthEmotionForm {
   year: year;
   month: month;
 }
+
+interface BoundaryForm extends SetGeofenceType {
+  childId: ChildId;
+}

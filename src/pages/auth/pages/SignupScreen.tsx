@@ -140,7 +140,7 @@ const SignupScreen = ({ navigation }: SignupScreenProp) => {
         />
         <LabeledInput
           size="fill"
-          label="이메일"
+          label="아이디"
           placeholder=""
           className="w-full mb-4"
           type="email"

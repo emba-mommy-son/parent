@@ -36,7 +36,7 @@ const GoogleMapView = ({ lat, lng }: LocationAtMapProps) => {
         showsUserLocation={true}
         showsMyLocationButton={true}
         followsUserLocation={true}
-        zoomControlEnabled={true}
+        // zoomControlEnabled={true}
         scrollDuringRotateOrZoomEnabled={false}>
         {/* 마커 띄우는거 안됨 ㅠ */}
         {/* {customMarkers.map(marker => (

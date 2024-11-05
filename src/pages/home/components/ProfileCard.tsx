@@ -5,7 +5,6 @@ import { Text, TouchableOpacity, View } from 'react-native';
 import BellIcon from 'react-native-vector-icons/Octicons';
 import useRootStore from '@/zustand';
 import ChildStatusCard from '../components/ChildStatusCard';
-
 import { RootStackParamList } from '@/types/navigation';
 
 const ProfileCard = () => {
@@ -14,8 +13,8 @@ const ProfileCard = () => {
     nowSelectedChild
       ? {
           name: nowSelectedChild.name,
-          alert: true,
-          alertCnt: 4,
+          alert: false,
+          alertCnt: 0,
         }
       : {
           name: '등록된 자녀가 없습니다',
@@ -30,7 +29,7 @@ const ProfileCard = () => {
     <View className="relative h-[250px]">
       <View className="w-full h-[176px] bg-my_secondary pt-10 rounded-b-3xl z-0">
         <View className="flex flex-row items-center justify-between pl-5 pr-6">
-          <Text className="text-white font-semibold text-xl">{data.name || '등록된 자녀가 없습니다.'}</Text>
+          <Text className="text-white font-semibold text-xl">{nowSelectedChild?.name || '등록된 자녀가 없습니다.'}</Text>
           <View className="flex flex-row">
             {data.alert && (
               <Text className="text-my_primary bg-white rounded-lg rounded-br-none px-3 pb-1 mr-1.5">

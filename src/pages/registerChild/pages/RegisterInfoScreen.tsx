@@ -1,11 +1,12 @@
 import type { NativeStackScreenProps } from '@react-navigation/native-stack';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { View } from 'react-native';
 
 import Button from '@/components/buttons/Button';
 import LabeledInput from '@/components/inputs/LabeledInput';
 import ScreenContainer from '@/components/ScreenContainer';
 import { RootStackParamList } from '@/types/navigation';
+import { phoneFormat } from '@/utils/formatter/phoneFormat';
 import useRootStore from '@/zustand';
 
 type RegisterInfoScreenNavigationProp = NativeStackScreenProps<RootStackParamList, 'RegisterInfo'>['navigation'];
@@ -20,12 +21,6 @@ const RegisterInfoScreen = ({ navigation }: { navigation: RegisterInfoScreenNavi
     setRegistChildRelation,
   } = useRootStore();
   const [tempRelation, setTempRelation] = useState('');
-  const [tempNum, setTempNum] = useState('');
-
-  const formatPhNum = (phoneNum: string) => {
-    const match = phoneNum.match(/^(\d{3})(\d{3,4})(\d{4})$/);
-    return match ? `${match[1]}-${match[2]}-${match[3]}` : phoneNum;
-  };
 
   const handleRelationShip = (text: string) => {
     let relation = '';
@@ -45,11 +40,19 @@ const RegisterInfoScreen = ({ navigation }: { navigation: RegisterInfoScreenNavi
     // setRegistChildRelation(relation as RelationShip);
   };
 
+  const onChangePhone = (text: string) => {
+    setRegistChildPhoneNumber(phoneFormat(text));
+  };
+
   const handleNext = () => {
     setRegistChildRelation(handleRelationShip(tempRelation) as RelationShip);
-    setRegistChildPhoneNumber(formatPhNum(tempNum));
     navigation.navigate('RegisterQRcode');
   };
+
+  useEffect(() => {
+    setRegistChildName('');
+    setRegistChildPhoneNumber('');
+  }, []);
 
   return (
     <ScreenContainer barStyle="dark-content">
@@ -76,8 +79,8 @@ const RegisterInfoScreen = ({ navigation }: { navigation: RegisterInfoScreenNavi
           </Pressable>
         </View> */}
         <LabeledInput
-          value={tempNum}
-          onChangeText={(text: string) => setTempNum(text)}
+          value={registChildPhoneNumber}
+          onChangeText={onChangePhone}
           size="fill"
           label="자녀 전화번호"
           placeholder=""

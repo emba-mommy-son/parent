@@ -52,12 +52,13 @@ interface GetStressWhileSevenDaysDto {
 // interface GetMonthEmotionReportDto {}
 
 /**
- * 자녀 위치 조회 응답 DTO (임시)
+ * 자녀 바운더리 조회 응답 DTO
  */
-interface GetChildLocationResponseDto {
-  lat: Lat;
-  lng: Lng;
+interface GetBoundaryResponseDto extends GeofenceDto {
+  name: string;
 }
+
+interface GetChildLocationResponseDto extends ChildLocationType {}
 
 /*
  * 자녀 목록 조회

@@ -1,8 +1,10 @@
-import { useEffect } from 'react';
 import { useQuery } from '@tanstack/react-query';
+import { useEffect } from 'react';
+
 import child from '@/services/child';
-import { keys } from '../keys';
 import useRootStore from '@/zustand';
+
+import { keys } from '../keys';
 
 /**
  * 등록된 자녀 정보를 가져오는 함수
@@ -20,6 +22,7 @@ const useConnectedChild = () => {
 
   useEffect(() => {
     if (data && data.length > 0) {
+      console.log('불러온 자녀 리스트 : ', data);
       setChildren(data);
       setNowSelectedChild(data[0]);
     }

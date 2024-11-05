@@ -2,6 +2,7 @@ import type { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { useMutation } from '@tanstack/react-query';
 import React, { useEffect, useState } from 'react';
 import { Alert, Dimensions, View } from 'react-native';
+import { RNCamera } from 'react-native-camera';
 import QRCodeScanner from 'react-native-qrcode-scanner';
 
 // import FlashIcon from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -79,6 +80,20 @@ const RegisterQRcodeScreen = ({ navigation }: { navigation: RegisterQRcodeScreen
         cameraStyle={{ width: Dimensions.get('window').width, height: Dimensions.get('window').height }}
         showMarker={true}
         reactivate={!scanResult}
+        cameraProps={{
+          captureAudio: false, // 오디오 캡처 비활성화로 성능 향상
+          pictureSize: '1920x1080', // 해상도를 높이기 위한 설정
+          autoFocus: RNCamera.Constants.AutoFocus.on, // 자동 초점 활성화
+          focusDepth: 0, // 초점 깊이 (0: 가장 가까운 거리)
+          whiteBalance: RNCamera.Constants.WhiteBalance.auto, // 자동 화이트밸런스
+        }}
+        // 리프레시 간격 최적화
+        reactivateTimeout={3000}
+        // 진동 피드백
+        vibrate={true}
+        // 스캔 영역 설정
+        fadeIn={true}
+        cameraTimeout={0} // 타임아웃 없음
         customMarker={
           <View className="flex h-full w-full justify-center items-center">
             <View style={{ backgroundColor: 'rgba(82, 82, 82, 0.25)' }} className="h-1/4 w-full" />

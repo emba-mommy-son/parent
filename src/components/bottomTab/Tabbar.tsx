@@ -19,7 +19,7 @@ const TabBar = ({ state, descriptors, navigation }: { state: any; descriptors: a
   return (
     <>
       {/* 프로필 버튼 */}
-      <TabChildButton img={nowSelectedChild ? nowSelectedChild.profileImage : 'none'} onPressHandler={toggleModal} />
+      <TabChildButton img={nowSelectedChild?.profileImage ?? null} onPressHandler={toggleModal} />
       {isModalVisible && <ChildrenModalEvalArea navigation={navigation} />}
 
       {/* 모달 */}
