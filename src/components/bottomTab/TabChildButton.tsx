@@ -1,9 +1,10 @@
 import React from 'react';
 import { Image, ImageProps, Pressable, StyleSheet, Text, View } from 'react-native';
+
 import useRootStore from '@/zustand';
 
 type TabChildButtonProps = {
-  img: ProfileImage | 'none';
+  img: ProfileImage | null;
   onPressHandler: () => void;
 };
 
@@ -15,7 +16,7 @@ const TabChildButton = ({ img, onPressHandler }: TabChildButtonProps) => {
       className="z-20 w-16 h-16 absolute bottom-[30px] left-[50%] transform -translate-x-[30px] rounded-full border-4 border-white overflow-hidden"
       style={[styles.shadow]}>
       <Pressable onPress={onPressHandler}>
-        {img === 'none' ? (
+        {!img ? (
           <View className="h-full flex items-center justify-center bg-[#f1f1f1]">
             <Text
               className="text-center"
