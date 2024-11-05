@@ -11,7 +11,7 @@ import { LocationScreenProps } from '@/types/navigation';
 import useRootStore from '@/zustand';
 
 // 기본 위치 상수 정의
-const DEFAULT_LOCATION: GeofenceDto = {
+export const DEFAULT_LOCATION: GeofenceDto = {
   boundaryId: 0,
   latitude: 35.19070647667026,
   longitude: 126.82393808031838,
@@ -20,7 +20,7 @@ const DEFAULT_LOCATION: GeofenceDto = {
   createdAt: '',
 };
 
-const DEFAULT_MAP_REGION = {
+export const DEFAULT_MAP_REGION = {
   latitude: DEFAULT_LOCATION.latitude,
   longitude: DEFAULT_LOCATION.longitude,
   latitudeDelta: 0.01,
