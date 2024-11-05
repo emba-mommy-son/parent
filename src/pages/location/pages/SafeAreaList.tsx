@@ -1,27 +1,39 @@
 import type { NativeStackScreenProps } from '@react-navigation/native-stack';
-import React, { useState } from 'react';
-import { Alert, Pressable, ScrollView, Text, TouchableOpacity, View } from 'react-native';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+import React, { useEffect, useState } from 'react';
+import { Alert, ScrollView, Text, ToastAndroid, TouchableOpacity, View } from 'react-native';
 import Right from 'react-native-vector-icons/Entypo';
 import TrashIcon from 'react-native-vector-icons/Feather';
 
+import location from '@/services/location';
+import { keys } from '@/tanstackQuery/keys';
+import { useBoundaryList } from '@/tanstackQuery/queries/location';
 import { RootStackParamList } from '@/types/navigation';
+import useRootStore from '@/zustand';
 
 type SafeAreaListProps = NativeStackScreenProps<RootStackParamList, '보호구역 목록'>['navigation'];
 
 const SafeAreaList = ({ navigation }: { navigation: SafeAreaListProps }) => {
+  const { nowSelectedChild } = useRootStore();
+  const queryClient = useQueryClient();
+  const { mutate: deleteBoundary } = useMutation({
+    mutationFn: location.deleteBoundary,
+    onSuccess: () => {
+      ToastAndroid.show('구역이 삭제되었습니다.', 2000);
+      // 보호구역 리스트 쿼리 키 무효화
+      queryClient.invalidateQueries({
+        queryKey: keys.getBoundary(nowSelectedChild?.id ?? 0),
+      });
+    },
+    onError: () => {
+      ToastAndroid.show('구역 삭제에 실패했습니다.', 2000);
+    },
+  });
+
   const [tabState, setTabState] = useState<'SAFE' | 'DANGER'>('SAFE');
   const [isEditMode, setIsEditMode] = useState(false);
-  const [safeAreas, setSafeAreas] = useState([
-    { id: 1, title: '학교' },
-    { id: 2, title: '집' },
-    { id: 3, title: '수학학원' },
-    { id: 4, title: '영어학원' },
-  ]);
-  const [dangerAreas, setDangerAreas] = useState([
-    { id: 1, title: '게임방' },
-    { id: 2, title: 'PC방' },
-    { id: 3, title: '탕후루 가게' },
-  ]);
+  const boundaryData = useBoundaryList(nowSelectedChild?.id ?? 0);
+  const [areaList, setAreaList] = useState(boundaryData ?? null);
 
   // 탭 스타일을 동적으로 생성하는 함수
   const getTabStyle = (tabType: 'SAFE' | 'DANGER') => {
@@ -42,14 +54,13 @@ const SafeAreaList = ({ navigation }: { navigation: SafeAreaListProps }) => {
           text: '취소',
           style: 'cancel',
         },
+        // 삭제 api 호출
         {
           text: '삭제',
           onPress: () => {
-            if (tabState === 'SAFE') {
-              setSafeAreas(prev => prev.filter(item => item.id !== id));
-            } else {
-              setDangerAreas(prev => prev.filter(item => item.id !== id));
-            }
+            console.log('삭제할 거', id);
+            setAreaList(prev => prev && prev.filter(item => item.boundaryId !== id));
+            deleteBoundary(id);
           },
           style: 'destructive',
         },
@@ -61,6 +72,12 @@ const SafeAreaList = ({ navigation }: { navigation: SafeAreaListProps }) => {
   const toggleEditMode = () => {
     setIsEditMode(!isEditMode);
   };
+
+  useEffect(() => {
+    queryClient.invalidateQueries({
+      queryKey: keys.getBoundary(nowSelectedChild?.id ?? 0),
+    });
+  }, []);
 
   return (
     <View className="flex-1">
@@ -80,20 +97,22 @@ const SafeAreaList = ({ navigation }: { navigation: SafeAreaListProps }) => {
         </TouchableOpacity>
       </View>
       <ScrollView>
-        {(tabState === 'SAFE' ? safeAreas : dangerAreas).map(item => (
-          <TouchableOpacity
-            key={item.id}
-            className="flex-row h-20 justify-between items-center px-6 py-4 border-b border-gray-200">
-            <Text className="text-base">{item.title}</Text>
-            {isEditMode ? (
-              <TouchableOpacity onPress={() => handleDelete(item.id)} className="p-2">
-                <TrashIcon name="trash-2" size={20} color="red" />
-              </TouchableOpacity>
-            ) : (
-              <Right name="chevron-thin-right" size={20} color="black" />
-            )}
-          </TouchableOpacity>
-        ))}
+        {(tabState === 'SAFE' ? areaList?.filter(item => !item.danger) : areaList?.filter(item => item.danger))?.map(
+          item => (
+            <TouchableOpacity
+              key={item.boundaryId}
+              className="flex-row h-20 justify-between items-center px-6 py-4 border-b border-gray-200">
+              <Text className="text-base">{item.name}</Text>
+              {isEditMode ? (
+                <TouchableOpacity onPress={() => handleDelete(item.boundaryId)} className="p-2">
+                  <TrashIcon name="trash-2" size={20} color="red" />
+                </TouchableOpacity>
+              ) : (
+                <Right name="chevron-thin-right" size={20} color="black" />
+              )}
+            </TouchableOpacity>
+          ),
+        )}
       </ScrollView>
       <TouchableOpacity
         onPress={() => navigation.navigate('보호 구역 등록 (1/3)')}

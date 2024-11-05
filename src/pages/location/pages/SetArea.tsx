@@ -1,23 +1,57 @@
 import type { NativeStackScreenProps } from '@react-navigation/native-stack';
-import React, { useState } from 'react';
-import { StyleSheet, Text, TextInput, View } from 'react-native';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+import React from 'react';
+import { StyleSheet, ToastAndroid, View } from 'react-native';
 import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
 
 import Pin from '@/assets/svgs/pin.svg';
 import Button from '@/components/buttons/Button';
 import GeofenceRadius from '@/components/GeofenceRadius';
+import location from '@/services/location';
+import { keys } from '@/tanstackQuery/keys';
 import { RootStackParamList } from '@/types/navigation';
 import useRootStore from '@/zustand';
 
 type SafeAreaListProps = NativeStackScreenProps<RootStackParamList, '보호 구역 등록 (1/3)'>['navigation'];
 
 const SetArea = ({ navigation }: { navigation: SafeAreaListProps }) => {
-  const { latitude, longitude, latitudeDelta, longitudeDelta, radius, setRadius } = useRootStore();
+  const { latitude, longitude, latitudeDelta, longitudeDelta, radius, setRadius, name, danger, nowSelectedChild } =
+    useRootStore();
+  const queryClient = useQueryClient();
+  const { mutate: makeBoundary } = useMutation({
+    mutationFn: location.makeBoundary,
+    onSuccess: () => {
+      ToastAndroid.show('구역 등록 완료', 3000);
+      // 보호구역 리스트 쿼리 키 무효화
+      queryClient.invalidateQueries({
+        queryKey: keys.getBoundary(nowSelectedChild?.id ?? 0),
+      });
+    },
+    onError: () => {
+      ToastAndroid.show('등록에 실패했습니다. 다시 시도해주세요.', 3000);
+    },
+  });
+
   const handleRadiusChange = (newRadius: number) => {
     setRadius(newRadius);
   };
 
   const handleNext = () => {
+    console.log(latitude, longitude, radius, name, danger, nowSelectedChild?.id);
+
+    if (!nowSelectedChild || !nowSelectedChild.id) {
+      ToastAndroid.show('자녀 정보 불러오기 오류', 3000);
+      return;
+    }
+
+    makeBoundary({
+      childId: nowSelectedChild.id,
+      name,
+      danger,
+      latitude,
+      longitude,
+      radius,
+    });
     navigation.navigate('RootTab');
   };
 
