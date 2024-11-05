@@ -19,7 +19,7 @@ export type RootStackParamList = {
 
 export type RootTabParamList = {
   Home: undefined;
-  Location: undefined;
+  LocationStack: undefined;
   Analysys: undefined;
   Setting: undefined;
 };
