@@ -16,8 +16,12 @@ export const WishBox = ({ ratio }: WishBoxProps) => {
 
   return (
     <Card isMargin={false}>
-      <View className="absolute top-3 right-3">
-        <EntypoIcons name="plus" size={20} color={'#cccccc'} />
+      <View className="absolute top-2.5 left-3.5 flex flex-row">
+        <Text className="text-base text-black">3</Text>
+        <Text className="text-base text-['#a3a3a3']"> / 6</Text>
+      </View>
+      <View className="absolute top-3.5 right-3">
+        <EntypoIcons name="dots-three-vertical" size={17} color={'#bdbdbd'} />
       </View>
       {isHavePresent ? (
         <View>
