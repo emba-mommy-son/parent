@@ -27,7 +27,7 @@ const AnalysisModal = () => {
             selectedDate: `${selectedDate.split('-')[0]}년 ${selectedDate.split('-')[1]}월 ${selectedDate.split('-')[2]}일`,
           })
         }>
-        <Text className="text-[#ffffff] text-lg">분석 결과</Text>
+        <Text className="text-[#ffffff] text-lg">분석 레포트 보러가기</Text>
       </TouchableOpacity>
     </View>
   );
