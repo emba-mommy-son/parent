@@ -74,5 +74,14 @@ interface SetGeofenceType {
   longitude: Longitude;
   danger: boolean;
   radius: number;
-  boundaryName: string;
+  name: string;
+}
+
+interface ChildLocationType {
+  locationId: number;
+  boundaryId: number;
+  name: string;
+  danger: boolean;
+  latitude: Latitude;
+  longitude: Longitude;
 }

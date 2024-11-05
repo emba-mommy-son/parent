@@ -1,8 +1,8 @@
 interface AuthSlice {
-  accessToken: string;
-  refreshToken: string;
-  setAccessToken: (token: string) => void;
-  setRefreshToken: (token: string) => void;
+  accessToken: Token | null;
+  refreshToken: Token | null;
+  setAccessToken: (token: Token) => void;
+  setRefreshToken: (token: Token) => void;
   clearToken: () => void;
 }
 
@@ -38,10 +38,8 @@ interface RegisterSlice {
 }
 
 interface SetGeofenceSlice extends SetGeofenceType {
-  childId: ChildId;
   latitudeDelta: number;
   longitudeDelta: number;
-  setChlidId: (id: ChildId) => void;
   setLatitude: (latitude: Latitude) => void;
   setLongitude: (lngDelta: Longitude) => void;
   setLatitudeDelta: (latDelta: Latitude) => void;
