@@ -6,6 +6,7 @@ export type RootStackParamList = {
   RegisterInfo: undefined;
   RegisterQRcode: undefined;
   Alert: undefined;
+  Todo: undefined;
   Chart: undefinded;
   ChildrenModalEvalArea: undefined;
   '보호 구역 등록 (1/3)': undefined;

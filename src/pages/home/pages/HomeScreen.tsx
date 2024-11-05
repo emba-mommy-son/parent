@@ -9,6 +9,7 @@ import EmotionSummary from '../components/EmotionSummary';
 import LocationCard from '../components/LocationCard';
 import ProfileCard from '../components/ProfileCard';
 import { useConnectedChild } from '@/tanstackQuery/queries/child';
+import TodoCard from '../components/TodoCard';
 
 const HomeScreen = () => {
   // 자녀 정보 불러오기
@@ -20,6 +21,7 @@ const HomeScreen = () => {
         <ProfileCard />
         <View className="absolute z-10 top-[90px]">
           <ChildStatusCard />
+          <TodoCard />
           <LocationCard />
           <EmotionSummary />
         </View>
