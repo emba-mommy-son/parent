@@ -28,7 +28,9 @@ export const keys = {
   /**
    * location 쿼리 키 그룹
    */
-  location: (childId: ChildId) => [...keys.all, 'loacation', childId] as const,
+  location: () => [...keys.all, 'loacation'] as const,
+  getBoundary: (childId: ChildId) => [...keys.location(), 'getBoundary', childId] as const,
+  getLocation: (childId: ChildId) => [...keys.location(), 'getLocation', childId] as const,
 
   /**
    * analysis(감정분석) 쿼리 키 그룹
