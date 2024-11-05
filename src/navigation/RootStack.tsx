@@ -3,6 +3,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { TouchableOpacity } from 'react-native';
 import ArrowLeftIcon from 'react-native-vector-icons/AntDesign';
+import useRootStore from '@/zustand';
 
 import Colors from '@/constants/Colors';
 import AlertScreen from '@/pages/alert/pages/AlertScreen';
@@ -26,6 +27,8 @@ import { YearFormat } from '@/utils/formatter/TimeFormat';
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
 const RootStack = () => {
+  const { nowSelectedChild } = useRootStore();
+
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Init" screenOptions={{ headerShown: true }}>
@@ -116,7 +119,7 @@ const RootStack = () => {
           component={TodoScreen}
           options={({ navigation }) => ({
             headerShown: true,
-            title: `김도영의 목표`,
+            title: `${nowSelectedChild ? nowSelectedChild.name : '자녀'}의 목표`,
             headerLeft: () => (
               <TouchableOpacity className="mr-4" onPress={() => navigation.goBack()}>
                 <ArrowLeftIcon name="arrowleft" size={24} color="black" />
