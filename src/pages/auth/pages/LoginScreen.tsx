@@ -55,8 +55,8 @@ const LoginScreen = ({ navigation }: { navigation: LoginScreenProp }) => {
         <View className="w-40 h-40 bg-gray-200 mb-16 rounded-full" />
         <LabeledInput
           size="fill"
-          label="이메일"
-          placeholder="이메일을 입력해주세요."
+          label="아이디"
+          placeholder="아이디를 입력해주세요."
           className="w-full mb-4"
           onChangeText={text => setEmail(text)}
         />
