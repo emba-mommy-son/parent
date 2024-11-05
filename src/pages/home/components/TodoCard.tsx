@@ -22,6 +22,7 @@ const TodoCard = () => {
           <AntDesign name="right" size={14} style={{ color: '#cacaca' }} />
         </TouchableOpacity>
       </View>
+      <Text>투두리스트</Text>
 
       {/* {!nowSelectedChild && <CardCover height={10} text="자녀의 목표 달성 정도를 확인할 수 있습니다" />} */}
     </Card>
