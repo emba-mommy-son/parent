@@ -23,7 +23,7 @@ const ChildStatusCard = () => {
     <Card>
       {nowSelectedChild ? (
         <>
-          <View className="flex flex-row items-start justify-between">
+          <View className="flex flex-row items-start justify-between w-[288px]">
             <View className="max-w-[80%]">
               <Text className="text-base text-black mb-0.5">{data.status}</Text>
               <Text>{data.text}</Text>
@@ -50,7 +50,7 @@ const ChildStatusCard = () => {
         </>
       ) : (
         <>
-          <View>
+          <View className="w-[288px]">
             <Text className="text-base text-black mb-2">자녀 등록하러 가기</Text>
             <Text className="text-xs text-[#aaaaaa]">자녀의 기기에 마미손(자녀용)이 설치되어 있어야 합니다</Text>
           </View>

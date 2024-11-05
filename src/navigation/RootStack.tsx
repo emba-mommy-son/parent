@@ -3,6 +3,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { TouchableOpacity } from 'react-native';
 import ArrowLeftIcon from 'react-native-vector-icons/AntDesign';
+import useRootStore from '@/zustand';
 
 import Colors from '@/constants/Colors';
 import AlertScreen from '@/pages/alert/pages/AlertScreen';
@@ -10,6 +11,7 @@ import ChartScreen from '@/pages/analysis/pages/ChartScreen';
 import LoginScreen from '@/pages/auth/pages/LoginScreen';
 import SignupScreen from '@/pages/auth/pages/SignupScreen';
 import InitialScreen from '@/pages/InitialScreen';
+import TodoScreen from '@/pages/todo/pages/TodoScreen';
 import EnrollSafeArea from '@/pages/location/pages/EnrollSafeArea';
 import MoveRecord from '@/pages/location/pages/MoveRecord';
 import NowLocation from '@/pages/location/pages/NowLocation';
@@ -25,6 +27,8 @@ import { YearFormat } from '@/utils/formatter/TimeFormat';
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
 const RootStack = () => {
+  const { nowSelectedChild } = useRootStore();
+
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Init" screenOptions={{ headerShown: true }}>
@@ -102,6 +106,20 @@ const RootStack = () => {
           options={({ navigation }) => ({
             headerShown: true,
             title: '알림',
+            headerLeft: () => (
+              <TouchableOpacity className="mr-4" onPress={() => navigation.goBack()}>
+                <ArrowLeftIcon name="arrowleft" size={24} color="black" />
+              </TouchableOpacity>
+            ),
+          })}
+        />
+
+        <Stack.Screen
+          name="Todo"
+          component={TodoScreen}
+          options={({ navigation }) => ({
+            headerShown: true,
+            title: `${nowSelectedChild ? nowSelectedChild.name : '자녀'}의 목표`,
             headerLeft: () => (
               <TouchableOpacity className="mr-4" onPress={() => navigation.goBack()}>
                 <ArrowLeftIcon name="arrowleft" size={24} color="black" />
