@@ -1,24 +1,70 @@
-import React from 'react';
-import { Dimensions, View } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { Dimensions, Text, View } from 'react-native';
 import { LineChart } from 'react-native-gifted-charts';
 
+import Colors from '@/constants/Colors';
+import { useChildStressReport } from '@/tanstackQuery/queries/analysis';
+import useRootStore from '@/zustand';
+
 const WeekChartContainer = () => {
-  const data = [{ value: 15 }, { value: 30 }, { value: 26 }, { value: 40 }, { value: 20 }, { value: 30 }];
+  const { nowSelectedChild } = useRootStore();
+  const stressData = useChildStressReport(nowSelectedChild?.id ?? 0);
+  const [isData, setIsData] = useState(false);
+  const [data, setData] = useState([
+    { title: '3', value: 15 },
+    { title: '3', value: 30 },
+    { title: '3', value: 26 },
+    { title: '3', value: 40 },
+    { title: '3', value: 20 },
+    { title: '3', value: 30 },
+    { title: '3', value: 24 },
+  ]);
+
+  useEffect(() => {
+    if (stressData && stressData?.stressLevels.length > 0) {
+      setIsData(true);
+      setData(
+        stressData.stressLevels.map(day => ({
+          title: day.date.split('-')[2],
+          value: day.intensity,
+        })),
+      );
+    } else {
+      setIsData(false);
+      setData([
+        { title: '3', value: 15 },
+        { title: '3', value: 30 },
+        { title: '3', value: 26 },
+        { title: '3', value: 40 },
+        { title: '3', value: 20 },
+        { title: '3', value: 30 },
+        { title: '3', value: 24 },
+      ]);
+    }
+  }, [stressData]);
 
   return (
-    <View className="flex-1 justify-center items-center rounded-lg overflow-hidden">
+    <View className="flex-1 justify-center items-center rounded-xl overflow-hidden mt-5">
+      <Text className="font-medium text-lg">지난 7일간 스트레스 지수</Text>
       <LineChart
         width={Dimensions.get('window').width * 0.9}
         height={Dimensions.get('window').height * 0.3}
         data={data}
-        color={'#177AD5'}
+        color={'#FD5FAE'}
         thickness={3}
         hideDataPoints={true}
         curved={true}
         hideYAxisText
-        yAxisColor="transparent"
-        xAxisColor="transparent"
+        yAxisColor="lightgray"
+        xAxisColor="lightgray"
       />
+      {!isData && (
+        <View
+          className="absolute top-0 w-full h-full justify-center items-center"
+          style={{ backgroundColor: 'rgba(24, 24, 24, 0.8)' }}>
+          <Text className="text-white text-lg">스트레스 기록이 없습니다.</Text>
+        </View>
+      )}
     </View>
   );
 };
