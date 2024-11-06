@@ -2,7 +2,8 @@ import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
 const StressChart = () => {
-  const stressScore = 8;
+  // 스트레스 조회 API 없음
+  const stressScore = 0;
 
   return (
     <View className="py-4">
