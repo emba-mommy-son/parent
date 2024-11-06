@@ -72,3 +72,9 @@ interface GetConnectedChildDto {
   profileImage: string;
   reward: number;
 }
+
+/** 특정일 스트레스 지수 높은 방 요약 정보 */
+interface GetSummaryReportDto {
+  description: string;
+  descriptionTag: string[];
+}
