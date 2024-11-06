@@ -1,16 +1,15 @@
-import React from 'react';
-import { Image, Alert, Text, TouchableOpacity, View } from 'react-native';
+import React, { useEffect } from 'react';
+import { Alert, Image, Text, TouchableOpacity, View } from 'react-native';
 import AntDesign from 'react-native-vector-icons/AntDesign';
+
 import sampleImg2 from '@/assets/images/sample_img2.png';
 import sampleImg3 from '@/assets/images/sample_img3.png';
-
+import Card from '@/components/Card';
 import ScreenContainer from '@/components/ScreenContainer';
 import useRootStore from '@/zustand';
-import Card from '@/components/Card';
 
 const SettingScreen = ({ navigation }: { navigation: any }) => {
-  const { children } = useRootStore();
-  const { clearToken } = useRootStore();
+  const { children, clearToken } = useRootStore();
 
   const data = [
     { name: '김도영', img: sampleImg2, score: 70 },

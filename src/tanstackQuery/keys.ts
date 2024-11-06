@@ -41,4 +41,16 @@ export const keys = {
   getStress: (childId: ChildId) => [...keys.all, 'stress', childId] as const, //스트레스
   getMonthEmotionReport: ({ childId, year, month }: MonthEmotionForm) =>
     [...keys.all, 'monthEmotionReport', childId, year, month] as const, // 한달 동안 감정
+  getSummaryReport: ({ childId, year, month, day }: SummaryForm) =>
+    [...keys.all, 'summaryReport', childId, year, month, day] as const,
+
+  /**
+   * goal(목표) 쿼리 키 그룹
+   */
+  goal: () => [...keys.all, 'goal'] as const,
+  getGoal: (childId: ChildId) => [...keys.all, 'getGoal', childId] as const,
+  makeGoal: () => [...keys.all, 'makeGoal'] as const,
+  deleteGoal: (childId: ChildId, goalId: number) => [...keys.all, 'deleteGoal', childId, goalId] as const,
+  doneGoal: (childId: ChildId, goalId: number) => [...keys.all, 'doneGoal', childId, goalId] as const,
+  undoneGoal: (childId: ChildId, goalId: number) => [...keys.all, 'undoneGoal', childId, goalId] as const,
 };

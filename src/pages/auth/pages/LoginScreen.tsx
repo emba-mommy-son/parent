@@ -75,9 +75,9 @@ const LoginScreen = ({ navigation }: { navigation: LoginScreenProp }) => {
       <Button onPress={handleSignup} myButtonStyle="bg-white" myTextStyle="text-my_gray_900">
         회원가입
       </Button>
-      <Button onPress={handleRegister} myButtonStyle="bg-white" myTextStyle="text-my_gray_900">
+      {/* <Button onPress={handleRegister} myButtonStyle="bg-white" myTextStyle="text-my_gray_900">
         자녀등록(임시)
-      </Button>
+      </Button> */}
     </ScreenContainer>
   );
 };
