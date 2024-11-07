@@ -17,10 +17,11 @@ const LanguagePatternChart = () => {
 
   useEffect(() => {
     if (emotionData) {
+      const total = emotionData.positive + emotionData.negative + emotionData.neutral;
       setData([
-        { x: '긍정적 단어 사용', y: emotionData.positive * 10 },
-        { x: '부정적 단어 사용', y: emotionData.negative * 10 },
-        { x: '중립적 단어 사용', y: emotionData.neutral * 10 },
+        { x: '긍정적 단어 사용', y: Math.round((emotionData.positive / total) * 100) },
+        { x: '부정적 단어 사용', y: Math.round((emotionData.negative / total) * 100) },
+        { x: '중립적 단어 사용', y: Math.round((emotionData.neutral / total) * 100) },
       ]);
     }
   }, [emotionData]);
@@ -42,6 +43,13 @@ const LanguagePatternChart = () => {
             labels={() => null}
           />
         </Svg>
+        {!emotionData && (
+          <View
+            className="absolute top-0 w-full h-full justify-center rounded-lg items-center"
+            style={{ backgroundColor: 'rgba(255, 255, 255, 0.8)' }}>
+            <Text className="text-black text-base">감정 데이터가 없습니다</Text>
+          </View>
+        )}
       </View>
 
       <View className="flex flex-row flex-wrap mx-2 mt-6 justify-between">
