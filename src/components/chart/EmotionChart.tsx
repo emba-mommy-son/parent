@@ -99,11 +99,11 @@ const EmotionChart: React.FC<EmotionChartProps> = ({ showReport = true }) => {
         {data.map((item, index) => (
           <View
             key={index}
-            className="w-[30%] h-16 p-2 mb-4 rounded relative bg-[#ffffff] flex flex-col items-center"
+            className="w-[30%] h-16 py-2 mb-4 overflow-hidden rounded relative bg-[#ffffff] flex flex-col items-center"
             style={[styles.shadow]}>
             <View
-              className={`absolute top-0 left-0 h-16 ${Number(item.score) === 100 ? 'rounded' : 'rounded-l'}`}
-              style={{ width: `${item.score}%`, backgroundColor: bgScale[index] }}
+              className={`absolute top-0 left-0 h-16 ${Number(item.score) < 100 ? 'rounded' : 'rounded-l'}`}
+              style={{ width: `${item.score > 100 ? 100 : item.score}%`, backgroundColor: bgScale[index] }}
             />
             <Text className="text-xl font-bold" style={{ color: textScale[index] }}>
               {item.score}%
