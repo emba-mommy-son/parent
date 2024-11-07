@@ -5,11 +5,13 @@ import { Image, Text, TouchableOpacity, View } from 'react-native';
 
 import unknown_person from '@/assets/images/unknown_person.png';
 import Card from '@/components/Card';
+import { useChildScore } from '@/tanstackQuery/queries/child';
 import { RootStackParamList } from '@/types/navigation';
 import useRootStore from '@/zustand';
 
 const ChildStatusCard = () => {
   const { nowSelectedChild } = useRootStore();
+  const scoreData = useChildScore(nowSelectedChild?.id ?? 0);
 
   const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
 
@@ -38,14 +40,14 @@ const ChildStatusCard = () => {
           <View className="flex flex-row justify-between items-end mt-6 mb-2">
             <Text>score</Text>
             <View className="flex flex-row items-end">
-              <Text className="text-black text-base mb-[-2px]">{data.score}</Text>
+              <Text className="text-black text-base mb-[-2px]">{scoreData}</Text>
               <Text className="text-xs">/100</Text>
             </View>
           </View>
           <View className="w-full bg-black rounded-full h-2">
             <View
-              className={`bg-my_primary h-2 ${Number(data.score) === 100 ? 'rounded-full' : 'rounded-l-full'}`}
-              style={{ width: `${data.score}%` }}></View>
+              className={`bg-my_primary h-2 ${Number(scoreData) === 100 ? 'rounded-full' : 'rounded-l-full'}`}
+              style={{ width: `${scoreData}%` }}></View>
           </View>
         </>
       ) : (
