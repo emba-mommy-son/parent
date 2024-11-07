@@ -35,4 +35,15 @@ const useConnectedChild = () => {
   return data;
 };
 
-export { useConnectedChild };
+/** 자녀 점수를 가져오는 쿼리 훅 */
+const useChildScore = (childId: ChildId) => {
+  const { data } = useQuery({
+    queryKey: keys.getChildScore(childId),
+    queryFn: () => child.getChildScore(childId),
+  });
+
+  const scoreData = data?.data.data ?? 0;
+  return scoreData;
+};
+
+export { useChildScore, useConnectedChild };
