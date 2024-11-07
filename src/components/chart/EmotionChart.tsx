@@ -22,18 +22,12 @@ const EmotionChart: React.FC<EmotionChartProps> = ({ showReport = true }) => {
   });
   const [isData, setIsData] = useState(false);
   const [data, setData] = useState([
-    { emotion: '즐거움', score: 48, reliability: 0.5 },
-    { emotion: '놀라움', score: 36, reliability: 0.8 },
-    { emotion: '공포', score: 17, reliability: 0.4 },
+    { emotion: '즐거움', score: 61, reliability: 0.5 },
+    { emotion: '놀라움', score: 20, reliability: 0.8 },
+    { emotion: '공포', score: 4, reliability: 0.4 },
     { emotion: '슬픔', score: 15, reliability: 0.7 },
     { emotion: '분노', score: 46, reliability: 0.5 },
     { emotion: '혐오', score: 7, reliability: 0.2 },
-    // { emotion: '즐거움', score: 0, reliability: 0 },
-    // { emotion: '놀라움', score: 0, reliability: 0 },
-    // { emotion: '공포', score: 0, reliability: 0 },
-    // { emotion: '슬픔', score: 0, reliability: 0 },
-    // { emotion: '분노', score: 0, reliability: 0 },
-    // { emotion: '혐오', score: 0, reliability: 0 },
   ]);
 
   const calculateReliability = (emotionCount: number, totalMessages: number) => {
@@ -99,7 +93,7 @@ const EmotionChart: React.FC<EmotionChartProps> = ({ showReport = true }) => {
         {data.map((item, index) => (
           <View
             key={index}
-            className="w-[30%] h-16 p-2 mb-4 rounded relative bg-[#ffffff] flex flex-col items-center"
+            className="w-[30%] h-16 pt-2 mb-4 rounded relative bg-[#ffffff] flex flex-col items-center"
             style={[styles.shadow]}>
             <View
               className={`absolute top-0 left-0 h-16 ${Number(item.score) === 100 ? 'rounded' : 'rounded-l'}`}
@@ -132,6 +126,7 @@ const EmotionChart: React.FC<EmotionChartProps> = ({ showReport = true }) => {
 
 const styles = StyleSheet.create({
   shadow: {
+    overflow: 'hidden',
     shadowColor: '#646464',
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.25,
