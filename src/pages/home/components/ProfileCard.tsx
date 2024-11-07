@@ -9,7 +9,12 @@ import useRootStore from '@/zustand';
 
 import ChildStatusCard from '../components/ChildStatusCard';
 
-const ProfileCard = () => {
+interface ProfileCardProps {
+  emotionScore: number;
+  sleepStatus: string;
+}
+
+const ProfileCard = ({ emotionScore, sleepStatus }: ProfileCardProps) => {
   const { nowSelectedChild } = useRootStore();
   const [data, setData] = useState(
     nowSelectedChild
@@ -52,7 +57,7 @@ const ProfileCard = () => {
         </View>
       </View>
       <View className="absolute z-10 top-[90px]">
-        <ChildStatusCard />
+        <ChildStatusCard emotionScore={emotionScore} sleepStatus={sleepStatus} />
       </View>
     </View>
   );

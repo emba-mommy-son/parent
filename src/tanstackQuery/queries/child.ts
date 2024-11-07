@@ -35,4 +35,54 @@ const useConnectedChild = () => {
   return data;
 };
 
-export { useConnectedChild };
+/**
+ * 자녀 점수를 가져오는 함수
+ */
+const useChildScore = (id: number | null) => {
+  const { data, isError, error } = useQuery({
+    queryKey: [keys.getChildScore(), id],
+    queryFn: async () => {
+      const response = await child.getChildScore(id as number);
+      return response.data.data;
+    },
+    enabled: !!id,
+  });
+
+  if (!id) {
+    return 71;
+  }
+
+  if (isError) {
+    console.error('자녀 점수 가져오는 중 오류 발생:', error);
+    return 71;
+  }
+
+  return data ?? 71;
+};
+
+/**
+ * 자녀 수면 정보를 가져오는 함수
+ */
+const useChildSleep = (id: number | null) => {
+  const { data, isError, error } = useQuery({
+    queryKey: [keys.getChildSleep(), id],
+    queryFn: async () => {
+      const response = await child.getChildSleep(id as number);
+      return response.data.data;
+    },
+    enabled: !!id,
+  });
+
+  if (!id) {
+    return '건강한 상태. 지난 밤 수면의 질이 좋습니다.';
+  }
+
+  if (isError) {
+    console.error('자녀 수면 정보 가져오는 중 오류 발생:', error);
+    return '건강한 상태. 지난 밤 수면의 질이 좋습니다.';
+  }
+
+  return data ?? '건강한 상태. 지난 밤 수면의 질이 좋습니다.';
+};
+
+export { useConnectedChild, useChildScore, useChildSleep };
