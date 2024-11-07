@@ -1,36 +1,81 @@
 import React from 'react';
 import { useState } from 'react';
-
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import Card from '@/components/Card';
 import CircularProgress from 'react-native-circular-progress-indicator';
-import EntypoIcons from 'react-native-vector-icons/Entypo';
-import { Image, Text, View } from 'react-native';
+import { Image, Text, ToastAndroid, View, Alert } from 'react-native';
 
 import useRootStore from '@/zustand';
-
+import reward from '@/services/reward';
 import { useRewardImage } from '@/tanstackQuery/queries/reward';
 
 import { WishModal } from '@/pages/todo/components/WishModal';
+import { keys } from '@/tanstackQuery/keys';
 
 interface WishBoxProps {
   ratio: number;
 }
 
 export const WishBox = ({ ratio }: WishBoxProps) => {
+  const queryClient = useQueryClient();
   const { nowSelectedChild } = useRootStore();
   const percentValue = Math.round(ratio);
   const [isWishModalOpen, setIsWishModalOpen] = useState<boolean>(false);
-  const rewardImage = useRewardImage(nowSelectedChild?.id ?? 0);
-  console.log('리워드이미지', rewardImage);
-  console.log('자식아이디', nowSelectedChild);
+
+  // 임시로 얼리리턴 박고, 자녀 검증 훅으로 빼자
+  if (!nowSelectedChild) return null;
+
+  const rewardImage = useRewardImage(nowSelectedChild?.id);
+
+  /** 리워드 이미지 삭제 mutation */
+  const { mutate: deleteRewardImage } = useMutation({
+    mutationFn: reward.deleteRewardImage,
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: keys.getRewardImage(nowSelectedChild.id),
+      });
+      ToastAndroid.show('선물이 삭제되었습니다.', 2000);
+    },
+    onError: () => {
+      ToastAndroid.show('선물 삭제에 실패했습니다.', 2000);
+    },
+  });
+
+  const handleDeletePress = () => {
+    Alert.alert(
+      '이미지 삭제',
+      '선물을 삭제하시겠습니까?',
+      [
+        {
+          text: '취소',
+          style: 'cancel',
+        },
+        {
+          text: '삭제',
+          onPress: () => {
+            deleteRewardImage(nowSelectedChild.id);
+          },
+        },
+      ],
+      { cancelable: true },
+    );
+  };
+
   return (
     <Card isMargin={false}>
       <View className="absolute top-2.5 left-3.5 flex flex-row">
         <Text className="text-base text-black">3</Text>
         <Text className="text-base text-['#a3a3a3']"> / 6</Text>
       </View>
-      <View className="absolute top-3.5 right-3">
-        <EntypoIcons name="dots-three-vertical" onPress={() => setIsWishModalOpen(true)} size={17} color={'#bdbdbd'} />
+      <View className="absolute top-3 right-3 flex flex-row gap-2">
+        <Text className="text-[#bdbdbd] text-sm font-medium" onPress={() => setIsWishModalOpen(true)}>
+          {rewardImage ? '수정' : '추가'}
+        </Text>
+        {rewardImage && (
+          <Text onPress={handleDeletePress} className="text-[#bdbdbd] text-sm font-medium">
+            삭제
+          </Text>
+        )}
       </View>
       {rewardImage ? (
         <View>
@@ -57,7 +102,12 @@ export const WishBox = ({ ratio }: WishBoxProps) => {
         </View>
       )}
       {isWishModalOpen && (
-        <WishModal isModalOpen={isWishModalOpen} setIsModalOpen={setIsWishModalOpen} rewardImage={rewardImage} />
+        <WishModal
+          isModalOpen={isWishModalOpen}
+          setIsModalOpen={setIsWishModalOpen}
+          rewardImage={rewardImage}
+          childId={nowSelectedChild.id}
+        />
       )}
     </Card>
   );
