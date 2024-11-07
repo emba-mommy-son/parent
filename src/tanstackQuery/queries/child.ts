@@ -38,17 +38,17 @@ const useConnectedChild = () => {
 /**
  * 자녀 점수를 가져오는 함수
  */
-const useChildScore = (id: number | null) => {
+const useChildScore = (childId: number | null) => {
   const { data, isError, error } = useQuery({
-    queryKey: [keys.getChildScore(), id],
+    queryKey: [keys.getChildScore(childId || 0)],
     queryFn: async () => {
-      const response = await child.getChildScore(id as number);
+      const response = await child.getChildScore(childId as number);
       return response.data.data;
     },
-    enabled: !!id,
+    enabled: !!childId,
   });
 
-  if (!id) {
+  if (!childId) {
     return 71;
   }
 
@@ -63,17 +63,17 @@ const useChildScore = (id: number | null) => {
 /**
  * 자녀 수면 정보를 가져오는 함수
  */
-const useChildSleep = (id: number | null) => {
+const useChildSleep = (childId: number | null) => {
   const { data, isError, error } = useQuery({
-    queryKey: [keys.getChildSleep(), id],
+    queryKey: [keys.getChildSleep(childId || 0), childId],
     queryFn: async () => {
-      const response = await child.getChildSleep(id as number);
+      const response = await child.getChildSleep(childId as number);
       return response.data.data;
     },
-    enabled: !!id,
+    enabled: !!childId,
   });
 
-  if (!id) {
+  if (!childId) {
     return '건강한 상태. 지난 밤 수면의 질이 좋습니다.';
   }
 

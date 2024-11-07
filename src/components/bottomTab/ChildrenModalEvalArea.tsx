@@ -10,7 +10,7 @@ import ModalChildButton from './ModalChildButton';
 type ChildModalEvalAreaProp = NativeStackScreenProps<RootStackParamList, 'ChildrenModalEvalArea'>['navigation'];
 
 const ChildrenModalEvalArea = ({ navigation }: { navigation: ChildModalEvalAreaProp }) => {
-  const { children } = useRootStore();
+  const { children, setNowSelectedChild, toggleModal } = useRootStore();
 
   return (
     <View className="flex justify-center items-center bottom-10 flex-row z-20">
@@ -22,13 +22,14 @@ const ChildrenModalEvalArea = ({ navigation }: { navigation: ChildModalEvalAreaP
           </View>
         ) : (
           <>
-            {children.map((child, _) => (
+            {children.map(child => (
               <ModalChildButton
                 key={child.id}
                 img={child.profileImage || 'none'}
                 name={child.name}
                 onPressHandler={() => {
-                  console.log(`${child.name} button pressed`);
+                  setNowSelectedChild(child);
+                  toggleModal();
                 }}
               />
             ))}

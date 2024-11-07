@@ -81,7 +81,7 @@ const LocationCard = () => {
 
         <View>
           <Text className="text-black text-base">
-            {loca ? address?.split(' ').splice(0, 2).join(' ') : '위치 정보 데이터가 없습니다.'}
+            {loca ? address?.split(' ').splice(0, 2).join(' ') : '위치 기록이 없습니다'}
           </Text>
           <Text className="text-black text-base">{loca ? address?.split(' ').splice(2).join(' ') : ''}</Text>
         </View>
