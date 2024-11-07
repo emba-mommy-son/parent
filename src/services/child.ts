@@ -7,4 +7,8 @@ export default {
   getConnectedChild: async () => {
     return await instance.get<BaseResponse<GetConnectedChildDto[]>>('/parents');
   },
+  /** 자녀 점수 확인 */
+  getChildScore: async (childId: ChildId) => {
+    return instance.get<BaseResponse<number>>(`/parents/${childId}`);
+  },
 };
