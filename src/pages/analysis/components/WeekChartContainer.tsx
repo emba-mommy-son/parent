@@ -44,8 +44,8 @@ const WeekChartContainer = () => {
   }, [stressData]);
 
   return (
-    <View className="flex-1 justify-center items-center rounded-xl overflow-hidden mt-5">
-      <Text className="font-medium text-lg">지난 7일간 스트레스 지수</Text>
+    <View className="flex-1 justify-center items-center rounded-xl overflow-hidden mt-8">
+      <Text className="text-[#000000] text-base mr-auto ml-2.5">지난 7일간 스트레스 지수</Text>
       <LineChart
         width={Dimensions.get('window').width * 0.9}
         height={Dimensions.get('window').height * 0.3}
@@ -60,9 +60,9 @@ const WeekChartContainer = () => {
       />
       {!isData && (
         <View
-          className="absolute top-0 w-full h-full justify-center items-center"
-          style={{ backgroundColor: 'rgba(24, 24, 24, 0.8)' }}>
-          <Text className="text-white text-lg">스트레스 기록이 없습니다.</Text>
+          className="absolute top-0 w-full h-[85%] mt-6 justify-center items-center"
+          style={{ backgroundColor: 'rgba(255, 255, 255, 0.8)' }}>
+          <Text className="text-black text-sm">스트레스 기록이 없습니다.</Text>
         </View>
       )}
     </View>

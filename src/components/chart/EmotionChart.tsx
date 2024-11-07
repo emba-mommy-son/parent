@@ -16,7 +16,10 @@ interface EmotionChartProps {
 const EmotionChart: React.FC<EmotionChartProps> = ({ showReport = true }) => {
   const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
   const { nowSelectedChild, selectedDate } = useRootStore();
-  const eachEmotionData = useChildEachEmotionReport({ childId: nowSelectedChild?.id ?? 0, dateTime: selectedDate });
+  const eachEmotionData = useChildEachEmotionReport({
+    childId: nowSelectedChild?.id ?? 0,
+    dateTime: showReport ? new Date().toISOString().split('T')[0] : selectedDate,
+  });
   const [isData, setIsData] = useState(false);
   const [data, setData] = useState([
     { emotion: '즐거움', score: 48, reliability: 0.5 },
@@ -118,8 +121,8 @@ const EmotionChart: React.FC<EmotionChartProps> = ({ showReport = true }) => {
         {!isData && (
           <View
             className="absolute top-0 w-full h-full justify-center rounded-lg items-center"
-            style={{ backgroundColor: 'rgba(24, 24, 24, 0.8)' }}>
-            <Text className="text-white text-lg">자녀의 감정 기록이 없습니다.</Text>
+            style={{ backgroundColor: 'rgba(255, 255, 255, 0.8)' }}>
+            <Text className="text-black text-base">감정 데이터가 없습니다</Text>
           </View>
         )}
       </View>
