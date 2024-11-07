@@ -21,7 +21,7 @@ const TodoList = ({ incompletedGoals }: TodoListProps) => {
         ))
       ) : (
         <View className="w-full h-32 flex items-center justify-center">
-          <Text className="text-black text-center font-bold">현재 목표가 없습니다.</Text>
+          <Text className="text-black text-center mt-[-14px]">현재 목표가 없습니다.</Text>
         </View>
       )}
     </Card>

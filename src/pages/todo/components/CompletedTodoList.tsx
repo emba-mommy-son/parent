@@ -15,7 +15,7 @@ const CompletedTodoList = ({ completedGoals }: CompletedTodoListProps) => {
         completedGoals.map(goal => <Todo key={goal.goalId} id={goal.goalId} content={goal.content} done={goal.done} />)
       ) : (
         <View className="w-full h-32 flex items-center justify-center">
-          <Text className="text-black text-center font-bold">현재 목표가 없습니다.</Text>
+          <Text className="text-black text-center mt-[-14px]">현재 목표가 없습니다.</Text>
         </View>
       )}
     </Card>
