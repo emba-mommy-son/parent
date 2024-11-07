@@ -2,7 +2,7 @@ import { useQuery } from '@tanstack/react-query';
 
 import mommyson from '@/services/mommyson';
 
-import { keys } from '../keys';
+import { keys } from '@/tanstackQuery/keys';
 
 //** 자녀의 리워드 이미지를 받아오는 쿼리 훅 */
 const useRewardImage = (childId: ChildId) => {

@@ -14,15 +14,16 @@ import { keys } from '@/tanstackQuery/keys';
 
 interface WishBoxProps {
   ratio: number;
+  completedCount: number;
+  totalCount: number;
 }
 
-export const WishBox = ({ ratio }: WishBoxProps) => {
+export const WishBox = ({ ratio, completedCount, totalCount }: WishBoxProps) => {
   const queryClient = useQueryClient();
   const { nowSelectedChild } = useRootStore();
   const percentValue = Math.round(ratio);
   const [isWishModalOpen, setIsWishModalOpen] = useState<boolean>(false);
-
-  // 임시로 얼리리턴 박고, 자녀 검증 훅으로 빼자
+  //!FIXME 임시로 얼리리턴 박고, 자녀 검증 훅으로 빼자
   if (!nowSelectedChild) return null;
 
   const rewardImage = useRewardImage(nowSelectedChild?.id);
@@ -64,8 +65,8 @@ export const WishBox = ({ ratio }: WishBoxProps) => {
   return (
     <Card isMargin={false}>
       <View className="absolute top-2.5 left-3.5 flex flex-row">
-        <Text className="text-base text-black">3</Text>
-        <Text className="text-base text-['#a3a3a3']"> / 6</Text>
+        <Text className="text-base text-black">{completedCount}</Text>
+        <Text className="text-base text-['#a3a3a3']"> / {totalCount}</Text>
       </View>
       <View className="absolute top-3 right-3 flex flex-row gap-2">
         <Text className="text-[#bdbdbd] text-sm font-medium" onPress={() => setIsWishModalOpen(true)}>

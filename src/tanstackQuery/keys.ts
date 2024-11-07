@@ -50,7 +50,7 @@ export const keys = {
    * goal(목표) 쿼리 키 그룹
    */
   goal: () => [...keys.all, 'goal'] as const,
-  getGoal: (childId: ChildId) => [...keys.all, 'getGoal', childId] as const,
+  getGoals: (childId: ChildId) => [...keys.all, 'getGoasl', childId] as const,
   makeGoal: () => [...keys.all, 'makeGoal'] as const,
   deleteGoal: (childId: ChildId, goalId: number) => [...keys.all, 'deleteGoal', childId, goalId] as const,
   doneGoal: (childId: ChildId, goalId: number) => [...keys.all, 'doneGoal', childId, goalId] as const,
