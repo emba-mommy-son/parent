@@ -1,24 +1,44 @@
-// 리액트
 import React from 'react';
-import { Modal, Pressable, Text, TouchableOpacity, View, Image, Alert } from 'react-native';
+import { Modal, Pressable, Text, ToastAndroid, TouchableOpacity, View, Image } from 'react-native';
 import { useState } from 'react';
 import { launchImageLibrary } from 'react-native-image-picker';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+import reward from '@/services/reward';
 
-// 아이콘
 import EntypoIcons from 'react-native-vector-icons/Entypo';
+import { keys } from '@/tanstackQuery/keys';
+import { AxiosError } from 'axios';
 
 interface WishModalProps {
   isModalOpen: boolean;
   setIsModalOpen: (value: boolean) => void;
   rewardImage?: string;
+  childId: ChildId;
 }
 
-export const WishModal = ({ isModalOpen, setIsModalOpen, rewardImage }: WishModalProps) => {
+export const WishModal = ({ isModalOpen, setIsModalOpen, rewardImage, childId }: WishModalProps) => {
+  const queryClient = useQueryClient();
   const [selectedImage, setSelectedImage] = useState<{
     uri: string;
     type: string;
     name: string;
   } | null>(null);
+
+  /** 리워드 이미지 생성 mutation */
+  const { mutate: createRewardImage } = useMutation({
+    mutationFn: ({ childId, file }: { childId: ChildId; file: ImageFile }) => reward.createRewardImage(childId, file),
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: keys.getRewardImage(childId),
+      });
+      ToastAndroid.show('선물이 등록되었습니다.', 2000);
+      handleModalClose();
+    },
+    onError: (error: AxiosError<ErrorResponse>) => {
+      console.error(error.response?.data);
+      ToastAndroid.show('선물 등록에 실패했습니다.', 2000);
+    },
+  });
 
   const handleModalClose = () => {
     setIsModalOpen(false);
@@ -52,7 +72,14 @@ export const WishModal = ({ isModalOpen, setIsModalOpen, rewardImage }: WishModa
     }
   };
 
-  //   const handleSubmit = () => {};
+  const handleSubmit = () => {
+    if (!selectedImage) return;
+
+    createRewardImage({
+      childId,
+      file: selectedImage,
+    });
+  };
 
   return (
     <Modal animationType="none" visible={isModalOpen} transparent={true} onRequestClose={handleModalClose}>
@@ -78,7 +105,7 @@ export const WishModal = ({ isModalOpen, setIsModalOpen, rewardImage }: WishModa
             )}
           </TouchableOpacity>
           <TouchableOpacity
-            onPress={() => console.log('출력')}
+            onPress={handleSubmit}
             className={`${!selectedImage ? 'opacity-50' : ''}`}
             disabled={!selectedImage}>
             <View className="bg-[#FF5185] flex flex-row rounded-lg mt-2">

@@ -2,7 +2,7 @@ import instance from '@/configs/axios';
 
 export default {
   /** 목표 조회 API(부모) */
-  getGoal: async (childId: ChildId) => {
+  getGoals: async (childId: ChildId) => {
     return instance.get<BaseResponse<Goal[]>>(`/goal/child/${childId}`);
   },
 

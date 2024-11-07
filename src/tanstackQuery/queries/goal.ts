@@ -2,16 +2,17 @@ import { useQuery } from '@tanstack/react-query';
 
 import mommyson from '@/services/mommyson';
 
-import { keys } from '../keys';
+import { keys } from '@/tanstackQuery/keys';
 
-const useGoal = (childId: ChildId) => {
+//** 목표 리스트를 받아오는 쿼리 훅 */
+const useGetGoals = (childId: ChildId) => {
   const { data } = useQuery({
-    queryKey: keys.getGoal(childId),
-    queryFn: () => mommyson.getGoal(childId),
+    queryKey: keys.getGoals(childId),
+    queryFn: () => mommyson.getGoals(childId),
   });
 
-  const goalData = data?.data.data;
-  return goalData;
+  const goalList = data?.data.data;
+  return goalList;
 };
-
-export { useGoal };
+//! FIXME 이런식으로 쓰면 로딩, 에러처리 이상하게 해야됨
+export { useGetGoals };
