@@ -1,19 +1,28 @@
 import React from 'react';
-import { Image, Text, View } from 'react-native';
-import bike from '@/assets/images/bike.png';
+import { useState } from 'react';
 
+import Card from '@/components/Card';
 import CircularProgress from 'react-native-circular-progress-indicator';
 import EntypoIcons from 'react-native-vector-icons/Entypo';
-import Card from '@/components/Card';
+import { Image, Text, View } from 'react-native';
+
+import useRootStore from '@/zustand';
+
+import { useRewardImage } from '@/tanstackQuery/queries/reward';
+
+import { WishModal } from '@/pages/todo/components/WishModal';
 
 interface WishBoxProps {
   ratio: number;
 }
 
 export const WishBox = ({ ratio }: WishBoxProps) => {
+  const { nowSelectedChild } = useRootStore();
   const percentValue = Math.round(ratio);
-  const isHavePresent = true;
-
+  const [isWishModalOpen, setIsWishModalOpen] = useState<boolean>(false);
+  const rewardImage = useRewardImage(nowSelectedChild?.id ?? 0);
+  console.log('리워드이미지', rewardImage);
+  console.log('자식아이디', nowSelectedChild);
   return (
     <Card isMargin={false}>
       <View className="absolute top-2.5 left-3.5 flex flex-row">
@@ -21,9 +30,9 @@ export const WishBox = ({ ratio }: WishBoxProps) => {
         <Text className="text-base text-['#a3a3a3']"> / 6</Text>
       </View>
       <View className="absolute top-3.5 right-3">
-        <EntypoIcons name="dots-three-vertical" size={17} color={'#bdbdbd'} />
+        <EntypoIcons name="dots-three-vertical" onPress={() => setIsWishModalOpen(true)} size={17} color={'#bdbdbd'} />
       </View>
-      {isHavePresent ? (
+      {rewardImage ? (
         <View>
           <View className="flex justify-center items-center relative">
             <CircularProgress
@@ -38,7 +47,7 @@ export const WishBox = ({ ratio }: WishBoxProps) => {
               activeStrokeWidth={8}
               progressValueStyle={{ display: 'none' }}
             />
-            <Image source={bike} className="w-[65px] h-[65px] absolute rounded-full" />
+            <Image source={{ uri: rewardImage }} className="w-[65px] h-[65px] absolute rounded-full" />
           </View>
           <Text className="text-lg text-black text-center font-600 mt-2">{percentValue}% 달성</Text>
         </View>
@@ -46,6 +55,9 @@ export const WishBox = ({ ratio }: WishBoxProps) => {
         <View className="flex items-center justify-center h-20">
           <Text className="text-black">🎁 자녀를 위한 선물을 등록해보세요</Text>
         </View>
+      )}
+      {isWishModalOpen && (
+        <WishModal isModalOpen={isWishModalOpen} setIsModalOpen={setIsWishModalOpen} rewardImage={rewardImage} />
       )}
     </Card>
   );
