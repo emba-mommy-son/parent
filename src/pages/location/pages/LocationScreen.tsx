@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
+import MapView, { PROVIDER_GOOGLE, Region } from 'react-native-maps';
 
 import Pin from '@/assets/svgs/pin.svg';
 import Card from '@/components/Card';
@@ -80,7 +80,14 @@ const LocationScreen = ({ navigation }: { navigation: LocationScreenProps }) => 
       <MapView
         provider={PROVIDER_GOOGLE}
         style={styles.map}
-        initialRegion={DEFAULT_MAP_REGION}
+        initialRegion={
+          {
+            longitude: locationData?.[0].locationId ?? 35.19070647667026,
+            latitude: locationData?.[0].latitude ?? 126.82393808031838,
+            latitudeDelta: 0.01,
+            longitudeDelta: 0.01,
+          } as Region
+        }
         followsUserLocation={true}
         scrollDuringRotateOrZoomEnabled={false}
         scrollEnabled={false}
