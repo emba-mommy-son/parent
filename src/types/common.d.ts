@@ -91,3 +91,9 @@ interface Goal {
   content: string;
   done: boolean;
 }
+
+type ImageFile = {
+  uri: string;
+  type: string;
+  name: string;
+};
