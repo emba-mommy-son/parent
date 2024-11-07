@@ -1,7 +1,7 @@
 import type { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { useMutation } from '@tanstack/react-query';
 import React, { useEffect, useState } from 'react';
-import { Alert, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Alert, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import Accordion from 'react-native-collapsible/Accordion';
 
 import Button from '@/components/buttons/Button';
@@ -50,8 +50,20 @@ const SignupScreen = ({ navigation }: SignupScreenProp) => {
   // 이용약관 내용 및 내부 컴포넌트
   const SECTIONS = [
     {
-      title: '이용약관 전체 동의',
-      content: '동의 안하면 못씀~',
+      title: '회원가입 약관 동의',
+      content: `1. 서비스 이용 약관
+
+마미손 서비스 이용을 위한 필수 약관입니다. 동의하셔야 서비스 이용이 가능합니다.
+
+2. 개인정보 처리 방침
+
+회원님의 개인정보를 보호하고 안전하게 관리하기 위한 방침에 동의가 필요합니다.
+
+3. 푸시 알림 동의
+
+서비스 이용과 관련된 알림을 실시간으로 받아보시겠습니까?
+동의 시, 마미손 서비스 내 중요 알림을 받을 수 있습니다.
+`,
     },
   ];
 
@@ -71,15 +83,8 @@ const SignupScreen = ({ navigation }: SignupScreenProp) => {
 
   const renderContent = (section: any) => {
     return (
-      <View
-        style={{
-          justifyContent: 'space-between',
-          alignItems: 'center',
-          width: '100%',
-          height: 200,
-          paddingVertical: 10,
-        }}>
-        <Text>{section.content}</Text>
+      <ScrollView contentContainerStyle={{ marginBottom: 20 }}>
+        <Text className="text-sm">{section.content}</Text>
         <Button
           type="secondary"
           size="hug"
@@ -88,7 +93,7 @@ const SignupScreen = ({ navigation }: SignupScreenProp) => {
           onPress={agreeHandler}>
           동의
         </Button>
-      </View>
+      </ScrollView>
     );
   };
 
