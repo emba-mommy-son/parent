@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Text, TouchableOpacity, View } from 'react-native';
 import { Calendar, DateData, LocaleConfig } from 'react-native-calendars';
 
@@ -19,12 +19,6 @@ LocaleConfig.locales['ko'] = {
 };
 LocaleConfig.defaultLocale = 'ko';
 
-interface TempDateProps {
-  dateString: string;
-  marked: boolean;
-  feel: 'smile' | 'mad' | 'sad';
-}
-
 interface CalendarContainerProps {
   onDayPress: () => void;
 }
@@ -38,24 +32,13 @@ const CalendarContainer = ({ onDayPress }: CalendarContainerProps) => {
     month: Number(selectedDate.split('-')[1]),
   });
 
-  // 최근 30일 날짜 리스트(임시 목업)
-  const [tempDateList, setTempDateList] = useState<TempDateProps[]>(
-    Array(30)
-      .fill({ dateString: dateToString(today), feel: 'smile' })
-      .map((date, index) => ({
-        ...date,
-        dateString: dateToString(new Date(today.getTime() - index * 24 * 60 * 60 * 1000)),
-        feel: index % 3 === 0 ? 'mad' : index % 3 === 1 ? 'sad' : 'smile',
-      })),
-  );
-
-  const getFeelIcon = (feel: 'smile' | 'mad' | 'sad') => {
+  const getFeelIcon = (feel: 'NEUTRAL' | 'NEGATIVE' | 'POSITIVE') => {
     switch (feel) {
-      case 'smile':
+      case 'NEUTRAL':
         return <SmileIcon width={26} height={26} />;
-      case 'mad':
+      case 'NEGATIVE':
         return <MadIcon width={26} height={26} />;
-      case 'sad':
+      case 'POSITIVE':
         return <SadIcon width={26} height={26} />;
     }
   };
@@ -85,8 +68,8 @@ const CalendarContainer = ({ onDayPress }: CalendarContainerProps) => {
                 }}
                 className="flex-1 items-center justify-center flex gap-1">
                 <View>
-                  {tempDateList.find(tempDate => tempDate.dateString === date.dateString)?.feel ? (
-                    getFeelIcon(tempDateList.find(tempDate => tempDate.dateString === date.dateString)?.feel ?? 'smile')
+                  {MonthEmotionData.find(dayData => dayData.date === date.dateString)?.emotion ? (
+                    getFeelIcon(MonthEmotionData.find(temp => temp.date === date.dateString)?.emotion ?? 'NEUTRAL')
                   ) : (
                     <View className="w-8 h-6" />
                   )}

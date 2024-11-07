@@ -1,10 +1,11 @@
+import { useNavigation } from '@react-navigation/native';
 import React from 'react';
 import { ScrollView, Text, TouchableOpacity, View } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
 
 import Card from '@/components/Card';
 import EmotionChart from '@/components/chart/EmotionChart';
 import ScreenContainer from '@/components/ScreenContainer';
+
 import LanguagePatternChart from '../components/LanguagePatternChart';
 import StressChart from '../components/StressChart';
 

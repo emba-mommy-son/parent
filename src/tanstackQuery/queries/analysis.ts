@@ -16,9 +16,7 @@ const useChildEachEmotionReport = ({ childId, dateTime }: EachEmotionForm) => {
   });
 
   useEffect(() => {
-    if (data) {
-      console.log('Emotion Data:', data); // 데이터가 로드된 후 출력
-    } else if (error) {
+    if (error) {
       console.log('자녀 단건 감정 - 404면 없는거임', error);
     }
   }, [data, error]);
@@ -50,6 +48,7 @@ const useMonthEmotionReport = ({ childId, year, month }: MonthEmotionForm) => {
     queryFn: () => mommyson.getMonthEmotionReport({ childId, year, month }),
   });
 
+  console.log('한달', data?.data.data);
   const monthEmotionData = data?.data.data || [];
   return monthEmotionData;
 };
