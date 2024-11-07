@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import MapView, { PROVIDER_GOOGLE, Region } from 'react-native-maps';
+import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
 
 import Pin from '@/assets/svgs/pin.svg';
 import Card from '@/components/Card';
@@ -13,8 +13,8 @@ import useRootStore from '@/zustand';
 // 기본 위치 상수 정의
 export const DEFAULT_LOCATION: GeofenceDto = {
   boundaryId: 0,
-  latitude: 35.19070647667026,
-  longitude: 126.82393808031838,
+  latitude: 35.19007592980963,
+  longitude: 126.82421393439849,
   danger: false,
   radius: 0,
   createdAt: '',
@@ -38,7 +38,6 @@ const LocationScreen = ({ navigation }: { navigation: LocationScreenProps }) => 
   }, [locationData]);
 
   const renderLocationCard = () => {
-    // const timestamp = locationData?.[0]?.createdAt || '';
     const displayAddress = address?.split(' ').slice(2).join(' ') ?? '주소를 가져오는 중입니다...';
 
     return (
@@ -81,12 +80,14 @@ const LocationScreen = ({ navigation }: { navigation: LocationScreenProps }) => 
         provider={PROVIDER_GOOGLE}
         style={styles.map}
         initialRegion={
-          {
-            longitude: locationData?.[0].locationId ?? 35.19070647667026,
-            latitude: locationData?.[0].latitude ?? 126.82393808031838,
-            latitudeDelta: 0.01,
-            longitudeDelta: 0.01,
-          } as Region
+          locationData && locationData[0]
+            ? {
+                latitude: locationData?.[0]?.latitude,
+                longitude: locationData?.[0]?.longitude,
+                latitudeDelta: 0.01,
+                longitudeDelta: 0.01,
+              }
+            : DEFAULT_MAP_REGION
         }
         followsUserLocation={true}
         scrollDuringRotateOrZoomEnabled={false}

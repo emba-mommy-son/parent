@@ -1,7 +1,6 @@
 import { type NavigationProp, useNavigation } from '@react-navigation/native';
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Text, TouchableOpacity, View } from 'react-native';
-import Close from 'react-native-vector-icons/AntDesign';
 
 import { RootStackParamList } from '@/types/navigation';
 import useRootStore from '@/zustand';
@@ -9,9 +8,6 @@ import useRootStore from '@/zustand';
 const AnalysisModal = () => {
   const navigation = useNavigation<NavigationProp<RootStackParamList>>();
   const { selectedDate } = useRootStore();
-  useEffect(() => {
-    console.log(selectedDate);
-  });
 
   return (
     <View className="h-[600px] px-5">

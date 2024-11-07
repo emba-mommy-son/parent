@@ -10,7 +10,7 @@ import { keys } from '../keys';
  * @param {childId, dateTime}
  */
 const useChildEachEmotionReport = ({ childId, dateTime }: EachEmotionForm) => {
-  const { data, error, isLoading } = useQuery({
+  const { data, error } = useQuery({
     queryKey: keys.getEachEmotionReport({ childId, dateTime }),
     queryFn: () => mommyson.getEachEmotionReport({ childId, dateTime }),
   });
