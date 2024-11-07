@@ -55,4 +55,10 @@ export const keys = {
   deleteGoal: (childId: ChildId, goalId: number) => [...keys.all, 'deleteGoal', childId, goalId] as const,
   doneGoal: (childId: ChildId, goalId: number) => [...keys.all, 'doneGoal', childId, goalId] as const,
   undoneGoal: (childId: ChildId, goalId: number) => [...keys.all, 'undoneGoal', childId, goalId] as const,
+
+  /**
+   * reward(보상) 쿼리 키 그룹
+   */
+  reward: () => [...keys.all, 'reward'] as const,
+  getRewardImage: (childId: ChildId) => [...keys.all, 'rewardImage', childId] as const,
 };
