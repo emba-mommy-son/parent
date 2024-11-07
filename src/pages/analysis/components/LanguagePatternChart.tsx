@@ -1,14 +1,29 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Text, View } from 'react-native';
 import Svg from 'react-native-svg';
 import { VictoryPie } from 'victory-native';
 
+import { useChildEachEmotionReport } from '@/tanstackQuery/queries/analysis';
+import useRootStore from '@/zustand';
+
 const LanguagePatternChart = () => {
-  const data = [
+  const { nowSelectedChild, selectedDate } = useRootStore();
+  const emotionData = useChildEachEmotionReport({ childId: nowSelectedChild?.id ?? 0, dateTime: selectedDate });
+  const [data, setData] = useState([
     { x: '긍정적 단어 사용', y: 20 },
     { x: '부정적 단어 사용', y: 30 },
     { x: '중립적 단어 사용', y: 50 },
-  ];
+  ]);
+
+  useEffect(() => {
+    if (emotionData) {
+      setData([
+        { x: '긍정적 단어 사용', y: emotionData.positive * 10 },
+        { x: '부정적 단어 사용', y: emotionData.negative * 10 },
+        { x: '중립적 단어 사용', y: emotionData.neutral * 10 },
+      ]);
+    }
+  }, [emotionData]);
 
   const colorScale = ['#FFAFC7', '#FF749E', '#C0627E', '#825361'];
 
