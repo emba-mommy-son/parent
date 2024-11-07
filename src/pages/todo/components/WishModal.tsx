@@ -1,8 +1,8 @@
 import React from 'react';
-import { Modal, Pressable, Text, ToastAndroid, TouchableOpacity, View, Image, Alert } from 'react-native';
+import { Modal, Pressable, Text, ToastAndroid, TouchableOpacity, View, Image } from 'react-native';
 import { useState } from 'react';
 import { launchImageLibrary } from 'react-native-image-picker';
-import { useMutation, useQueryClient, UseMutationResult } from '@tanstack/react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import reward from '@/services/reward';
 
 import EntypoIcons from 'react-native-vector-icons/Entypo';
