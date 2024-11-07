@@ -8,25 +8,25 @@ import Card from '@/components/Card';
 import { RootStackParamList } from '@/types/navigation';
 import useRootStore from '@/zustand';
 
-const ChildStatusCard = () => {
+interface ChildStatusCardProps {
+  emotionScore: number;
+  sleepStatus: string;
+}
+
+const ChildStatusCard = ({ emotionScore, sleepStatus }: ChildStatusCardProps) => {
   const { nowSelectedChild } = useRootStore();
+  const [status, text] = sleepStatus.split('.').map(part => part.trim());
 
   const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
-
-  const data = {
-    status: '건강한 상태',
-    text: '지난 밤 수면의 질이 좋습니다',
-    score: 71,
-  };
 
   return (
     <Card>
       {nowSelectedChild ? (
         <>
-          <View className="flex flex-row items-start justify-between w-full">
+          <View className="h-[50px] overflow-auto flex flex-row items-start justify-between w-full">
             <View className="max-w-[80%]">
-              <Text className="text-base text-black mb-0.5">{data.status}</Text>
-              <Text>{data.text}</Text>
+              <Text className="text-base text-black mb-0.5">{status}</Text>
+              <Text>{text}</Text>
             </View>
             <Image
               source={nowSelectedChild?.profileImage ? { uri: nowSelectedChild.profileImage } : unknown_person}
@@ -38,14 +38,14 @@ const ChildStatusCard = () => {
           <View className="flex flex-row justify-between items-end mt-6 mb-2">
             <Text>score</Text>
             <View className="flex flex-row items-end">
-              <Text className="text-black text-base mb-[-2px]">{data.score}</Text>
+              <Text className="text-black text-base mb-[-2px]">{emotionScore}</Text>
               <Text className="text-xs">/100</Text>
             </View>
           </View>
           <View className="w-full bg-black rounded-full h-2">
             <View
-              className={`bg-my_primary h-2 ${Number(data.score) === 100 ? 'rounded-full' : 'rounded-l-full'}`}
-              style={{ width: `${data.score}%` }}></View>
+              className={`bg-my_primary h-2 ${Number(emotionScore) === 100 ? 'rounded-full' : 'rounded-l-full'}`}
+              style={{ width: `${emotionScore}%` }}></View>
           </View>
         </>
       ) : (

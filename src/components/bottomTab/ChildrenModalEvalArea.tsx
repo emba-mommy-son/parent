@@ -15,7 +15,7 @@ const ChildrenModalEvalArea = ({ navigation }: { navigation: ChildModalEvalAreaP
   return (
     <View className="flex justify-center items-center bottom-10 flex-row z-20">
       <View className="justify-between relative items-center flex flex-row z-20 bg-white py-2 pr-2 rounded-full shadow-xl shadow-black pl-4">
-        {children.length === 0 ? (
+        {!!children && children.length === 0 ? (
           <View>
             <Text className="mr-4">자녀를</Text>
             <Text className="mr-4">등록해주세요</Text>
