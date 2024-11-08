@@ -9,10 +9,10 @@ import useRootStore from '@/zustand';
 const TodoScreen = () => {
   const { nowSelectedChild } = useRootStore();
 
+  const goals = useGetGoals(nowSelectedChild?.id ?? 0);
   //!FIXME 임시로 얼리리턴 박고, 자녀 검증 훅으로 빼자
   if (!nowSelectedChild) return null;
-
-  const goals = useGetGoals(nowSelectedChild.id);
+  if (!goals) return null;
 
   if (!goals) return null;
 
