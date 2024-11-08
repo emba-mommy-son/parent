@@ -2,9 +2,9 @@ import React from 'react';
 import { Text, TouchableOpacity, View } from 'react-native';
 import { Calendar, DateData, LocaleConfig } from 'react-native-calendars';
 
-import MadIcon from '@/assets/svgs/mad.svg';
-import SadIcon from '@/assets/svgs/sad.svg';
-import SmileIcon from '@/assets/svgs/smile.svg';
+import NEGATIVE from '@/assets/svgs/NEGATIVE.svg';
+import NEUTRAL from '@/assets/svgs/NEUTRAL.svg';
+import POSITIVE from '@/assets/svgs/POSITIVE.svg';
 import { useMonthEmotionReport } from '@/tanstackQuery/queries/analysis';
 import { dateToString } from '@/utils/formatter/DateFormat';
 import useRootStore from '@/zustand';
@@ -35,11 +35,11 @@ const CalendarContainer = ({ onDayPress }: CalendarContainerProps) => {
   const getFeelIcon = (feel: 'NEUTRAL' | 'NEGATIVE' | 'POSITIVE') => {
     switch (feel) {
       case 'NEUTRAL':
-        return <SmileIcon width={26} height={26} />;
+        return <NEUTRAL width={30} height={30} />;
       case 'NEGATIVE':
-        return <MadIcon width={26} height={26} />;
+        return <NEGATIVE width={30} height={30} />;
       case 'POSITIVE':
-        return <SadIcon width={26} height={26} />;
+        return <POSITIVE width={30} height={30} />;
     }
   };
 
