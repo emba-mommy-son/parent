@@ -15,10 +15,10 @@ interface EmotionChartProps {
 
 const EmotionChart: React.FC<EmotionChartProps> = ({ showReport = true }) => {
   const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
-  const { nowSelectedChild, selectedDate } = useRootStore();
+  const { nowSelectedChild, selectedDate, setSelectedDate } = useRootStore();
   const eachEmotionData = useChildEachEmotionReport({
     childId: nowSelectedChild?.id ?? 0,
-    dateTime: showReport ? new Date().toISOString().split('T')[0] : selectedDate,
+    dateTime: selectedDate,
   });
   const [isData, setIsData] = useState(false);
   const [data, setData] = useState([
@@ -31,7 +31,12 @@ const EmotionChart: React.FC<EmotionChartProps> = ({ showReport = true }) => {
   ]);
 
   const calculateReliability = (emotionCount: number, totalMessages: number) => {
-    return totalMessages > 0 ? emotionCount / totalMessages : 0;
+    return totalMessages > 0 ? Math.round((emotionCount / totalMessages) * 10) / 10 : 0;
+  };
+
+  const handleReportPress = () => {
+    setSelectedDate(new Date().toISOString().split('T')[0]);
+    navigation.navigate('Chart');
   };
 
   useEffect(() => {
@@ -41,32 +46,32 @@ const EmotionChart: React.FC<EmotionChartProps> = ({ showReport = true }) => {
         {
           emotion: '즐거움',
           score: eachEmotionData.delightPercentage,
-          reliability: calculateReliability(eachEmotionData.delightCount, eachEmotionData.totalAnalyzedMessages),
+          reliability: calculateReliability(eachEmotionData.delightCount, eachEmotionData.totalConversations),
         },
         {
           emotion: '놀라움',
           score: eachEmotionData.surprisePercentage,
-          reliability: calculateReliability(eachEmotionData.surpriseCount, eachEmotionData.totalAnalyzedMessages),
+          reliability: calculateReliability(eachEmotionData.surpriseCount, eachEmotionData.totalConversations),
         },
         {
           emotion: '공포',
           score: eachEmotionData.horrorPercentage,
-          reliability: calculateReliability(eachEmotionData.horrorCount, eachEmotionData.totalAnalyzedMessages),
+          reliability: calculateReliability(eachEmotionData.horrorCount, eachEmotionData.totalConversations),
         },
         {
           emotion: '슬픔',
           score: eachEmotionData.sorrowPercentage,
-          reliability: calculateReliability(eachEmotionData.sorrowCount, eachEmotionData.totalAnalyzedMessages),
+          reliability: calculateReliability(eachEmotionData.sorrowCount, eachEmotionData.totalConversations),
         },
         {
           emotion: '분노',
           score: eachEmotionData.angerPercentage,
-          reliability: calculateReliability(eachEmotionData.angerCount, eachEmotionData.totalAnalyzedMessages),
+          reliability: calculateReliability(eachEmotionData.angerCount, eachEmotionData.totalConversations),
         },
         {
           emotion: '혐오',
           score: eachEmotionData.aversionPercentage,
-          reliability: calculateReliability(eachEmotionData.aversionCount, eachEmotionData.totalAnalyzedMessages),
+          reliability: calculateReliability(eachEmotionData.aversionCount, eachEmotionData.totalConversations),
         },
       ]);
     } else {
@@ -82,7 +87,7 @@ const EmotionChart: React.FC<EmotionChartProps> = ({ showReport = true }) => {
       <View className="flex flex-row justify-between items-center">
         <Text className="text-base text-black">감정 분포 요약</Text>
         {showReport && (
-          <TouchableOpacity onPress={() => navigation.navigate('Chart')} className="flex flex-row items-center">
+          <TouchableOpacity onPress={handleReportPress} className="flex flex-row items-center">
             <Text className="mb-1 mr-0.5 text-[#aaaaaa]">AI 분석 레포트</Text>
             <AntDesign name="right" size={14} style={{ color: '#cacaca' }} />
           </TouchableOpacity>
