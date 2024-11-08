@@ -18,7 +18,7 @@ const EmotionChart: React.FC<EmotionChartProps> = ({ showReport = true }) => {
   const { nowSelectedChild, selectedDate, setSelectedDate } = useRootStore();
   const eachEmotionData = useChildEachEmotionReport({
     childId: nowSelectedChild?.id ?? 0,
-    dateTime: selectedDate,
+    dateTime: showReport ? new Date().toISOString().split('T')[0] : selectedDate,
   });
   const [isData, setIsData] = useState(false);
   const [data, setData] = useState([
