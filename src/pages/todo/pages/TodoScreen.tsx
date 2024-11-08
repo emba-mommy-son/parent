@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React from 'react';
 import ScreenContainer from '@/components/ScreenContainer';
 import { WishBox } from '@/pages/todo/components/WishBox';
 import TodoList from '@/pages/todo/components/TodoList';
@@ -23,7 +23,7 @@ const TodoScreen = () => {
 
   return (
     <ScreenContainer barStyle="dark-content">
-      <WishBox ratio={72} completedCount={computedGoals.completed.length} totalCount={goals.length} />
+      <WishBox completedCount={computedGoals.completed.length} totalCount={goals.length} />
       <TodoList incompletedGoals={computedGoals.incompleted} childId={nowSelectedChild.id} />
       <CompletedTodoList completedGoals={computedGoals.completed} childId={nowSelectedChild.id} />
     </ScreenContainer>
