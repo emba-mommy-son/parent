@@ -13,7 +13,7 @@ const SelectButton = ({ label, isSelected, onPress }: { label: string; isSelecte
   <TouchableOpacity
     onPress={onPress}
     className={`
-        w-1/2 px-6 py-2 rounded-xl mr-2 border justify-center items-center
+        w-1/2 px-6 py-2 rounded-lg mr-2 border justify-center items-center
         ${isSelected ? 'bg-my_primary border-my_primary' : 'bg-white border-gray-200'}
       `}>
     <Text

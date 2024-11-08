@@ -91,8 +91,8 @@ const SafeAreaList = ({ navigation }: { navigation: SafeAreaListProps }) => {
       <View className="w-full py-3 justify-center items-end px-4">
         <TouchableOpacity
           onPress={toggleEditMode}
-          className={`${isEditMode ? 'bg-red-500' : 'bg-gray-500'} w-16 h-8 rounded-lg justify-center items-center`}>
-          <Text className="font-medium text-white">{isEditMode ? '완료' : '편집'}</Text>
+          className={`${isEditMode ? 'bg-red-500' : 'bg-gray-500'} w-16 h-8 rounded-md flex justify-center items-center`}>
+          <Text className="font-medium text-white mb-1">{isEditMode ? '완료' : '편집'}</Text>
         </TouchableOpacity>
       </View>
       <ScrollView>
@@ -107,7 +107,7 @@ const SafeAreaList = ({ navigation }: { navigation: SafeAreaListProps }) => {
                   <TrashIcon name="trash-2" size={20} color="red" />
                 </TouchableOpacity>
               ) : (
-                <Right name="chevron-thin-right" size={20} color="black" />
+                <Right name="chevron-thin-right" size={16} color="black" />
               )}
             </TouchableOpacity>
           ),
@@ -116,7 +116,7 @@ const SafeAreaList = ({ navigation }: { navigation: SafeAreaListProps }) => {
       <TouchableOpacity
         onPress={() => navigation.navigate('보호 구역 등록 (1/3)')}
         className="absolute right-4 bottom-6 justify-center items-center pb-2 bg-gray-900 rounded-lg p-3 px-5">
-        <Text className="text-white font-semibold">+ 추가</Text>
+        <Text className="text-white font-semibold mt-[-2px]">+ 추가</Text>
       </TouchableOpacity>
     </View>
   );
