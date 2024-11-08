@@ -7,8 +7,8 @@ export default {
   },
 
   /** 목표 생성 API */
-  makeGoal: async (childId: ChildId) => {
-    return instance.post<BaseResponse<null>>(`/goal/child/${childId}`);
+  createGoal: async (childId: ChildId, content: string) => {
+    return instance.post<BaseResponse<null>>(`/goal/child/${childId}`, { content });
   },
 
   /** 목표 삭제 API */

@@ -23,10 +23,9 @@ export const Todo = ({ id, content, done, childId }: TodoListProps) => {
       queryClient.invalidateQueries({
         queryKey: keys.getGoals(childId),
       });
-      console.log('성공');
     },
     onError: error => {
-      ToastAndroid.show('실패했습니다', 2000);
+      ToastAndroid.show('요청에 실패했습니다', 2000);
       console.error(error);
     },
   });
@@ -38,10 +37,9 @@ export const Todo = ({ id, content, done, childId }: TodoListProps) => {
       queryClient.invalidateQueries({
         queryKey: keys.getGoals(childId),
       });
-      console.log('목표 달성 취소 성공');
     },
     onError: error => {
-      ToastAndroid.show('실패했습니다.', 2000);
+      ToastAndroid.show('요청에 실패했습니다.', 2000);
       console.error(error);
     },
   });
@@ -53,10 +51,10 @@ export const Todo = ({ id, content, done, childId }: TodoListProps) => {
       queryClient.invalidateQueries({
         queryKey: keys.getGoals(childId),
       });
-      ToastAndroid.show('Todo 삭제에 성공했습니다.', 2000);
+      ToastAndroid.show('할일 삭제에 성공했습니다.', 2000);
     },
     onError: error => {
-      ToastAndroid.show('Todo 삭제에 실패했습니다.', 2000);
+      ToastAndroid.show('할일 삭제에 실패했습니다.', 2000);
       console.error(error);
     },
   });
@@ -72,8 +70,8 @@ export const Todo = ({ id, content, done, childId }: TodoListProps) => {
 
   const handleDeletePress = () => {
     Alert.alert(
-      'Todo 삭제',
-      'Todo를 삭제하시겠습니까?',
+      '할일 삭제',
+      '할일을 삭제하시겠습니까?',
       [
         {
           text: '취소',
