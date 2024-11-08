@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "592521359460",
+    "project_id": "mommy-son-9130b",
+    "storage_bucket": "mommy-son-9130b.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:592521359460:android:f3157f5569befd73926f71",
+        "android_client_info": {
+          "package_name": "com.children"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCrJeNnL5gOyw8Fpubw45OznS2kuyj_8QA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:592521359460:android:d27e0be35c35b6d2926f71",
+        "android_client_info": {
+          "package_name": "com.mommyson_parent"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCrJeNnL5gOyw8Fpubw45OznS2kuyj_8QA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
