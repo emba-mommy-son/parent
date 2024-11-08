@@ -21,10 +21,10 @@ export const WishBox = ({ completedCount, totalCount }: WishBoxProps) => {
   const queryClient = useQueryClient();
   const { nowSelectedChild } = useRootStore();
   const [isWishModalOpen, setIsWishModalOpen] = useState<boolean>(false);
+  const rewardImage = useRewardImage(nowSelectedChild?.id ?? 0);
   //!FIXME 임시로 얼리리턴 박고, 자녀 검증 훅으로 빼자
   if (!nowSelectedChild) return null;
   const percentValue = totalCount === 0 ? 0 : Math.round((completedCount / totalCount) * 100);
-  const rewardImage = useRewardImage(nowSelectedChild?.id);
 
   /** 리워드 이미지 삭제 mutation */
   const { mutate: deleteRewardImage } = useMutation({
