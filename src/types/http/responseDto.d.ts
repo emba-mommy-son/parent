@@ -78,3 +78,12 @@ interface GetSummaryReportDto {
   description: string;
   descriptionTag: string[];
 }
+
+// 알림 목록
+interface notificationDto {
+  id: number;
+  notificationType: string;
+  message: string;
+  createdAt: string;
+  read: boolean;
+}
