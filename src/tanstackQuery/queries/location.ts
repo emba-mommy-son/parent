@@ -14,7 +14,7 @@ const useBoundaryList = (childId: ChildId) => {
   });
 
   const boundaryList = data?.data.data || null;
-  console.log(boundaryList);
+
   return boundaryList;
 };
 
