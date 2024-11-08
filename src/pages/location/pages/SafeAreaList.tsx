@@ -33,7 +33,7 @@ const SafeAreaList = ({ navigation }: { navigation: SafeAreaListProps }) => {
   const [tabState, setTabState] = useState<'SAFE' | 'DANGER'>('SAFE');
   const [isEditMode, setIsEditMode] = useState(false);
   const boundaryData = useBoundaryList(nowSelectedChild?.id ?? 0);
-  const [areaList, setAreaList] = useState(boundaryData ?? null);
+  const [areaList, setAreaList] = useState(boundaryData);
 
   // 탭 스타일을 동적으로 생성하는 함수
   const getTabStyle = (tabType: 'SAFE' | 'DANGER') => {
@@ -73,11 +73,10 @@ const SafeAreaList = ({ navigation }: { navigation: SafeAreaListProps }) => {
     setIsEditMode(!isEditMode);
   };
 
+  // boundaryData가 변경될 때마다 areaList를 업데이트
   useEffect(() => {
-    queryClient.invalidateQueries({
-      queryKey: keys.getBoundary(nowSelectedChild?.id ?? 0),
-    });
-  }, []);
+    setAreaList(boundaryData);
+  }, [boundaryData]);
 
   return (
     <View className="flex-1">
