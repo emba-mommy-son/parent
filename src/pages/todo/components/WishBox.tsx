@@ -13,19 +13,17 @@ import { WishModal } from '@/pages/todo/components/WishModal';
 import { keys } from '@/tanstackQuery/keys';
 
 interface WishBoxProps {
-  ratio: number;
   completedCount: number;
   totalCount: number;
 }
 
-export const WishBox = ({ ratio, completedCount, totalCount }: WishBoxProps) => {
+export const WishBox = ({ completedCount, totalCount }: WishBoxProps) => {
   const queryClient = useQueryClient();
   const { nowSelectedChild } = useRootStore();
-  const percentValue = Math.round(ratio);
   const [isWishModalOpen, setIsWishModalOpen] = useState<boolean>(false);
   //!FIXME 임시로 얼리리턴 박고, 자녀 검증 훅으로 빼자
   if (!nowSelectedChild) return null;
-
+  const percentValue = totalCount === 0 ? 0 : Math.round((completedCount / totalCount) * 100);
   const rewardImage = useRewardImage(nowSelectedChild?.id);
 
   /** 리워드 이미지 삭제 mutation */
