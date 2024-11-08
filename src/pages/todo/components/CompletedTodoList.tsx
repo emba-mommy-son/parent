@@ -1,18 +1,21 @@
 import React from 'react';
 import { Text, View } from 'react-native';
 import Card from '@/components/Card';
-import { Todo } from './Todo';
+import { Todo } from '@/pages/todo/components/Todo';
 
 interface CompletedTodoListProps {
   completedGoals: Goal[];
+  childId: number;
 }
 
-const CompletedTodoList = ({ completedGoals }: CompletedTodoListProps) => {
+const CompletedTodoList = ({ completedGoals, childId }: CompletedTodoListProps) => {
   return (
     <Card isMargin={false}>
       <Text className="text-black text-lg mb-3">완료한 일</Text>
       {completedGoals.length > 0 ? (
-        completedGoals.map(goal => <Todo key={goal.goalId} id={goal.goalId} content={goal.content} done={goal.done} />)
+        completedGoals.map(goal => (
+          <Todo key={goal.goalId} id={goal.goalId} content={goal.content} done={goal.done} childId={childId} />
+        ))
       ) : (
         <View className="w-full h-32 flex items-center justify-center">
           <Text className="text-black text-center mt-[-14px]">현재 목표가 없습니다.</Text>
