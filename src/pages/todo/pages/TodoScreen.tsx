@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import ScreenContainer from '@/components/ScreenContainer';
 import { WishBox } from '@/pages/todo/components/WishBox';
 import TodoList from '@/pages/todo/components/TodoList';
@@ -12,24 +12,20 @@ const TodoScreen = () => {
   //!FIXME 임시로 얼리리턴 박고, 자녀 검증 훅으로 빼자
   if (!nowSelectedChild) return null;
 
-  const goalList = useGetGoals(nowSelectedChild.id);
-  if (!goalList) return null;
+  const goals = useGetGoals(nowSelectedChild.id);
 
-  // 완료/전체 goal 개수 계산
-  const completedCount = goalList.filter(goal => goal.done).length;
-  const totalCount = goalList.length;
+  if (!goals) return null;
 
-  // 완료/미완료 goal 분리
-  const completedGoals = goalList.filter(goal => goal.done);
-  const incompletedGoals = goalList.filter(goal => !goal.done);
-  console.log('전체', goalList);
-  console.log('dhkstjd', incompletedGoals);
+  const computedGoals = {
+    completed: goals.filter(goal => goal.done),
+    incompleted: goals.filter(goal => !goal.done),
+  };
 
   return (
     <ScreenContainer barStyle="dark-content">
-      <WishBox ratio={72} completedCount={completedCount} totalCount={totalCount} />
-      <TodoList incompletedGoals={incompletedGoals} />
-      <CompletedTodoList completedGoals={completedGoals} />
+      <WishBox ratio={72} completedCount={computedGoals.completed.length} totalCount={goals.length} />
+      <TodoList incompletedGoals={computedGoals.incompleted} childId={nowSelectedChild.id} />
+      <CompletedTodoList completedGoals={computedGoals.completed} childId={nowSelectedChild.id} />
     </ScreenContainer>
   );
 };
