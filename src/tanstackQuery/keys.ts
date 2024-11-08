@@ -25,7 +25,8 @@ export const keys = {
   /**
    * notification 쿼리 키 그룹
    */
-  notification: () => [...keys.all, 'notification'] as const,
+  getNotification: () => [...keys.all, 'getNotification'] as const,
+  postNotification: () => [...keys.all, 'postNotification'] as const,
 
   /**
    * location 쿼리 키 그룹

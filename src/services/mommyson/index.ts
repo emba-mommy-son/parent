@@ -5,6 +5,7 @@ import child from '../child';
 import goal from '../goal';
 import location from '../location';
 import reward from '../reward';
+import notification from '../notification';
 
 export default {
   ...auth,
@@ -13,4 +14,5 @@ export default {
   ...goal,
   ...child,
   ...reward,
+  ...notification,
 };
