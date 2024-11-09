@@ -6,7 +6,7 @@ import unknown from '@/assets/images/unknown_person.png';
 import Card from '@/components/Card';
 import ScreenContainer from '@/components/ScreenContainer';
 import useRootStore from '@/zustand';
-import { useChildScore } from '@/tanstackQuery/queries/child';
+import childScore from '@/services/child';
 
 const SettingScreen = ({ navigation }: { navigation: any }) => {
   const { children, clearToken } = useRootStore();
@@ -37,18 +37,20 @@ const SettingScreen = ({ navigation }: { navigation: any }) => {
   };
 
   useEffect(() => {
-    // 모든 자녀의 점수를 가져오는 함수
     const fetchScores = async () => {
       const scoresMap: { [id: number]: number } = {};
       await Promise.all(
         children.map(async child => {
-          const score = await useChildScore(child.id);
-          scoresMap[child.id] = score;
+          const score = await childScore.getChildScore(child.id);
+          scoresMap[child.id] = score.data.data;
         }),
       );
       setScores(scoresMap);
     };
-    fetchScores();
+
+    if (children.length > 0) {
+      fetchScores();
+    }
   }, [children]);
 
   const emptySlots = 3 - children.length;
