@@ -9,7 +9,7 @@ import AnalysisModal from './AnalysisModal';
 
 const AnalysisScreen = () => {
   // 스냅포인트 설정: 40%만 설정하여 열릴 때 40%로 고정
-  const snapPoints = useMemo(() => ['40%'], []);
+  const snapPoints = useMemo(() => ['48%'], []);
   const bottomSheetRef = useRef<BottomSheet>(null);
 
   // 모달 열기 콜백
