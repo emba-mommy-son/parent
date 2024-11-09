@@ -29,7 +29,7 @@ const TodoCard = () => {
   };
   return (
     <Card isPadding={false}>
-      <TouchableOpacity onPress={() => navigation.navigate('Todo')} className="p-4">
+      <TouchableOpacity onPress={nowSelectedChild ? () => navigation.navigate('Todo') : undefined} className="p-4">
         <View className="flex flex-row justify-between items-center">
           <Text className="text-base text-black">목표 달성 요약</Text>
 

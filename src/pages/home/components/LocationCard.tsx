@@ -1,20 +1,18 @@
 import type { BottomTabNavigationProp } from '@react-navigation/bottom-tabs';
 import { useNavigation } from '@react-navigation/native';
-import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
+
 import React, { useEffect, useState } from 'react';
-import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import Entypo from 'react-native-vector-icons/Entypo';
 
-import sampleMap from '@/assets/images/sample_map.png';
 import Card from '@/components/Card';
 import CardCover from '@/components/CardCover';
 import useGeocoding from '@/hooks/useGeocoding';
 import { DEFAULT_LOCATION } from '@/pages/location/pages/LocationScreen';
 import { useChildLocation } from '@/tanstackQuery/queries/location';
-import { LocationScreenProps, RootStackParamList, RootTabParamList } from '@/types/navigation';
-import { TimeFormat } from '@/utils/formatter/TimeFormat';
+import { RootTabParamList } from '@/types/navigation';
 import useRootStore from '@/zustand';
 
 const DEFAULT_MAP_REGION = {
@@ -40,7 +38,9 @@ const LocationCard = () => {
 
   return (
     <Card isPadding={false}>
-      <TouchableOpacity onPress={() => navigation.navigate('LocationStack')} className="p-4">
+      <TouchableOpacity
+        onPress={nowSelectedChild ? () => navigation.navigate('LocationStack') : undefined}
+        className="p-4">
         <View className="flex flex-row justify-between">
           <View className="flex flex-row">
             <Text className="text-black">마지막 위치</Text>

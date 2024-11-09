@@ -56,7 +56,7 @@ const ProfileCard = ({ emotionScore, sleepStatus }: ProfileCardProps) => {
           </View>
         </View>
       </View>
-      <View className="absolute z-10 top-[90px]">
+      <View className="w-full absolute z-10 top-[90px]">
         <ChildStatusCard emotionScore={emotionScore} sleepStatus={sleepStatus} />
       </View>
     </View>

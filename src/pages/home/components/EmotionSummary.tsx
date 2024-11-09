@@ -13,7 +13,7 @@ const EmotionSummary = () => {
     <Card isPadding={false}>
       <EmotionChart />
 
-      <View className="w-full p-4">
+      <View className="absolute top-0 left-0 w-full p-4">
         {!nowSelectedChild && <CardCover height={240} text="자녀의 감정 분포를 확인할 수 있습니다" />}
       </View>
     </Card>
