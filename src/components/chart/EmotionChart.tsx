@@ -1,7 +1,7 @@
 import { useNavigation } from '@react-navigation/native';
 import { type NativeStackNavigationProp } from '@react-navigation/native-stack';
 import React, { useEffect, useState } from 'react';
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { StyleSheet, Text, Pressable, View } from 'react-native';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import Feather from 'react-native-vector-icons/Feather';
 
@@ -83,7 +83,7 @@ const EmotionChart: React.FC<EmotionChartProps> = ({ showReport = true }) => {
   const bgScale = ['#DFF3E4', '#FFF2CC', '#EAD8FA', '#CCE3FF', '#FFD9E1', '#E6E6E6'];
 
   return (
-    <TouchableOpacity onPress={handleReportPress} style={showReport && styles.padding}>
+    <Pressable onPress={handleReportPress} style={showReport && styles.padding}>
       <View className="flex flex-row justify-between items-center">
         <Text className="text-base text-black">감정 분포 요약</Text>
         {showReport && (
@@ -125,7 +125,7 @@ const EmotionChart: React.FC<EmotionChartProps> = ({ showReport = true }) => {
           </View>
         )}
       </View>
-    </TouchableOpacity>
+    </Pressable>
   );
 };
 

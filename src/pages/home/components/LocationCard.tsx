@@ -2,7 +2,7 @@ import type { BottomTabNavigationProp } from '@react-navigation/bottom-tabs';
 import { useNavigation } from '@react-navigation/native';
 
 import React, { useEffect, useState } from 'react';
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { StyleSheet, Text, Pressable, View } from 'react-native';
 import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import Entypo from 'react-native-vector-icons/Entypo';
@@ -38,9 +38,7 @@ const LocationCard = () => {
 
   return (
     <Card isPadding={false}>
-      <TouchableOpacity
-        onPress={nowSelectedChild ? () => navigation.navigate('LocationStack') : undefined}
-        className="p-4">
+      <Pressable onPress={nowSelectedChild ? () => navigation.navigate('LocationStack') : undefined} className="p-4">
         <View className="flex flex-row justify-between">
           <View className="flex flex-row">
             <Text className="text-black">마지막 위치</Text>
@@ -83,7 +81,7 @@ const LocationCard = () => {
           </View>
         </View>
         {!nowSelectedChild && <CardCover height={124} text="자녀의 실시간 위치를 확인할 수 있습니다" />}
-      </TouchableOpacity>
+      </Pressable>
     </Card>
   );
 };
