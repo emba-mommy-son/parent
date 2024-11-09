@@ -44,7 +44,7 @@ const LocationScreen = ({ navigation }: { navigation: LocationScreenProps }) => 
       <Card>
         <View className="gap-2 p-1">
           <View className="flex-row justify-between">
-            <Text className="text-my_primary">현위치</Text>
+            <Text className="text-my_primary">최근 위치</Text>
             {/* <Text className="text-gray-400">{timestamp || ''}</Text> */}
           </View>
           <Text className="text-base font-base text-gray-600">
