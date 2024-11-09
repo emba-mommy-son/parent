@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { View } from 'react-native';
 
 import ScreenContainer from '@/components/ScreenContainer';
+import { useChildScore, useChildSleep, useConnectedChild } from '@/tanstackQuery/queries/child';
+import { useGetNotification } from '@/tanstackQuery/queries/notification';
 import useRootStore from '@/zustand';
-import { useConnectedChild, useChildScore, useChildSleep } from '@/tanstackQuery/queries/child';
 
 import EmotionSummary from '../components/EmotionSummary';
 import LocationCard from '../components/LocationCard';
@@ -21,10 +22,13 @@ const HomeScreen = () => {
   // 자녀 수면 정보 조회
   const sleepStatus = useChildSleep(nowSelectedChild ? nowSelectedChild.id : null);
 
+  // 알림 목록 조회
+  const notificationList = useGetNotification();
+
   return (
     <ScreenContainer bgColor="white" barBgColor="black" isPadding={false}>
       <View className="relative">
-        <ProfileCard emotionScore={emotionScore} sleepStatus={sleepStatus} />
+        <ProfileCard emotionScore={emotionScore} sleepStatus={sleepStatus} notificationList={notificationList ?? []} />
         <TodoCard />
         <LocationCard />
         <EmotionSummary />
