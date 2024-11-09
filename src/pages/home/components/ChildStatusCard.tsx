@@ -21,7 +21,7 @@ const ChildStatusCard = ({ emotionScore, sleepStatus }: ChildStatusCardProps) =>
 
   return (
     <Card isPadding={false}>
-      <Pressable onPress={() => navigation.navigate('RegisterInfo')} className="p-4">
+      <Pressable onPress={nowSelectedChild ? undefined : () => navigation.navigate('RegisterInfo')} className="p-4">
         {nowSelectedChild ? (
           <>
             <View className="h-[50px] overflow-auto flex flex-row items-start justify-between w-full">
