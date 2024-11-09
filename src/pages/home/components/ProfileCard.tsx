@@ -1,7 +1,7 @@
 import { useNavigation } from '@react-navigation/native';
 import { type NativeStackNavigationProp } from '@react-navigation/native-stack';
-import React, { useMemo, useState } from 'react';
-import { Text, TouchableOpacity, View } from 'react-native';
+import React, { useMemo } from 'react';
+import { Text, Pressable, View } from 'react-native';
 import BellIcon from 'react-native-vector-icons/Octicons';
 
 import { RootStackParamList } from '@/types/navigation';
@@ -38,14 +38,14 @@ const ProfileCard = ({ emotionScore, sleepStatus, notificationList }: ProfileCar
                 새로운 정보가 있습니다
               </Text>
             )}
-            <TouchableOpacity className="relative" onPress={() => navigation.navigate('Alert')}>
+            <Pressable className="relative" onPress={() => navigation.navigate('Alert')}>
               <BellIcon name="bell" size={22} color="#ffffff" />
               {alertCount > 0 && (
                 <View className="absolute top-[-8px] right-[-10px] bg-my_primary flex items-center justify-center rounded-full w-5 h-5">
                   <Text className="text-white mt-[-0.5px]">{alertCount}</Text>
                 </View>
               )}
-            </TouchableOpacity>
+            </Pressable>
           </View>
         </View>
       </View>

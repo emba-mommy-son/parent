@@ -1,7 +1,7 @@
 import { useNavigation } from '@react-navigation/native';
 import { type NativeStackNavigationProp } from '@react-navigation/native-stack';
 import React from 'react';
-import { Image, Text, TouchableOpacity, View } from 'react-native';
+import { Image, Text, Pressable, View } from 'react-native';
 
 import unknown_person from '@/assets/images/unknown_person.png';
 import Card from '@/components/Card';
@@ -21,7 +21,7 @@ const ChildStatusCard = ({ emotionScore, sleepStatus }: ChildStatusCardProps) =>
 
   return (
     <Card isPadding={false}>
-      <TouchableOpacity onPress={() => navigation.navigate('RegisterInfo')} className="p-4">
+      <Pressable onPress={nowSelectedChild ? undefined : () => navigation.navigate('RegisterInfo')} className="p-4">
         {nowSelectedChild ? (
           <>
             <View className="h-[50px] overflow-auto flex flex-row items-start justify-between w-full">
@@ -60,7 +60,7 @@ const ChildStatusCard = ({ emotionScore, sleepStatus }: ChildStatusCardProps) =>
             </View>
           </>
         )}
-      </TouchableOpacity>
+      </Pressable>
     </Card>
   );
 };

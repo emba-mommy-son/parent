@@ -3,7 +3,7 @@ import React from 'react';
 import { useNavigation } from '@react-navigation/native';
 import { type NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { RootStackParamList } from '@/types/navigation';
-import { Text, View, TouchableOpacity } from 'react-native';
+import { Text, View, TouchableOpacity, Pressable } from 'react-native';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import Card from '@/components/Card';
 import CardCover from '@/components/CardCover';
@@ -29,7 +29,7 @@ const TodoCard = () => {
   };
   return (
     <Card isPadding={false}>
-      <TouchableOpacity onPress={nowSelectedChild ? () => navigation.navigate('Todo') : undefined} className="p-4">
+      <Pressable onPress={nowSelectedChild ? () => navigation.navigate('Todo') : undefined} className="p-4">
         <View className="flex flex-row justify-between items-center">
           <Text className="text-base text-black">목표 달성 요약</Text>
 
@@ -76,7 +76,7 @@ const TodoCard = () => {
         )}
 
         {!nowSelectedChild && <CardCover height={90} text="자녀의 목표 달성 정도를 확인할 수 있습니다" />}
-      </TouchableOpacity>
+      </Pressable>
     </Card>
   );
 };
