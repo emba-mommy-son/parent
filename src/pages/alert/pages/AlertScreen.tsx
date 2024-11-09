@@ -56,7 +56,6 @@ const AlertScreen = () => {
 
   const readAllNoti = () => {
     // setNotificationList(notificationList.map(notiData => ({ ...notiData, read: true })));
-
     postNotification.mutate(undefined, {
       onSuccess: () => {
         // 모두 읽었으면 키 무효화해서 다시 로드
@@ -106,9 +105,9 @@ const AlertScreen = () => {
         </ScrollView>
       )}
       <View>
-        <Button onPress={readAllNoti} myTextStyle="text-white">
+        {/* <Button onPress={readAllNoti} myTextStyle="text-white">
           모두 읽기
-        </Button>
+        </Button> */}
       </View>
     </ScreenContainer>
   );
