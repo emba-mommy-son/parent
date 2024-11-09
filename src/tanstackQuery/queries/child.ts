@@ -22,7 +22,6 @@ const useConnectedChild = () => {
 
   useEffect(() => {
     if (data && data.length > 0) {
-      console.log('불러온 자녀 리스트 : ', data);
       setChildren(data);
       setNowSelectedChild(data[0]);
     }

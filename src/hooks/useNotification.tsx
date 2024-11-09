@@ -41,7 +41,6 @@ const useNotification = () => {
 
       // foreground notification
       const unsubscribe = messaging().onMessage(async message => {
-        console.log(message);
         const { notification } = message;
         if (notification && notification.body) {
           const notificationType = parseNotification(notification.title || '');
@@ -52,10 +51,7 @@ const useNotification = () => {
 
           // * 위치 알림
           if (notificationType === NotificationType.LOCATION) {
-            console.log('LOCATION', notification.body);
-
             const locationData: LocationData[] = [JSON.parse(notification.body)];
-            console.log('위치 알림 : ', locationData);
           }
         }
       });
@@ -65,15 +61,6 @@ const useNotification = () => {
       return unsubscribe;
     }
   };
-
-  // PushNotification.createChannel(
-  //   {
-  //     channelId: CHANNEL_ID,
-  //     channelName: '마미손 알림',
-  //     channelDescription: '마미손에서 발송하는 알림',
-  //   },
-  //   created => console.log(`createChannel returned '${created}'`),
-  // );
 
   const parseNotification = (type: string) => {
     switch (type) {

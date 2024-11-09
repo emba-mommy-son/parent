@@ -21,8 +21,6 @@ const TodoCard = () => {
 
   const hasGoals = goals && goals.length > 0;
 
-  console.log(goals);
-
   // 달성률 계산
   const calculateProgress = () => {
     if (!goals || goals.length === 0) return 0;
