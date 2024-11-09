@@ -14,7 +14,7 @@ import TodoCard from '../components/TodoCard';
 const HomeScreen = () => {
   // 자녀 정보 불러오기
   useConnectedChild();
-  const { nowSelectedChild } = useRootStore();
+  const { nowSelectedChild, accessToken } = useRootStore();
 
   // 자녀 점수 조회
   const emotionScore = useChildScore(nowSelectedChild ? nowSelectedChild.id : null);
@@ -24,6 +24,12 @@ const HomeScreen = () => {
 
   // 알림 목록 조회
   const notificationList = useGetNotification();
+
+  useEffect(() => {
+    console.log(nowSelectedChild);
+    console.log(accessToken);
+    console.log(sleepStatus);
+  }, [sleepStatus]);
 
   return (
     <ScreenContainer bgColor="white" barBgColor="black" isPadding={false}>

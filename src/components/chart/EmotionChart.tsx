@@ -1,7 +1,7 @@
 import { useNavigation } from '@react-navigation/native';
 import { type NativeStackNavigationProp } from '@react-navigation/native-stack';
 import React, { useEffect, useState } from 'react';
-import { StyleSheet, Text, Pressable, View } from 'react-native';
+import { Pressable, StyleSheet, Text, View } from 'react-native';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import Feather from 'react-native-vector-icons/Feather';
 
@@ -108,7 +108,9 @@ const EmotionChart: React.FC<EmotionChartProps> = ({ showReport = true }) => {
               {item.score}%
             </Text>
             <Text className="text-[#585858]">{item.emotion}</Text>
-            <Text className="absolute bottom-0.5 right-1 text-[10px] text-[#cbcbcb] mt-1">{item.reliability}</Text>
+            <Text className="absolute bottom-0.5 right-1 text-[10px] text-[#cbcbcb] mt-1">
+              {!!item.reliability && item.reliability}
+            </Text>
           </View>
         ))}
         {showReport && (

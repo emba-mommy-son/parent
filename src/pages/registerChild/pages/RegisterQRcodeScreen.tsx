@@ -1,5 +1,5 @@
 import type { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { useMutation } from '@tanstack/react-query';
+import { QueryClient, useMutation, useQueryClient } from '@tanstack/react-query';
 import React, { useEffect, useState } from 'react';
 import { Alert, Dimensions, View } from 'react-native';
 import { RNCamera } from 'react-native-camera';
@@ -9,6 +9,7 @@ import QRCodeScanner from 'react-native-qrcode-scanner';
 // import FlashOffIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 import Button from '@/components/buttons/Button';
 import auth from '@/services/auth';
+import { keys } from '@/tanstackQuery/keys';
 import { RootStackParamList } from '@/types/navigation';
 import useRootStore from '@/zustand';
 
@@ -19,13 +20,15 @@ const RegisterQRcodeScreen = ({ navigation }: { navigation: RegisterQRcodeScreen
   const [isLoading, setIsLoading] = useState(false); // 로딩 처리 할거면 살려두기
   const [scanResult, setScanResult] = useState(false);
 
+  const queryClient = useQueryClient();
   const { mutate: signUpChild } = useMutation({
     mutationFn: auth.signUpChild,
     onMutate: () => {
       setIsLoading(true);
     },
-    onSuccess: data => {
+    onSuccess: () => {
       Alert.alert('자녀가 등록되었습니다.');
+      queryClient.invalidateQueries({ queryKey: keys.getConnectedChild() });
       navigation.navigate('RootTab');
     },
     onError: error => {
