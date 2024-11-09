@@ -42,7 +42,7 @@ const LocationCard = () => {
         className="p-4">
         <View className="flex flex-row justify-between">
           <View className="flex flex-row">
-            <Text className="text-black">마지막 위치</Text>
+            <Text className="text-black">최근 위치</Text>
           </View>
           <View className="flex flex-row items-center">
             <Text className="mb-1 mr-0.5 text-[#aaaaaa]">상세</Text>
@@ -51,6 +51,7 @@ const LocationCard = () => {
         </View>
         <View className="relative flex  gap-x-4 flex-row items-center p-1 mt-3">
           <View className="w-20 h-20 overflow-hidden rounded-lg">
+            {locationData?.length === 0 && <View className="absolute w-20 z-10 h-20 bg-[#ffffff] opacity-80"></View>}
             <MapView
               provider={PROVIDER_GOOGLE}
               style={styles.map}
@@ -84,10 +85,13 @@ const LocationCard = () => {
           </View>
 
           <View>
-            <Text className="text-black text-base">
+            {/* <Text className="text-black text-base">
               {loca ? address?.split(' ').splice(0, 2).join(' ') : '위치 기록이 없습니다'}
+            </Text> */}
+            {/* <Text className="text-black text-base">{loca ? address?.split(' ').splice(2).join(' ') : ''}</Text> */}
+            <Text className="text-black text-base">
+              {locationData?.length !== 0 ? address?.split(' ').splice(2).join(' ') : '등록된 정보가 없습니다.'}
             </Text>
-            <Text className="text-black text-base">{loca ? address?.split(' ').splice(2).join(' ') : ''}</Text>
           </View>
         </View>
         {!nowSelectedChild && <CardCover height={124} text="자녀의 실시간 위치를 확인할 수 있습니다" />}

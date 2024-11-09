@@ -57,6 +57,7 @@ const useChildScore = (childId: number | null) => {
   }
 
   return data ?? 71;
+  // return 71;
 };
 
 /**
@@ -81,7 +82,8 @@ const useChildSleep = (childId: number | null) => {
     return '건강한 상태. 지난 밤 수면의 질이 좋습니다.';
   }
 
-  return data ?? '건강한 상태. 지난 밤 수면의 질이 좋습니다.';
+  // return data ?? '건강한 상태. 지난 밤 수면의 질이 좋습니다.';
+  return '건강한 상태. 지난 밤 수면의 질이 좋습니다.';
 };
 
-export { useConnectedChild, useChildScore, useChildSleep };
+export { useChildScore, useChildSleep, useConnectedChild };

@@ -24,7 +24,7 @@ const useChildLocation = (childId: ChildId) => {
     queryFn: () => mommyson.getChildLocation(childId),
   });
 
-  const locationList = data?.data.data || null;
+  const locationList = data?.data.data;
   return locationList;
 };
 
