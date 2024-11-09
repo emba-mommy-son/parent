@@ -20,7 +20,7 @@ const StressChart = () => {
       <View className="flex flex-row justify-between items-center">
         <Text className="text-base text-black mb-3">스트레스 지수</Text>
         <View className="flex flex-row items-end">
-          <Text className="font-medium text-base text-black mb-3">{(stressScore / 100) * 10}</Text>
+          <Text className="font-medium text-base text-black mb-3">{stressScore}</Text>
           <Text className="text-[#a3a3a3] mb-3"> / 10</Text>
         </View>
       </View>
@@ -28,7 +28,7 @@ const StressChart = () => {
         <View
           className="absolute top-0 left-0 h-4 rounded-full"
           style={{
-            width: `${(stressScore / 100) * 100}%`,
+            width: `${stressScore * 10}%`,
             backgroundColor: '#ffccd5',
           }}
         />
