@@ -24,12 +24,8 @@ const DEFAULT_MAP_REGION = {
   longitudeDelta: 0.001,
 };
 
-type LocationCardProps = {
-  navigation: NativeStackNavigationProp<LocationCardProps>; // navigation 타입 지정
-};
-
 const LocationCard = () => {
-  const navigation = useNavigation<BottomTabNavigationProp<RootTabParamList, 'LocationStack'>>(); // BottomTabNavigationProp 사용
+  const navigation = useNavigation<BottomTabNavigationProp<RootTabParamList, 'LocationStack'>>();
   const { nowSelectedChild } = useRootStore();
   const { reverseGeocode, address } = useGeocoding();
   const locationData = useChildLocation(nowSelectedChild?.id ?? 0);
@@ -43,50 +39,51 @@ const LocationCard = () => {
   }, [locationData]);
 
   return (
-    <Card>
-      <View className="flex flex-row justify-between">
-        <View className="flex flex-row">
-          <Text className="text-black">마지막 위치</Text>
+    <Card isPadding={false}>
+      <TouchableOpacity onPress={() => navigation.navigate('LocationStack')} className="p-4">
+        <View className="flex flex-row justify-between">
+          <View className="flex flex-row">
+            <Text className="text-black">마지막 위치</Text>
+          </View>
+          <View className="flex flex-row items-center">
+            <Text className="mb-1 mr-0.5 text-[#aaaaaa]">상세</Text>
+            <AntDesign name="right" size={14} style={{ color: '#cacaca' }} />
+          </View>
         </View>
-        <TouchableOpacity onPress={() => navigation.navigate('LocationStack')} className="flex flex-row items-center">
-          <Text className="mb-1 mr-0.5 text-[#aaaaaa]">상세</Text>
-          <AntDesign name="right" size={14} style={{ color: '#cacaca' }} />
-        </TouchableOpacity>
-      </View>
-      <View className="relative flex  gap-x-4 flex-row items-center p-1 mt-3">
-        <View className="w-20 h-20 overflow-hidden rounded-lg">
-          <MapView
-            provider={PROVIDER_GOOGLE}
-            style={styles.map}
-            initialRegion={DEFAULT_MAP_REGION}
-            followsUserLocation={true}
-            scrollDuringRotateOrZoomEnabled={false}
-            scrollEnabled={false}
-            rotateEnabled={false}
-            pitchEnabled={false}
-          />
-          <Entypo
-            name="location-pin"
-            size={36}
-            style={{
-              color: '#FF5185',
-              position: 'absolute',
-              top: '50%',
-              left: '50%',
-              transform: [{ translateX: -18 }, { translateY: -28 }],
-            }}
-          />
-        </View>
-        {/* <Image source={sampleMap} className="w-20 h-20 rounded-2xl mr-5" /> */}
+        <View className="relative flex  gap-x-4 flex-row items-center p-1 mt-3">
+          <View className="w-20 h-20 overflow-hidden rounded-lg">
+            <MapView
+              provider={PROVIDER_GOOGLE}
+              style={styles.map}
+              initialRegion={DEFAULT_MAP_REGION}
+              followsUserLocation={true}
+              scrollDuringRotateOrZoomEnabled={false}
+              scrollEnabled={false}
+              rotateEnabled={false}
+              pitchEnabled={false}
+            />
+            <Entypo
+              name="location-pin"
+              size={36}
+              style={{
+                color: '#FF5185',
+                position: 'absolute',
+                top: '50%',
+                left: '50%',
+                transform: [{ translateX: -18 }, { translateY: -28 }],
+              }}
+            />
+          </View>
 
-        <View>
-          <Text className="text-black text-base">
-            {loca ? address?.split(' ').splice(0, 2).join(' ') : '위치 기록이 없습니다'}
-          </Text>
-          <Text className="text-black text-base">{loca ? address?.split(' ').splice(2).join(' ') : ''}</Text>
+          <View>
+            <Text className="text-black text-base">
+              {loca ? address?.split(' ').splice(0, 2).join(' ') : '위치 기록이 없습니다'}
+            </Text>
+            <Text className="text-black text-base">{loca ? address?.split(' ').splice(2).join(' ') : ''}</Text>
+          </View>
         </View>
-      </View>
-      {!nowSelectedChild && <CardCover height={124} text="자녀의 실시간 위치를 확인할 수 있습니다" />}
+        {!nowSelectedChild && <CardCover height={124} text="자녀의 실시간 위치를 확인할 수 있습니다" />}
+      </TouchableOpacity>
     </Card>
   );
 };
