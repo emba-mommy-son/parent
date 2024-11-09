@@ -1,79 +1,28 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+# 마미손 - 자녀 케어를 위한 부모용 앱
+부모가 자녀의 정신적, 감정적 상태를 실시간으로 모니터링하고 지원할 수 있도록 돕는 모바일 애플리케이션입니다. 이 앱은 자녀와의 소통을 지원하고 부모가 자녀의 안전과 건강을 보다 효과적으로 관리할 수 있도록 다양한 기능을 제공합니다.
 
-# Getting Started
+## 주요 기능
+### 1. 감정 및 정신 건강 분석
+자녀의 채팅 내역을 바탕으로 감정 분포와 정신 건강 상태를 분석합니다. 이를 통해 부모는 자녀의 감정 상태와 정신 건강에 대한 통찰을 얻을 수 있으며, 필요한 경우 적절한 지원을 제공할 수 있습니다.
 
->**Note**: Make sure you have completed the [React Native - Environment Setup](https://reactnative.dev/docs/environment-setup) instructions till "Creating a new application" step, before proceeding.
+### 2. 공동 투두 리스트 및 위시리스트
+자녀가 감시 앱에 대해 거부감을 가질 수 있다는 점을 고려하여 위시리스트 기반 투두 리스트 기능을 도입했습니다. 부모와 자녀가 함께 목표를 설정하고 투두 리스트를 완료하면, 부모는 자녀에게 위시리스트 아이템을 선물할 수 있습니다. 이 기능은 협력을 통해 긍정적 상호작용을 촉진합니다.
 
-## Step 1: Start the Metro Server
+### 3. 실시간 위치 추적 및 안전 구역 알림
+앱은 실시간 위치 추적과 지오펜싱 기능을 지원합니다. 부모는 안전 구역과 위험 구역을 설정할 수 있으며, 자녀가 설정된 구역에 들어가거나 나갈 때 알림을 받을 수 있습니다. 이 기능은 자녀의 안전을 보장하는 데 도움을 줍니다.
 
-First, you will need to start **Metro**, the JavaScript _bundler_ that ships _with_ React Native.
+### 4. 월별 컨디션 추적
+부모는 자녀의 월별 컨디션을 캘린더를 통해 확인할 수 있습니다. 이를 통해 자녀의 상태 변화를 시간에 따라 추적하고, 자녀의 전반적인 건강 상태를 보다 종합적으로 파악할 수 있습니다.
 
-To start Metro, run the following command from the _root_ of your React Native project:
+## 사용 기술
+React Native: 크로스 플랫폼 앱 개발을 위한 모바일 프레임워크<br>
+Tailwind CSS: 일관된 컴포넌트 스타일링을 위한 CSS 프레임워크<br>
+Zustand: 반응형 사용자 경험을 위한 상태 관리 라이브러리<br>
+React Query (Axios): API 관리와 서버 데이터 동기화를 위한 라이브러리<br>
 
-```bash
-# using npm
-npm start
+## 스크린샷
+[홈 페이지]
 
-# OR using Yarn
-yarn start
-```
+![image](https://github.com/user-attachments/assets/0ae1171f-7b94-4352-b647-5d131bb64fda)
 
-## Step 2: Start your Application
-
-Let Metro Bundler run in its _own_ terminal. Open a _new_ terminal from the _root_ of your React Native project. Run the following command to start your _Android_ or _iOS_ app:
-
-### For Android
-
-```bash
-# using npm
-npm run android
-
-# OR using Yarn
-yarn android
-```
-
-### For iOS
-
-```bash
-# using npm
-npm run ios
-
-# OR using Yarn
-yarn ios
-```
-
-If everything is set up _correctly_, you should see your new app running in your _Android Emulator_ or _iOS Simulator_ shortly provided you have set up your emulator/simulator correctly.
-
-This is one way to run your app — you can also run it directly from within Android Studio and Xcode respectively.
-
-## Step 3: Modifying your App
-
-Now that you have successfully run the app, let's modify it.
-
-1. Open `App.tsx` in your text editor of choice and edit some lines.
-2. For **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Developer Menu** (<kbd>Ctrl</kbd> + <kbd>M</kbd> (on Window and Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (on macOS)) to see your changes!
-
-   For **iOS**: Hit <kbd>Cmd ⌘</kbd> + <kbd>R</kbd> in your iOS Simulator to reload the app and see your changes!
-
-## Congratulations! :tada:
-
-You've successfully run and modified your React Native App. :partying_face:
-
-### Now what?
-
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [Introduction to React Native](https://reactnative.dev/docs/getting-started).
-
-# Troubleshooting
-
-If you can't get this to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
-
-# Learn More
-
-To learn more about React Native, take a look at the following resources:
-
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
+홈 페이지에서는 자녀의 건강 상태, 목표 달성도, 현재 위치, 감정 요약 등을 한눈에 확인할 수 있습니다. 이를 통해 부모는 자녀의 최근 상태와 활동을 빠르게 파악할 수 있습니다.
