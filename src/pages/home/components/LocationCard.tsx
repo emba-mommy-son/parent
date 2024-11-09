@@ -1,6 +1,5 @@
 import type { BottomTabNavigationProp } from '@react-navigation/bottom-tabs';
 import { useNavigation } from '@react-navigation/native';
-
 import React, { useEffect, useState } from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
@@ -55,7 +54,16 @@ const LocationCard = () => {
             <MapView
               provider={PROVIDER_GOOGLE}
               style={styles.map}
-              initialRegion={DEFAULT_MAP_REGION}
+              initialRegion={
+                locationData && locationData[0]
+                  ? {
+                      latitude: locationData?.[0]?.latitude,
+                      longitude: locationData?.[0]?.longitude,
+                      latitudeDelta: 0.01,
+                      longitudeDelta: 0.01,
+                    }
+                  : DEFAULT_MAP_REGION
+              }
               followsUserLocation={true}
               scrollDuringRotateOrZoomEnabled={false}
               scrollEnabled={false}
