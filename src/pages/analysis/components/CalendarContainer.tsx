@@ -61,7 +61,6 @@ const CalendarContainer = ({ onDayPress }: CalendarContainerProps) => {
               <TouchableOpacity
                 onPress={() => {
                   setSelectedDate(date.dateString);
-                  console.log(date, state);
                   if (date.dateString <= todayString) {
                     onDayPress();
                   }

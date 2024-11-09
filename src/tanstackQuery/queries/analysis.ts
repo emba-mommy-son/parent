@@ -48,7 +48,6 @@ const useMonthEmotionReport = ({ childId, year, month }: MonthEmotionForm) => {
     queryFn: () => mommyson.getMonthEmotionReport({ childId, year, month }),
   });
 
-  console.log('한달', data?.data.data);
   const monthEmotionData = data?.data.data || [];
   return monthEmotionData;
 };

@@ -27,7 +27,7 @@ const AnalysisModal = () => {
         </Text>
       </View>
 
-      <View className="h-[140px] overflow-hidden">
+      <View className="h-[196px] overflow-hidden">
         <View className="flex flex-row space-x-2 mt-4 h-[30px]">
           {data?.descriptionTag?.map((tag: string, index: number) => (
             <View

@@ -20,7 +20,6 @@ const parseNotification = (type: string) => {
 };
 
 messaging().setBackgroundMessageHandler(async message => {
-  console.log('background message: ', message);
   const { notification } = message;
 
   if (notification && notification.body) {
@@ -28,7 +27,6 @@ messaging().setBackgroundMessageHandler(async message => {
 
     // * 위치 알림
     if (notificationType === NotificationType.LOCATION) {
-      console.log('LOCATION', notification.body);
       PushNotification.localNotification({
         channelId: CHANNEL_ID,
         title: notification.title,

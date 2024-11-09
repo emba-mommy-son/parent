@@ -12,7 +12,6 @@ const useRewardImage = (childId: ChildId) => {
   });
 
   const rewardImage = data?.data.data;
-  console.log(rewardImage);
   return rewardImage;
 };
 

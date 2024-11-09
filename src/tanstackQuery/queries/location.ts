@@ -25,7 +25,6 @@ const useChildLocation = (childId: ChildId) => {
   });
 
   const locationList = data?.data.data || null;
-  console.log(locationList);
   return locationList;
 };
 
