@@ -1,7 +1,7 @@
 import type { BottomTabNavigationProp } from '@react-navigation/bottom-tabs';
 import { useNavigation } from '@react-navigation/native';
 import React, { useEffect, useState } from 'react';
-import { StyleSheet, Text, Pressable, View } from 'react-native';
+import { Pressable, StyleSheet, Text, View } from 'react-native';
 import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import Entypo from 'react-native-vector-icons/Entypo';
@@ -88,7 +88,10 @@ const LocationCard = () => {
             </Text> */}
             {/* <Text className="text-black text-base">{loca ? address?.split(' ').splice(2).join(' ') : ''}</Text> */}
             <Text className="text-black text-base">
-              {locationData?.length !== 0 ? address?.split(' ').splice(2).join(' ') : '등록된 정보가 없습니다.'}
+              {locationData?.length !== 0 ? address?.split(' ').splice(2, 2).join(' ') : '등록된 정보가 없습니다.'}
+            </Text>
+            <Text className="text-black text-base">
+              {locationData?.length !== 0 ? address?.split(' ').splice(4).join(' ') : ''}
             </Text>
           </View>
         </View>
