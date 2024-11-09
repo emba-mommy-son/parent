@@ -1,6 +1,6 @@
 import { useNavigation } from '@react-navigation/native';
 import { type NativeStackNavigationProp } from '@react-navigation/native-stack';
-import React, { useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import { Text, TouchableOpacity, View } from 'react-native';
 import BellIcon from 'react-native-vector-icons/Octicons';
 
@@ -12,23 +12,15 @@ import ChildStatusCard from '../components/ChildStatusCard';
 interface ProfileCardProps {
   emotionScore: number;
   sleepStatus: string;
+  notificationList: notificationDto[];
 }
 
-const ProfileCard = ({ emotionScore, sleepStatus }: ProfileCardProps) => {
+const ProfileCard = ({ emotionScore, sleepStatus, notificationList }: ProfileCardProps) => {
   const { nowSelectedChild } = useRootStore();
-  const [data, setData] = useState(
-    nowSelectedChild
-      ? {
-          name: nowSelectedChild.name,
-          alert: false,
-          alertCnt: 0,
-        }
-      : {
-          name: '등록된 자녀가 없습니다',
-          alert: false,
-          alertCnt: 0,
-        },
-  );
+
+  const alertCount = useMemo(() => {
+    return notificationList ? notificationList.length : 0;
+  }, [notificationList]);
 
   const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
 
@@ -40,16 +32,16 @@ const ProfileCard = ({ emotionScore, sleepStatus }: ProfileCardProps) => {
             {nowSelectedChild?.name || '등록된 자녀가 없습니다.'}
           </Text>
           <View className="flex flex-row">
-            {data.alert && (
+            {alertCount > 0 && (
               <Text className="text-my_primary bg-white rounded-lg rounded-br-none px-3 pb-1 mr-1.5">
                 새로운 정보가 있습니다
               </Text>
             )}
             <TouchableOpacity className="relative" onPress={() => navigation.navigate('Alert')}>
               <BellIcon name="bell" size={22} color="#ffffff" />
-              {data.alert && (
+              {alertCount > 0 && (
                 <View className="absolute top-[-8px] right-[-10px] bg-my_primary flex items-center justify-center rounded-full w-5 h-5">
-                  <Text className="text-white mt-[-0.5px]">{data.alertCnt}</Text>
+                  <Text className="text-white mt-[-0.5px]">{alertCount}</Text>
                 </View>
               )}
             </TouchableOpacity>
