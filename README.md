@@ -21,7 +21,7 @@
 - React Query (Axios): API 관리와 서버 데이터 동기화를 위한 라이브러리<br>
 
 ## 스크린샷
-![image](https://github.com/user-attachments/assets/3ff9aceb-3018-443e-b145-5113e3da6665)
+![image](https://github.com/user-attachments/assets/c2f82868-a2f1-4a03-9aa9-75e3a424e3d6)
 
 #### [홈 페이지]
 홈 페이지에서는 자녀의 건강 상태, 목표 달성도, 현재 위치, 감정 요약 등을 한눈에 확인할 수 있습니다. 이를 통해 부모는 자녀의 최근 상태와 활동을 빠르게 파악할 수 있습니다.
