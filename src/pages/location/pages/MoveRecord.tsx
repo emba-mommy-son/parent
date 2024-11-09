@@ -36,7 +36,7 @@ const MoveRecord = () => {
               key={item.boundaryId}
               className="flex-row justify-between items-center px-6 py-4 border-b border-gray-200">
               <Text className={clsx({ 'text-my_pink font-medium': item.danger, 'text-my_blishGreen': !item.danger })}>
-                {item.name}
+                {item.name.split(' ').splice(1).join(' ')}
               </Text>
             </View>
           ))
