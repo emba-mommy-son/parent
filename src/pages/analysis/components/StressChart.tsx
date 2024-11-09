@@ -18,7 +18,10 @@ const StressChart = () => {
   return (
     <View className="py-4">
       <View className="flex flex-row justify-between items-center">
-        <Text className="text-base text-black mb-3">스트레스 지수</Text>
+        <View className="flex-row gap-x-2">
+          <Text className="text-base text-black mb-3">스트레스 지수</Text>
+          <Text className="text-base text-[#FF749E] mb-3">{stressScore >= 8 && '! 위험'}</Text>
+        </View>
         <View className="flex flex-row items-end">
           <Text className="font-medium text-base text-black mb-3">{stressScore}</Text>
           <Text className="text-[#a3a3a3] mb-3"> / 10</Text>
@@ -29,7 +32,9 @@ const StressChart = () => {
           className="absolute top-0 left-0 h-4 rounded-full"
           style={{
             width: `${stressScore * 10}%`,
-            backgroundColor: '#ffccd5',
+
+            // backgroundColor: '#DFF3E4',
+            backgroundColor: `${stressScore >= 8 ? '#ffccd5' : '#DFF3E4'}`,
           }}
         />
       </View>
