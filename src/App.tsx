@@ -24,7 +24,6 @@ const requestNotificationPermission = async () => {
 };
 
 messaging().setBackgroundMessageHandler(async message => {
-  console.log('background message: ', message);
   const { notification } = message;
 
   if (notification && notification.body) {

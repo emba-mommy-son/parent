@@ -31,7 +31,6 @@ const useGeocoding = () => {
         setError('No address found');
       }
     } catch (err) {
-      console.log('first');
       setError('Failed to fetch address');
     } finally {
       setLoading(false);

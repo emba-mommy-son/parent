@@ -58,7 +58,6 @@ const SafeAreaList = ({ navigation }: { navigation: SafeAreaListProps }) => {
         {
           text: '삭제',
           onPress: () => {
-            console.log('삭제할 거', id);
             setAreaList(prev => prev && prev.filter(item => item.boundaryId !== id));
             deleteBoundary(id);
           },

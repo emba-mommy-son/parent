@@ -30,8 +30,6 @@ const EnrollSafeArea = ({ navigation }: { navigation: SafeAreaListProps }) => {
   const { name, danger, setDanger, setBoundaryName, setRadius } = useRootStore();
 
   const handleNext = () => {
-    console.log('EnrollSafeArea에서 설정한 구역명 : ', name);
-    console.log('EnrollSafeArea에서 설정한 위험여부 : ', danger);
     navigation.navigate('보호구역 등록(2/3) | 주소');
   };
 

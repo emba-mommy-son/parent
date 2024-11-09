@@ -19,7 +19,6 @@ instance.interceptors.request.use(
     // 요청 시점에 최신 상태 가져오기
     const { accessToken } = useRootStore.getState();
     if (accessToken) {
-      console.log('인터셉터에서 accessToken : ', accessToken);
       config.headers['Authorization'] = `Bearer ${accessToken}`;
     }
     return config;
@@ -31,7 +30,6 @@ instance.interceptors.request.use(
 
 instance.interceptors.response.use(
   async response => {
-    console.log('성공');
     return response;
   },
   async error => {
@@ -47,7 +45,6 @@ instance.interceptors.response.use(
       const refreshResponseData = await instance.post(`${BASE_URL}/api/auth/refresh`, { refreshToken });
 
       const { accessToken: newAccessToken, refreshToken: newRefreshToken } = refreshResponseData.data;
-      console.log('토큰 재발급');
       // 새로운 토큰 저장 및 재요청
       useRootStore.getState().setAccessToken(newAccessToken);
       useRootStore.getState().setRefreshToken(newRefreshToken);
@@ -55,7 +52,6 @@ instance.interceptors.response.use(
 
       return instance.request(error.config);
     } catch (error: any) {
-      console.log('에러 발생', error.response.data.message);
       await AsyncStorage.removeItem('accessToken');
       await AsyncStorage.removeItem('refreshToken');
       useRootStore.getState().clearToken();

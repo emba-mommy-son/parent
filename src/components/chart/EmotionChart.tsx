@@ -83,14 +83,14 @@ const EmotionChart: React.FC<EmotionChartProps> = ({ showReport = true }) => {
   const bgScale = ['#DFF3E4', '#FFF2CC', '#EAD8FA', '#CCE3FF', '#FFD9E1', '#E6E6E6'];
 
   return (
-    <>
+    <TouchableOpacity onPress={handleReportPress} style={showReport && styles.padding}>
       <View className="flex flex-row justify-between items-center">
         <Text className="text-base text-black">감정 분포 요약</Text>
         {showReport && (
-          <TouchableOpacity onPress={handleReportPress} className="flex flex-row items-center">
+          <View className="flex flex-row items-center">
             <Text className="mb-1 mr-0.5 text-[#aaaaaa]">AI 분석 레포트</Text>
             <AntDesign name="right" size={14} style={{ color: '#cacaca' }} />
-          </TouchableOpacity>
+          </View>
         )}
       </View>
 
@@ -125,7 +125,7 @@ const EmotionChart: React.FC<EmotionChartProps> = ({ showReport = true }) => {
           </View>
         )}
       </View>
-    </>
+    </TouchableOpacity>
   );
 };
 
@@ -137,6 +137,9 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.25,
     shadowRadius: 3.84,
     elevation: 10,
+  },
+  padding: {
+    padding: 16,
   },
 });
 

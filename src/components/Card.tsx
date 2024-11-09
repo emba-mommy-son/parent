@@ -4,12 +4,13 @@ import { StyleSheet, View } from 'react-native';
 interface CardProps {
   children: ReactNode;
   isMargin?: boolean;
+  isPadding?: boolean;
 }
 
-const Card = ({ children, isMargin = true }: CardProps) => {
+const Card = ({ children, isMargin = true, isPadding = true }: CardProps) => {
   return (
-    <View style={isMargin ? styles.margin : {}}>
-      <View className="w-full bg-white rounded-lg p-4 mb-4" style={styles.shadow}>
+    <View style={isMargin && styles.margin}>
+      <View className="w-full bg-white rounded-lg mb-4" style={[styles.shadow, isPadding && styles.padding]}>
         {children}
       </View>
     </View>
@@ -26,6 +27,9 @@ const styles = StyleSheet.create({
   },
   margin: {
     marginHorizontal: 20,
+  },
+  padding: {
+    padding: 16,
   },
 });
 

@@ -37,8 +37,6 @@ const SetArea = ({ navigation }: { navigation: SafeAreaListProps }) => {
   };
 
   const handleNext = () => {
-    console.log(latitude, longitude, radius, name, danger, nowSelectedChild?.id);
-
     if (!nowSelectedChild || !nowSelectedChild.id) {
       ToastAndroid.show('자녀 정보 불러오기 오류', 3000);
       return;
