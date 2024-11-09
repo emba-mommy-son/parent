@@ -21,7 +21,7 @@ const useNotification = () => {
     if (!init) {
       PushNotification.configure({
         onRegister: function (token) {
-          console.log('TOKEN:', token);
+          console.log('토큰 설정 - TOKEN:', token);
         },
         onNotification: function (notification) {
           console.log('NOTIFICATION:', notification);
@@ -44,19 +44,12 @@ const useNotification = () => {
         console.log(message);
         const { notification } = message;
         if (notification && notification.body) {
-          const notificationType = parseNotification(notification.title || '');
-
-          if (notificationType === NotificationType.UNKNOWN) {
-            return;
-          }
-
-          // * 위치 알림
-          if (notificationType === NotificationType.LOCATION) {
-            console.log('LOCATION', notification.body);
-
-            const locationData: LocationData[] = [JSON.parse(notification.body)];
-            console.log('위치 알림 : ', locationData);
-          }
+          PushNotification.localNotification({
+            channelId: CHANNEL_ID,
+            // title: notification.title,
+            title: '마미손',
+            message: `자녀가 [${JSON.parse(notification.body).name}] 구역에 진입했습니다.`,
+          });
         }
       });
 
@@ -75,14 +68,14 @@ const useNotification = () => {
   //   created => console.log(`createChannel returned '${created}'`),
   // );
 
-  const parseNotification = (type: string) => {
-    switch (type) {
-      case 'LOCATION':
-        return NotificationType.LOCATION;
-      default:
-        return NotificationType.UNKNOWN;
-    }
-  };
+  // const parseNotification = (type: string) => {
+  //   switch (type) {
+  //     case 'LOCATION':
+  //       return NotificationType.LOCATION;
+  //     default:
+  //       return NotificationType.UNKNOWN;
+  //   }
+  // };
 
   return { initialize };
 };
