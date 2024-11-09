@@ -38,18 +38,18 @@ const LocationScreen = ({ navigation }: { navigation: LocationScreenProps }) => 
   }, [locationData]);
 
   const renderLocationCard = () => {
-    const displayAddress = address?.split(' ').slice(2).join(' ') ?? '주소를 가져오는 중입니다...';
+    const displayAddress = address ? address?.split(' ').slice(2).join(' ') : '주소를 가져오는 중입니다...';
 
     return (
       <Card>
         <View className="gap-2 p-1">
           <View className="flex-row justify-between">
-            <Text className="text-my_primary">
-              {locationData && locationData?.length > 0 ? '자녀의 마지막 위치' : '현재 사용자 위치'}
-            </Text>
+            <Text className="text-my_primary">현위치</Text>
             {/* <Text className="text-gray-400">{timestamp || ''}</Text> */}
           </View>
-          <Text className="text-base font-base text-gray-600">{displayAddress}</Text>
+          <Text className="text-base font-base text-gray-600">
+            {locationData?.length !== 0 ? displayAddress : '등록된 정보가 없습니다.'}
+          </Text>
         </View>
       </Card>
     );
