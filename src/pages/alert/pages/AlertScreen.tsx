@@ -1,5 +1,5 @@
 import { useQueryClient } from '@tanstack/react-query';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { ScrollView, StyleSheet, Text, View } from 'react-native';
 import Feather from 'react-native-vector-icons/Feather';
 
@@ -12,12 +12,51 @@ import { useGetNotification, usePostNotifications } from '@/tanstackQuery/querie
 const AlertScreen = () => {
   // 알림 목록 조회
   const notificationList: notificationDto[] | undefined = useGetNotification();
+  // const [notificationList, setNotificationList] = useState([
+  //   {
+  //     id: 1,
+  //     notificationType: 'LOCATION',
+  //     message: '자녀가 [학교] 구역에 있습니다.',
+  //     createdAt: '-999999999-11-09T00:00:00',
+  //     read: false,
+  //   },
+  //   {
+  //     id: 2,
+  //     notificationType: 'LOCATION',
+  //     message: '자녀가 [PC방] 구역에 있습니다.',
+  //     createdAt: '-999999999-11-09T00:00:00',
+  //     read: false,
+  //   },
+  //   {
+  //     id: 3,
+  //     notificationType: 'LOCATION',
+  //     message: '자녀가 [병원] 구역에 있습니다.',
+  //     createdAt: '-999999999-11-08T00:00:00',
+  //     read: true,
+  //   },
+  //   {
+  //     id: 4,
+  //     notificationType: 'LOCATION',
+  //     message: '자녀가 [학교] 구역에 있습니다.',
+  //     createdAt: '-999999999-11-08T00:00:00',
+  //     read: true,
+  //   },
+  //   {
+  //     id: 5,
+  //     notificationType: 'LOCATION',
+  //     message: '자녀가 [PC방] 구역에 있습니다.',
+  //     createdAt: '-999999999-11-08T00:00:00',
+  //     read: true,
+  //   },
+  // ]);
 
   //알림 읽음 처리 뮤테이션
   const postNotification = usePostNotifications();
   const queryClient = useQueryClient();
 
   const readAllNoti = () => {
+    // setNotificationList(notificationList.map(notiData => ({ ...notiData, read: true })));
+
     postNotification.mutate(undefined, {
       onSuccess: () => {
         // 모두 읽었으면 키 무효화해서 다시 로드
@@ -29,6 +68,12 @@ const AlertScreen = () => {
   const createdAtSlicer = (day: string) => {
     return day.split('T')[0].split('-').splice(2).join('-');
   };
+
+  useEffect(() => {
+    return () => {
+      readAllNoti();
+    };
+  }, []);
 
   return (
     <ScreenContainer barStyle="dark-content" ContainerStyle={{ justifyContent: 'space-between' }}>
@@ -42,7 +87,10 @@ const AlertScreen = () => {
           <View className="mb-5">
             {notificationList &&
               notificationList.map(notidata => (
-                <View className="flex flex-row justify-between items-center py-3" style={styles.alertContainer}>
+                <View
+                  key={notidata.id}
+                  className="flex flex-row justify-between items-center py-3"
+                  style={styles.alertContainer}>
                   <View className="flex-row">
                     <Text style={!notidata.read ? styles.newMessage : styles.oldMessage}>{notidata.message}</Text>
                     {!notidata.read && (

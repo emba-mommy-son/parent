@@ -19,7 +19,8 @@ const ProfileCard = ({ emotionScore, sleepStatus, notificationList }: ProfileCar
   const { nowSelectedChild } = useRootStore();
 
   const alertCount = useMemo(() => {
-    return notificationList ? notificationList.length : 0;
+    return notificationList ? notificationList.length : 2;
+    // return 2;
   }, [notificationList]);
 
   const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
