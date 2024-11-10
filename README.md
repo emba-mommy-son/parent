@@ -20,14 +20,15 @@
 - Zustand: 반응형 사용자 경험을 위한 상태 관리 라이브러리<br>
 - React Query (Axios): API 관리와 서버 데이터 동기화를 위한 라이브러리<br>
 
-## 스크린샷
+## 스크린샷 및 시연 영상
 ![image](https://github.com/user-attachments/assets/c2f82868-a2f1-4a03-9aa9-75e3a424e3d6)
 
-#### [홈 페이지]
-홈 페이지에서는 자녀의 건강 상태, 목표 달성도, 현재 위치, 감정 요약 등을 한눈에 확인할 수 있습니다. 이를 통해 부모는 자녀의 최근 상태와 활동을 빠르게 파악할 수 있습니다.
+https://github.com/user-attachments/assets/496a88db-273a-4a4e-9285-282d0faaffea
 
-#### [투두리스트]
-투두리스트 페이지에서는 자녀와 부모가 함께 설정한 목표와 할 일을 확인하고 관리할 수 있습니다. 이 페이지는 크게 할 일과 완료한 일 섹션으로 나뉘어 있으며, 각 섹션에서 자녀의 목표 진행 상황을 직관적으로 볼 수 있습니다.
+https://github.com/user-attachments/assets/4e1d15cd-2a31-4de5-b1b1-50eb5c8775ef
 
+https://github.com/user-attachments/assets/e578f78b-2f69-41eb-acf5-3df3f10adf95
 
-[자녀 등록, 홈, 투두, 위치, 분석(캘린더), 분석(상세), 설정] ui 이렇게 추가하면 될 듯
+https://github.com/user-attachments/assets/57baf06a-1fe2-4eca-93d3-5bd1775cbdb6
+
+https://github.com/user-attachments/assets/35efe113-4d74-4ec8-97f6-e9ec79cd0657
